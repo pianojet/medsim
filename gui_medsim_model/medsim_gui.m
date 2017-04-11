@@ -1,5 +1,5 @@
-function varargout = medsim_model(varargin)
-% MEDSIM_TRAIN MATLAB code for medsim_model.fig
+function varargout = medsim_gui(varargin)
+% MEDSIM_TRAIN MATLAB code for medsim_gui.fig
 %      MEDSIM_TRAIN, by itself, creates a new MEDSIM_TRAIN or raises the existing
 %      singleton*.
 %
@@ -11,16 +11,16 @@ function varargout = medsim_model(varargin)
 %
 %      MEDSIM_TRAIN('Property','Value',...) creates a new MEDSIM_TRAIN or raises the
 %      existing singleton*.  Starting from the left, property value pairs are
-%      applied to the GUI before medsim_model_OpeningFcn gets called.  An
+%      applied to the GUI before medsim_gui_OpeningFcn gets called.  An
 %      unrecognized property name or invalid value makes property application
-%      stop.  All inputs are passed to medsim_model_OpeningFcn via varargin.
+%      stop.  All inputs are passed to medsim_gui_OpeningFcn via varargin.
 %
 %      *See GUI Options on GUIDE's Tools menu.  Choose "GUI allows only one
 %      instance to run (singleton)".
 %
 % See also: GUIDE, GUIDATA, GUIHANDLES
 
-% Edit the above text to modify the response to help medsim_model
+% Edit the above text to modify the response to help medsim_gui
 
 % Last Modified by GUIDE v2.5 24-Feb-2017 12:01:27
 
@@ -28,8 +28,8 @@ function varargout = medsim_model(varargin)
 gui_Singleton = 1;
 gui_State = struct('gui_Name',       mfilename, ...
                    'gui_Singleton',  gui_Singleton, ...
-                   'gui_OpeningFcn', @medsim_model_OpeningFcn, ...
-                   'gui_OutputFcn',  @medsim_model_OutputFcn, ...
+                   'gui_OpeningFcn', @medsim_gui_OpeningFcn, ...
+                   'gui_OutputFcn',  @medsim_gui_OutputFcn, ...
                    'gui_LayoutFcn',  [] , ...
                    'gui_Callback',   []);
 if nargin && ischar(varargin{1})
@@ -44,15 +44,15 @@ end
 % End initialization code - DO NOT EDIT
 
 
-% --- Executes just before medsim_model is made visible.
-function medsim_model_OpeningFcn(hObject, eventdata, handles, varargin)
+% --- Executes just before medsim_gui is made visible.
+function medsim_gui_OpeningFcn(hObject, eventdata, handles, varargin)
   % This function has no output args, see OutputFcn.
   % hObject    handle to figure
   % eventdata  reserved - to be defined in a future version of MATLAB
   % handles    structure with handles and user data (see GUIDATA)
-  % varargin   command line arguments to medsim_model (see VARARGIN)
+  % varargin   command line arguments to medsim_gui (see VARARGIN)
 
-  % Choose default command line output for medsim_model
+  % Choose default command line output for medsim_gui
   handles.output = hObject;
 
   % Update handles structure
@@ -61,12 +61,12 @@ function medsim_model_OpeningFcn(hObject, eventdata, handles, varargin)
   appConfig = loadConfig('/Users/justin/Documents/MATLAB/medsim/config/app_config.ini');
   disp(appConfig);
   conf = resetConfig(appConfig);
-  % UIWAIT makes medsim_model wait for user response (see UIRESUME)
+  % UIWAIT makes medsim_gui wait for user response (see UIRESUME)
   % uiwait(handles.figure1);
 
 
 % --- Outputs from this function are returned to the command line.
-function varargout = medsim_model_OutputFcn(hObject, eventdata, handles)
+function varargout = medsim_gui_OutputFcn(hObject, eventdata, handles)
   % varargout  cell array for returning output args (see VARARGOUT);
   % hObject    handle to figure
   % eventdata  reserved - to be defined in a future version of MATLAB

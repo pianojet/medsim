@@ -1,0 +1,1949 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"payment",
+				"payment_cached"
+			],
+			[
+				"filterBin",
+				"filterBinTracking"
+			],
+			[
+				"projec",
+				"project_id"
+			],
+			[
+				"discon",
+				"discontinued_date"
+			],
+			[
+				"accoun",
+				"accountInfo"
+			],
+			[
+				"taskTem",
+				"taskTemplatesJson"
+			],
+			[
+				"getPlan",
+				"getPlanById"
+			],
+			[
+				"listin",
+				"listing_data_truth"
+			],
+			[
+				"listing_",
+				"listing_data_truth"
+			],
+			[
+				"listing",
+				"listingDataCols"
+			],
+			[
+				"cancel",
+				"cancel_plan_url"
+			],
+			[
+				"subscr",
+				"subscription_deactivated"
+			],
+			[
+				"vero",
+				"veroUserId"
+			],
+			[
+				"show",
+				"showCancelButton"
+			],
+			[
+				"filter",
+				"filterService"
+			],
+			[
+				"var",
+				"varThreshold"
+			],
+			[
+				"stripe",
+				"stripe_subscription_id"
+			],
+			[
+				"cust",
+				"customer_id"
+			],
+			[
+				"sub",
+				"subscription"
+			],
+			[
+				"getClass",
+				"getClassNaiveBayes"
+			],
+			[
+				"valid",
+				"validateSingleField"
+			],
+			[
+				"graphFil",
+				"graphFileMaybe"
+			],
+			[
+				"sqft",
+				"sqft_finished"
+			],
+			[
+				"popup",
+				"popupIsHovered"
+			],
+			[
+				"truth",
+				"truthyOutput"
+			],
+			[
+				"expect",
+				"expectedOutput"
+			],
+			[
+				"Dist",
+				"DistributionNames"
+			],
+			[
+				"featuresB",
+				"featuresByClassCount"
+			],
+			[
+				"features",
+				"featuresByClassCount"
+			],
+			[
+				"sampl",
+				"samplesPerPartition"
+			],
+			[
+				"this",
+				"thisSampleCount"
+			],
+			[
+				"thisS",
+				"thisSignal"
+			],
+			[
+				"mapp",
+				"mappingType"
+			],
+			[
+				"normalized",
+				"normalizedData"
+			],
+			[
+				"norm",
+				"normalizedData"
+			],
+			[
+				"current",
+				"currentSignal"
+			],
+			[
+				"curren",
+				"currentSignal"
+			],
+			[
+				"class",
+				"classSampleCounts"
+			],
+			[
+				"dataS",
+				"dataSourceType"
+			],
+			[
+				"getT",
+				"getTableOptions"
+			],
+			[
+				"clas",
+				"classifierListValue"
+			],
+			[
+				"classified",
+				"classifiedStats"
+			],
+			[
+				"classifi",
+				"classifierStatsPath"
+			],
+			[
+				"classif",
+				"classifierStatsPath"
+			],
+			[
+				"clasi",
+				"classifierRoot"
+			],
+			[
+				"column",
+				"columnNames"
+			],
+			[
+				"classifie",
+				"classifierRoot"
+			],
+			[
+				"property",
+				"propertyId"
+			],
+			[
+				"play",
+				"playHeadLoc"
+			],
+			[
+				"click",
+				"clickpos2"
+			],
+			[
+				"audio",
+				"audio_info"
+			],
+			[
+				"down",
+				"downSampleFactor"
+			],
+			[
+				"config",
+				"config_data_normalization"
+			],
+			[
+				"valida",
+				"validationMap"
+			],
+			[
+				"record",
+				"recordChangeCounts"
+			],
+			[
+				"norma",
+				"normalizeData"
+			],
+			[
+				"get",
+				"getappdata"
+			],
+			[
+				"playback",
+				"playbackOptions"
+			],
+			[
+				"refresh",
+				"refreshPlaybackAxes"
+			],
+			[
+				"els",
+				"elseif\telseif"
+			],
+			[
+				"mainMa",
+				"mainMapIndex"
+			],
+			[
+				"location",
+				"locationHandler"
+			],
+			[
+				"loca",
+				"locationListener"
+			],
+			[
+				"signal",
+				"signalClassified"
+			],
+			[
+				"postP",
+				"postProcess"
+			],
+			[
+				"postPro",
+				"postProcessingEnd"
+			],
+			[
+				"conver",
+				"convertHighlights"
+			],
+			[
+				"subSegment",
+				"subSegmentScores"
+			],
+			[
+				"subSeg",
+				"subSegmentCount"
+			],
+			[
+				"text",
+				"textAngularManager"
+			],
+			[
+				"reference",
+				"referenceNode"
+			],
+			[
+				"focus",
+				"focusNode"
+			],
+			[
+				"percent",
+				"percentCorrect"
+			],
+			[
+				"subse",
+				"subSegmentCount"
+			],
+			[
+				"selectedR",
+				"selectedResultId"
+			],
+			[
+				"setCur",
+				"setCurrentProfileByProfileId"
+			],
+			[
+				"total",
+				"total_samples"
+			],
+			[
+				"el",
+				"elseif\telseif"
+			],
+			[
+				"_o",
+				"_originalElement"
+			],
+			[
+				"rmaps",
+				"rmapsRequireProjectEditor"
+			],
+			[
+				"setCu",
+				"setCurrent"
+			],
+			[
+				"local",
+				"localFilePath"
+			],
+			[
+				"map",
+				"map_position"
+			],
+			[
+				"files",
+				"filesForDelete"
+			],
+			[
+				"subtask",
+				"subtaskStartTime"
+			],
+			[
+				"expe",
+				"expectedQueue"
+			],
+			[
+				"create",
+				"createReadStream"
+			],
+			[
+				"is",
+				"isDisabledEvent"
+			],
+			[
+				"query",
+				"queryParams"
+			],
+			[
+				"favor",
+				"favoriteIds"
+			],
+			[
+				"fav",
+				"favoriteIds"
+			],
+			[
+				"html",
+				"htmlToPdf"
+			],
+			[
+				"url",
+				"originalUrl"
+			],
+			[
+				"lob",
+				"lobResponse"
+			],
+			[
+				"pro",
+				"project_id"
+			],
+			[
+				"A",
+				"Assign"
+			],
+			[
+				"uib",
+				"uibTooltip"
+			],
+			[
+				"option",
+				"optionalFlags"
+			],
+			[
+				"project",
+				"projectIdParam"
+			],
+			[
+				"require",
+				"requireProjectParent"
+			],
+			[
+				"data",
+				"data_list_type"
+			],
+			[
+				"data_",
+				"data_source_id"
+			],
+			[
+				"fro",
+				"frontendRoutes"
+			],
+			[
+				"MAIN_D",
+				"MAIN_DATABASE_URL"
+			],
+			[
+				"un",
+				"unsubscribe"
+			],
+			[
+				"type",
+				"typeStr"
+			],
+			[
+				"apiBase",
+				"apiBasePaymentMethod"
+			],
+			[
+				"stri",
+				"stripe_customer_id"
+			],
+			[
+				"apiBaseMail",
+				"apiBaseMailPdf"
+			],
+			[
+				"redirect",
+				"redirectState"
+			],
+			[
+				"admin",
+				"adminRoutes"
+			],
+			[
+				"desired",
+				"desiredLocation"
+			],
+			[
+				"modelTable",
+				"modelTablePath"
+			],
+			[
+				"thum",
+				"thumbnails"
+			],
+			[
+				"f",
+				"forin\tArray Comprehension"
+			],
+			[
+				"caret",
+				"caretToElement"
+			],
+			[
+				"rmap",
+				"rmapsMailTemplate"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/Users/justin/Documents/MATLAB/medsim_analysis/medsim.m",
+			"settings":
+			{
+				"buffer_size": 42212,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/justin/Documents/MATLAB/scratch/scratch.m",
+			"settings":
+			{
+				"buffer_size": 18165,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/justin/Documents/MATLAB/medsim_analysis/gui_plot/refreshaxes.m",
+			"settings":
+			{
+				"buffer_size": 3495,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/justin/Documents/MATLAB/medsim_analysis/gui_plot/refreshplayback.m",
+			"settings":
+			{
+				"buffer_size": 1478,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/justin/Documents/MATLAB/medsim_analysis/gui_plot/plotSegments.m",
+			"settings":
+			{
+				"buffer_size": 1436,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/justin/Documents/MATLAB/scratch/classifyFacade.m",
+			"settings":
+			{
+				"buffer_size": 11717,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/justin/Documents/MATLAB/scratch/test_20161013.m",
+			"settings":
+			{
+				"buffer_size": 11227,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/justin/Documents/MATLAB/scratch/getModel.m",
+			"settings":
+			{
+				"buffer_size": 9529,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/justin/Documents/MATLAB/scratch/doTrain.m",
+			"settings":
+			{
+				"buffer_size": 2189,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/justin/Documents/MATLAB/scratch/train_20161013.m",
+			"settings":
+			{
+				"buffer_size": 14386,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "pi",
+		"selected_items":
+		[
+			[
+				"pi",
+				"Package Control: Install Package"
+			],
+			[
+				"Install Package",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/justin/Documents/MATLAB",
+		"/Users/justin/Documents/MATLAB/medsim_analysis/gui_plot",
+		"/Users/justin/Documents/MATLAB/medsim_analysis/gui_util",
+		"/Users/justin/Documents/MATLAB/scratch"
+	],
+	"file_history":
+	[
+		"/Users/justin/Documents/MATLAB/scratch/medsimClassify.m",
+		"/Users/justin/ACS/staging/data/din-dfw-web1-www.driveitnow.net/html/javascript/cobalt.js",
+		"/Users/justin/ACS/staging/data/usr-local-backup/www.driveitnow.net/html/javascript/din_text_payment.js.php",
+		"/Users/justin/ACS/staging/data/usr-local/www.driveitnow.net/html/javascript/din_text_payment.js.php",
+		"/Users/justin/ACS/staging/data/usr-local/www.driveitnow.net/html/pm/driveitnow.sbp.js",
+		"/Users/justin/ACS/staging/deploy.sh",
+		"/Users/justin/ACS/staging/Vagrantfile",
+		"/Users/justin/Documents/MATLAB/scratch/filterMisClassified.m",
+		"/private/var/www/acs/index.html",
+		"/Users/justin/phptest/data/usr-local/www.driveitnow.net/html/confirm/index.html",
+		"/Users/justin/dockertemp/start.sh",
+		"/Users/justin/dockertemp/config_mysql.sh",
+		"/Users/justin/dockertemp/supervisord.conf",
+		"/Users/justin/dockertemp/Dockerfile",
+		"/private/var/www/web/index.html",
+		"/Users/justin/mynode/map/backend/utils/util.sql.helpers.coffee",
+		"/Users/justin/mynode/map/backend/services/services.user.coffee",
+		"/Users/justin/mynode/map/backend/utils/transforms/transforms.userSession.coffee",
+		"/Users/justin/mynode/map/backend/routes/route.email.coffee",
+		"/Users/justin/mynode/map/backend/utils/transforms/transforms.email.coffee",
+		"/Users/justin/mynode/map/backend/services/service.user.project.coffee",
+		"/Users/justin/mynode/map/backend/services/service.profiles.coffee",
+		"/Users/justin/mynode/map/backend/routes/route.user_projects.coffee",
+		"/Users/justin/mynode/map/backend/utils/transforms/transforms.project.coffee",
+		"/Users/justin/mynode/map/backend/routes/route.projectSession.internal.coffee",
+		"/Users/justin/mynode/map/backend/config/config.coffee",
+		"/Users/justin/mynode/map/backend/routes/index.coffee",
+		"/Users/justin/mynode/map/backend/services/service.userSession.coffee",
+		"/Users/justin/mynode/map/common/utils/enums/util.enums.subscription.status.coffee",
+		"/Users/justin/mynode/map/backend/utils/util.user.coffee",
+		"/Users/justin/mynode/map/frontend/map/html/views/onboarding/onboardingLocation.jade",
+		"/Users/justin/mynode/map/frontend/map/html/views/onboarding/onboardingPlan.jade",
+		"/Users/justin/mynode/map/tmp/updateAll.sh",
+		"/Users/justin/mynode/map/tmp/updateFromProd2.sh",
+		"/Users/justin/mynode/map/tmp/updateFromProd.sh",
+		"/Users/justin/mynode/map/backend/routes/route.charges.coffee",
+		"/Users/justin/mynode/map/migrations/main/2016-12-23__discl_text.sql",
+		"/Users/justin/mynode/map/frontend/map/scripts/config/mainOptions.coffee",
+		"/Users/justin/mynode/map/frontend/map/scripts/app.coffee",
+		"/Users/justin/mynode/map/backend/routes/route.onboarding.coffee",
+		"/Users/justin/mynode/map/frontend/admin/scripts/controllers/dataSource/county.coffee",
+		"/Users/justin/mynode/map/frontend/admin/html/views/dataSource/county.jade",
+		"/Users/justin/mynode/map/backend/routes/route.user_subscription.coffee",
+		"/Users/justin/mynode/map/backend/services/service.sessionSecurity.coffee",
+		"/Users/justin/mynode/map/frontend/admin/html/includes/dataSource/fieldConfig/common/decimal.jade",
+		"/Users/justin/mynode/map/frontend/admin/html/views/dataSource/normalize.jade",
+		"/Users/justin/mynode/map/frontend/admin/html/views/dataSource/mls.jade",
+		"/Users/justin/mynode/map/frontend/admin/scripts/constants/admin.coffee",
+		"/Users/justin/mynode/map/frontend/admin/scripts/controllers/dataSource/mls.coffee",
+		"/Users/justin/mynode/map/frontend/map/html/views/property.jade",
+		"/Users/justin/mynode/map/frontend/map/html/views/project.jade",
+		"/Users/justin/mynode/map/frontend/map/scripts/controllers/user/userPaymentMethod.coffee",
+		"/Users/justin/mynode/map/frontend/map/html/views/user/userPaymentMethod.jade",
+		"/Users/justin/mynode/map/backend/routes/route.paymentMethod.coffee",
+		"/Users/justin/mynode/map/backend/services/service.user_subscription.coffee",
+		"/Users/justin/mynode/map/frontend/map/scripts/config/routes.coffee",
+		"/Users/justin/mynode/map/spec/backendUnit/services/email/vero/service.email.impl.vero.events.spec.coffee",
+		"/Users/justin/mynode/map/backend/services/email/vero/service.email.impl.vero.events.internals.coffee",
+		"/Users/justin/mynode/map/tmp/mockrequest.js",
+		"/Users/justin/mynode/map/backend/routes/tmp:mockrequest.js",
+		"/Users/justin/mynode/map/frontend/common/scripts/services/principal.coffee",
+		"/Users/justin/mynode/map/scripts/misc/subscribe",
+		"/Users/justin/mynode/map/backend/routes/route.onboarding.internals.coffee",
+		"/Users/justin/mynode/map/backend/services/services.payment.coffee",
+		"/Users/justin/mynode/map/backend/services/payment/stripe/service.payment.impl.stripe.customers.coffee",
+		"/Users/justin/mynode/map/frontend/map/scripts/controllers/user/userSubscription.coffee",
+		"/Users/justin/mynode/map/frontend/map/html/views/templates/modals/confirm.jade",
+		"/Users/justin/mynode/map/backend/utils/util.auth.coffee",
+		"/Users/justin/mynode/map/migrations/main/2016_12_06__user_history.sql",
+		"/Users/justin/mynode/map/migrations/main/2016-10-12__data_agent.sql",
+		"/Users/justin/mynode/map/migrations/main/2016-08-02__photo_error_handling.sql",
+		"/Users/justin/mynode/map/frontend/map/scripts/config/config.validation.coffee",
+		"/Users/justin/mynode/map/frontend/map/html/views/user.jade",
+		"/Users/justin/mynode/map/frontend/map/scripts/controllers/project.coffee",
+		"/Users/justin/mynode/map/frontend/map/scripts/providers/providers.onboarding.coffee",
+		"/Users/justin/mynode/map/frontend/map/html/views/mail.jade",
+		"/Users/justin/mynode/map/frontend/map/scripts/directives/rmapsAuthDirectives.coffee",
+		"/Users/justin/mynode/map/frontend/map/scripts/controllers/controller.notes.coffee",
+		"/Users/justin/mynode/map/frontend/map/scripts/controllers/addProject.coffee",
+		"/Users/justin/mynode/map/frontend/map/scripts/controllers/clientButton.coffee",
+		"/Users/justin/mynode/map/frontend/map/scripts/controllers/controllers.onboarding.coffee",
+		"/Users/justin/mynode/map/node_modules/ng-img-crop-full-extended/compile/unminified/ng-img-crop.js",
+		"/Users/justin/mynode/map/package.json",
+		"/Users/justin/mynode/map/node_modules/ng-img-crop-full-extended/package.json",
+		"/Users/justin/Documents/MATLAB/scratch/train_20160901.m",
+		"/Users/justin/mynode/map/backend/utils/validation/util.validation.float.coffee",
+		"/Users/justin/mynode/map/backend/utils/validation/util.impl.validateAndTransformSingleOutput.coffee",
+		"/Users/justin/mynode/map/backend/utils/validation/util.validation.integer.coffee",
+		"/Users/justin/mynode/map/backend/utils/validation/util.validation.currency.coffee",
+		"/Users/justin/mynode/map/backend/utils/validation/util.validation.format.coffee",
+		"/Users/justin/mynode/map/stripetest.coffee",
+		"/Users/justin/mynode/map/backend/services/payment/stripe/service.payment.impl.stripe.bootstrap.coffee",
+		"/Users/justin/mynode/map/backend/routes/route.userSession.coffee",
+		"/Users/justin/mynode/map/common/utils/util.validatorBuilder.coffee",
+		"/Users/justin/mynode/map/migrations/main/2016-11-15__reconfig_rules.sql",
+		"/Users/justin/mynode/map/backend/services/service.externalAccounts.coffee",
+		"/Users/justin/mynode/map/backend/services/payment/stripe/index.coffee",
+		"/Users/justin/mynode/map/frontend/map/scripts/factories/factory.map.coffee",
+		"/Users/justin/mynode/map/frontend/map/scripts/services/service.currentMap.coffee",
+		"/Users/justin/mynode/map/backend/routes/route.userSession.internals.coffee",
+		"/Users/justin/mynode/map/backend/config/tables.coffee",
+		"/Users/justin/mynode/map/frontend/map/scripts/factories/priorState.coffee",
+		"/Users/justin/mynode/map/frontend/map/scripts/factories/factory.login.coffee",
+		"/Users/justin/mynode/map/frontend/map/scripts/services/loginHack.coffee",
+		"/Users/justin/mynode/map/frontend/map/scripts/controllers/login.coffee",
+		"/Users/justin/Documents/MATLAB/scratch/getHist.m",
+		"/Users/justin/Documents/MATLAB/medsim/gui_classify/getHist.m",
+		"/Users/justin/Documents/MATLAB/medsim/lib/util/findcell.m",
+		"/Users/justin/Documents/MATLAB/shuang/audioseg_old/Main_SpeakerClustering_test.m",
+		"/Users/justin/Documents/MATLAB/medsim/data/med9/manual_truth_full.m",
+		"/Users/justin/Documents/MATLAB/scratch/scratch.m",
+		"/Users/justin/Documents/MATLAB/medsim/scratch/scratch.m",
+		"/Users/justin/mynode/map/test.coffee",
+		"/Users/justin/realtymaps/documentation/scratch.coffee",
+		"/Users/justin/mynode/map/backend/routes/route.mail.coffee",
+		"/Users/justin/mynode/map/backend/services/service.mail_campaigns.coffee",
+		"/Users/justin/Downloads/struct2ini/struct2ini.m",
+		"/Users/justin/mynode/map/frontend/admin/scripts/factories/validatorBuilder.coffee",
+		"/Users/justin/mynode/map/spec/frontend/admin/factories/validatorBuilder.spec.coffee",
+		"/Users/justin/mynode/map/frontend/map/scripts/controllers/controller.property.coffee",
+		"/Users/justin/mynode/map/frontend/map/scripts/services/propertyFormatters.coffee",
+		"/Users/justin/mynode/map/frontend/map/scripts/services/eventsHandler.coffee",
+		"/Users/justin/mynode/map/frontend/map/scripts/factories/factory.baseMap.coffee",
+		"/Users/justin/mynode/map/frontend/map/scripts/services/quasi-directive/popup-loader.coffee",
+		"/Users/justin/mynode/map/frontend/map/scripts/services/eventHandlersInternals.coffee",
+		"/Users/justin/mynode/map/frontend/map/scripts/controllers/templates/modalMailTemplatePreview.coffee",
+		"/Users/justin/mynode/map/frontend/map/scripts/controllers/mailWizard/selectTemplate.coffee",
+		"/Users/justin/mynode/map/frontend/map/scripts/controllers/mailWizard/editTemplate.coffee"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"/Users/justin/ACS/staging/data/usr-local/www.driveitnow.net/html",
+			"/Users/justin/phptest/data/usr-local/www.driveitnow.net/html",
+			"/Users/justin/phptest/data/usr-local/www.driveitnow.net",
+			"/Users/justin/phptest/data/usr-local",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/migrations",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/frontend/map/html",
+			"/Users/justin/mynode/map/migrations/main",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/frontend/map/scripts",
+			"/Users/justin/mynode/map/frontend/map/script",
+			"/Users/justin/mynode/map/frontend/map/html",
+			"/Users/justin/mynode/map/frontend/map/scripts",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/frontend/admin/html",
+			"/Users/justin/mynode/map/migrations",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/common",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/common",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/frontend/map/html/includes/mail",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/common",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/frontned",
+			"/Users/justin/mynode/map/gulp",
+			"/Users/justin/mynode/map/scripts",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/migrations",
+			"/Users/justin/mynode/map/scripts",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/frontend/map/html",
+			"/Users/justin/mynode/map/frontend/html",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/migrations",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/spec",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/spec",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/frontend/map",
+			"/Users/justin/mynode/map/frontend/map/styles",
+			"/Users/justin/mynode/map/frontend/styles",
+			"/Users/justin/mynode/map",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/frontend/map",
+			"/Users/justin/mynode/map/frontend/map/html",
+			"/Users/justin/mynode/map/frontend/html",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/frontend/map/styles",
+			"/Users/justin/mynode/map/frontend/styles",
+			"/Users/justin/mynode/map/frontend/",
+			"/Users/justin/mynode/map/backend/",
+			"/Users/justin/mynode/map/frontend/map/styles",
+			"/Users/justin/mynode/map/frontend/styles",
+			"/Users/justin/Documents/MATLAB/shuang/audioseg_old",
+			"/Users/justin/mynode/map/gulp",
+			"/Users/justin/mynode/map/spec",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/frontend"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"initialPrototype",
+			"graphFile",
+			"refreshaxes",
+			"refreshPlaybackAxes",
+			"uitable",
+			"getSignalClip",
+			"getSegmentsCB_Callback",
+			"playbackOptions.start",
+			"axes1_buttondownfcn",
+			"refreshGndAxes",
+			"displayGndPlotFigure",
+			"plotSegments",
+			"displayGndPlotFigure_from_orig",
+			"newPlayer",
+			"refreshaxes",
+			"getSignalClip",
+			"refreshPlayback",
+			"refreshPlaybackAxes",
+			"gndOptions",
+			"axesTimeStart",
+			"extractedForTestPath",
+			"DisplayPayment",
+			"ErrorOut",
+			"logger",
+			"ErrorOut",
+			"logger",
+			"6265",
+			"din_insert_button",
+			"6265",
+			"console",
+			"mathbox-cblt-list",
+			"6265",
+			" 6265",
+			"'",
+			"mysql",
+			"gcc",
+			"php-devel",
+			"php-pear",
+			"ssh2",
+			"din_code",
+			"style=\"white-space\"",
+			"wa_or",
+			"dinCancel",
+			"driveitnow_container",
+			"din_placeholder",
+			"6440",
+			"driveitnow",
+			"drive_it_now",
+			"din_",
+			"driveitnow_",
+			"vin_",
+			"<head>",
+			"driveitnow",
+			"_SERVER",
+			"dealer_row",
+			"winHeight",
+			"din_button_",
+			"din_url",
+			"autodataMake",
+			"MakeID",
+			"trim",
+			"vehicleVIN",
+			"ErrorOut",
+			"vehiclePrice",
+			"DisplayPayment",
+			"include",
+			"print",
+			"filterBins2",
+			"squareform",
+			" new ",
+			"new ",
+			"class ",
+			"apache",
+			"numClasses",
+			"#one",
+			"thumbs",
+			"#team",
+			"clear",
+			"bio",
+			"style1",
+			"===",
+			"two",
+			"====",
+			"===",
+			"box.person",
+			"justin",
+			"joe",
+			"button.special",
+			"style1",
+			"===",
+			"console",
+			"Promise.map",
+			"getGroupsForUserId",
+			"dbs",
+			"_pinProperty",
+			"_loadProperties",
+			"select",
+			"sqlColumns",
+			"veroSvc",
+			"addClient",
+			"_inviteClient",
+			"newProject",
+			"body",
+			"transforms",
+			"req.",
+			"userSvc",
+			"services.user",
+			"methodExec",
+			"account_use_types",
+			"apiBaseAccountUseTypes",
+			"accountUseTypes",
+			"====",
+			".PRO",
+			"STANDARD",
+			"subscr",
+			"STANDARD",
+			"getPlanFromState",
+			"console",
+			"subscr",
+			"PRO",
+			"console",
+			"environment",
+			"taskTemplates",
+			"console",
+			"rmapsOnboardingOrderSelectorService",
+			"$scope.view",
+			"view.plans",
+			"$scope.view.plans"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"",
+			"filterBins3",
+			"jesse",
+			"nick",
+			"dan",
+			"justin",
+			"parent1",
+			"newOptions",
+			"logger.error",
+			"featuresByClass",
+			"agent_data",
+			"]]",
+			"[[",
+			"",
+			"feature",
+			"=",
+			"melfcc_",
+			"options",
+			"",
+			"setDirty",
+			"\"",
+			"wizard.mail.campaign",
+			"oldTemplateType",
+			")",
+			"(",
+			")",
+			"(",
+			"$log.debug"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"folders":
+	[
+		{
+			"path": "/Users/justin/Documents/MATLAB"
+		}
+	],
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/Users/justin/Documents/MATLAB/medsim_analysis/medsim.m",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 42212,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								13376,
+								13376
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Matlab/Matlab.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 7643.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/Users/justin/Documents/MATLAB/scratch/scratch.m",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 18165,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								182,
+								184
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Matlab/Matlab.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/Users/justin/Documents/MATLAB/medsim_analysis/gui_plot/refreshaxes.m",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3495,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Matlab/Matlab.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/Users/justin/Documents/MATLAB/medsim_analysis/gui_plot/refreshplayback.m",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1478,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								196,
+								322
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Matlab/Matlab.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/Users/justin/Documents/MATLAB/medsim_analysis/gui_plot/plotSegments.m",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1436,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Matlab/Matlab.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/Users/justin/Documents/MATLAB/scratch/classifyFacade.m",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 11717,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3937,
+								3957
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Matlab/Matlab.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "/Users/justin/Documents/MATLAB/scratch/test_20161013.m",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 11227,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								551,
+								571
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Matlab/Matlab.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 4205.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "/Users/justin/Documents/MATLAB/scratch/getModel.m",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 9529,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								390,
+								483
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Matlab/Matlab.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2681.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "/Users/justin/Documents/MATLAB/scratch/doTrain.m",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2189,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								908,
+								908
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Matlab/Matlab.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "/Users/justin/Documents/MATLAB/scratch/train_20161013.m",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 14386,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Matlab/Matlab.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1089.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"cobalt_vdp",
+				"data/usr-local/www.driveitnow.net/html/javascript/cobalt_vdp.js"
+			],
+			[
+				"cobalt.js",
+				"data/usr-local/www.driveitnow.net/html/javascript/cobalt.js"
+			],
+			[
+				"coba",
+				"data/din-dfw-web1-www.driveitnow.net/html/javascript/cobalt.js"
+			],
+			[
+				"din_text",
+				"data/usr-local/www.driveitnow.net/html/javascript/din_text_payment.js.php"
+			],
+			[
+				"din_include_ps_dealerspike",
+				"data/usr-local/www.driveitnow.net/html/javascript/din_include_ps_dealerspike.js"
+			],
+			[
+				"engine_interface_vehdata",
+				"data/usr-local/www.driveitnow.net/html/javascript/engine_interface_vehdata.php"
+			],
+			[
+				"din_text_",
+				"data/usr-local/www.driveitnow.net/html/javascript/din_text_payment.js.php"
+			],
+			[
+				".conf",
+				"usr-local/www.driveitnow.net/html/confirm/index.html"
+			],
+			[
+				"config.",
+				"backend/config/config.coffee"
+			],
+			[
+				"service.perm",
+				"backend/services/service.permissions.coffee"
+			],
+			[
+				"user_sub",
+				"backend/services/service.user_subscription.coffee"
+			],
+			[
+				"service.properties",
+				"frontend/map/scripts/services/service.properties.coffee"
+			],
+			[
+				"usersub",
+				"frontend/map/scripts/controllers/user/userSubscription.coffee"
+			],
+			[
+				"route.user_sub",
+				"backend/routes/route.user_subscription.coffee"
+			],
+			[
+				"sqlcol",
+				"backend/utils/util.sql.columns.coffee"
+			],
+			[
+				"util.sql.hel",
+				"backend/utils/util.sql.helpers.coffee"
+			],
+			[
+				"services.user",
+				"backend/services/services.user.coffee"
+			],
+			[
+				"conf",
+				"backend/config/config.coffee"
+			],
+			[
+				"index.",
+				"backend/routes/index.coffee"
+			],
+			[
+				"config",
+				"backend/config/config.coffee"
+			],
+			[
+				"ezcrud.rou",
+				"backend/utils/crud/util.ezcrud.route.helpers.coffee"
+			],
+			[
+				"confi",
+				"backend/config/config.coffee"
+			],
+			[
+				"ezcrud",
+				"backend/utils/crud/util.ezcrud.service.helpers.coffee"
+			],
+			[
+				"backend.",
+				"common/config/routes.backend.coffee"
+			],
+			[
+				"util.rou",
+				"backend/utils/util.route.helpers.coffee"
+			],
+			[
+				"auth.co",
+				"backend/utils/util.auth.coffee"
+			],
+			[
+				"usersubs",
+				"frontend/map/scripts/controllers/user/userSubscription.coffee"
+			],
+			[
+				"commonc",
+				"common/config/commonConfig.coffee"
+			],
+			[
+				"util.auth",
+				"backend/utils/util.auth.coffee"
+			],
+			[
+				"providers.on",
+				"frontend/map/scripts/providers/providers.onboarding.coffee"
+			],
+			[
+				"princi",
+				"frontend/common/scripts/services/principal.coffee"
+			],
+			[
+				"usersubsc",
+				"frontend/map/html/views/user/userSubscription.jade"
+			],
+			[
+				"util.user",
+				"backend/utils/util.user.coffee"
+			],
+			[
+				"subscript",
+				"frontend/map/scripts/services/service.subscription.coffee"
+			],
+			[
+				"comm",
+				"common/config/commonConfig.coffee"
+			],
+			[
+				"route.char",
+				"backend/routes/route.charges.coffee"
+			],
+			[
+				"user",
+				"frontend/map/scripts/controllers/user/userSubscription.coffee"
+			],
+			[
+				"property.ja",
+				"frontend/map/html/views/property.jade"
+			],
+			[
+				"format",
+				"frontend/map/scripts/services/formatters.coffee"
+			],
+			[
+				"service.exter",
+				"backend/services/service.externalAccounts.coffee"
+			],
+			[
+				"service.mls_con",
+				"backend/services/service.mls_config.coffee"
+			],
+			[
+				"route.onb",
+				"backend/routes/route.onboarding.coffee"
+			],
+			[
+				"onboarding",
+				"frontend/map/html/views/onboarding/onboardingPlan.jade"
+			],
+			[
+				"onboard.",
+				"frontend/map/html/views/onboarding.jade"
+			],
+			[
+				"mainoptions",
+				"frontend/map/scripts/config/mainOptions.coffee"
+			],
+			[
+				"onboarding.",
+				"frontend/map/scripts/controllers/controllers.onboarding.coffee"
+			],
+			[
+				"analyze",
+				"common/utils/util.analyzeValue.coffee"
+			],
+			[
+				"util.error.p",
+				"backend/utils/errors/util.error.partiallyHandledError.coffee"
+			],
+			[
+				"util.errors.on",
+				"backend/utils/errors/util.errors.onboarding.coffee"
+			],
+			[
+				"plans",
+				"frontend/map/scripts/services/plans.coffee"
+			],
+			[
+				"controller.on",
+				"frontend/map/scripts/controllers/controllers.onboarding.coffee"
+			],
+			[
+				"service.pla",
+				"backend/services/service.plans.coffee"
+			],
+			[
+				"service.sessi",
+				"backend/services/service.sessionSecurity.coffee"
+			],
+			[
+				"usersession",
+				"backend/routes/route.userSession.coffee"
+			],
+			[
+				"county.ja",
+				"frontend/admin/html/views/dataSource/county.jade"
+			],
+			[
+				"mls.ja",
+				"frontend/admin/html/views/dataSource/mls.jade"
+			],
+			[
+				"mls.cof",
+				"frontend/admin/scripts/controllers/dataSource/mls.coffee"
+			],
+			[
+				"proper",
+				"frontend/map/html/views/property.jade"
+			],
+			[
+				"project.ja",
+				"frontend/map/html/views/project.jade"
+			],
+			[
+				"cc-form.t",
+				"frontend/map/html/views/templates/cc-form.tpl.jade"
+			],
+			[
+				"replacecc",
+				"frontend/map/html/views/templates/modals/replaceCC.jade"
+			],
+			[
+				"userpay",
+				"frontend/map/scripts/controllers/user/userPaymentMethod.coffee"
+			],
+			[
+				"route.mls",
+				"backend/routes/route.mls.coffee"
+			],
+			[
+				"service.mls",
+				"backend/services/service.mls.coffee"
+			],
+			[
+				"route.bac",
+				"common/config/routes.backend.coffee"
+			],
+			[
+				"route.price",
+				"backend/routes/route.prices.coffee"
+			],
+			[
+				"services.pri",
+				"backend/services/service.prices.coffee"
+			],
+			[
+				"route.web",
+				"backend/routes/route.webhooks.coffee"
+			],
+			[
+				"verospec",
+				"spec/backendUnit/services/email/vero/service.email.impl.vero.events.spec.coffee"
+			],
+			[
+				"util.errors.ver",
+				"backend/utils/errors/util.errors.vero.coffee"
+			],
+			[
+				"tables.co",
+				"backend/config/tables.coffee"
+			],
+			[
+				"transforms.we",
+				"backend/utils/transforms/transforms.webhooks.stripe.coffee"
+			],
+			[
+				"services.pay",
+				"backend/services/services.payment.coffee"
+			],
+			[
+				"onboarding.intern",
+				"backend/routes/route.onboarding.internals.coffee"
+			],
+			[
+				"subscri",
+				"scripts/misc/subscribe"
+			],
+			[
+				"confirm",
+				"frontend/map/html/views/templates/modals/confirm.jade"
+			],
+			[
+				"users",
+				"frontend/map/scripts/controllers/user/userSubscription.coffee"
+			],
+			[
+				"principal",
+				"frontend/common/scripts/services/principal.coffee"
+			],
+			[
+				"subscr",
+				"scripts/misc/subscribe"
+			],
+			[
+				"common",
+				"common/config/commonConfig.coffee"
+			],
+			[
+				"user.jad",
+				"frontend/map/html/views/user.jade"
+			],
+			[
+				"config.validation",
+				"frontend/map/scripts/config/config.validation.coffee"
+			],
+			[
+				"user.jade",
+				"frontend/map/html/views/user.jade"
+			],
+			[
+				"subscription",
+				"frontend/map/scripts/services/service.subscription.coffee"
+			],
+			[
+				"authdire",
+				"frontend/map/scripts/directives/rmapsAuthDirectives.coffee"
+			],
+			[
+				"sqlhel",
+				"backend/utils/util.sql.helpers.coffee"
+			],
+			[
+				"subscribe",
+				"scripts/misc/subscribe"
+			],
+			[
+				"validatorb",
+				"common/utils/util.validatorBuilder.coffee"
+			],
+			[
+				"service.user_su",
+				"backend/services/service.user_subscription.coffee"
+			],
+			[
+				"user_subscr",
+				"backend/routes/route.user_subscription.coffee"
+			],
+			[
+				"sessionsec",
+				"backend/services/service.sessionSecurity.coffee"
+			],
+			[
+				"utils.sty",
+				"frontend/admin/styles/views/utils.styl"
+			],
+			[
+				"service.session",
+				"backend/services/service.sessionSecurity.coffee"
+			],
+			[
+				"auth.coff",
+				"backend/utils/util.auth.coffee"
+			],
+			[
+				"property.sty",
+				"frontend/map/styles/views/property.styl"
+			],
+			[
+				"browserify.int",
+				"gulp/util/browserify/browserify.internals.coffee"
+			],
+			[
+				"app.co",
+				"frontend/admin/scripts/app.coffee"
+			],
+			[
+				"template-",
+				"frontend/admin/scripts/runners/template-cache-hack.coffee"
+			],
+			[
+				"template-cache",
+				"frontend/admin/scripts/runners/template-cache-hack.coffee"
+			],
+			[
+				"county.co",
+				"frontend/admin/scripts/controllers/dataSource/county.coffee"
+			],
+			[
+				"validation.int",
+				"backend/utils/validation/util.validation.integer.coffee"
+			],
+			[
+				"validation.defaults",
+				"backend/utils/validation/util.validation.defaults.coffee"
+			],
+			[
+				"util.validation.nu",
+				"backend/utils/validation/util.validation.nullify.coffee"
+			],
+			[
+				"util.validation.fl",
+				"backend/utils/validation/util.validation.float.coffee"
+			],
+			[
+				"validationand",
+				"backend/utils/validation/util.impl.validateAndTransformSingleOutput.coffee"
+			],
+			[
+				"advanced.jade",
+				"frontend/admin/html/includes/dataSource/fieldConfig/common/advanced.jade"
+			],
+			[
+				"county.",
+				"frontend/admin/html/views/dataSource/county.jade"
+			],
+			[
+				"validatorbuild",
+				"common/utils/util.validatorBuilder.coffee"
+			],
+			[
+				"validation.fl",
+				"backend/utils/validation/util.validation.float.coffee"
+			],
+			[
+				"confirm.jade",
+				"frontend/map/html/views/templates/modals/confirm.jade"
+			],
+			[
+				"norm",
+				"frontend/admin/scripts/controllers/dataSource/normalize.coffee"
+			],
+			[
+				"normalize",
+				"frontend/admin/scripts/services/normalize.coffee"
+			],
+			[
+				"controller",
+				"frontend/map/scripts/controllers/controller.property.coffee"
+			],
+			[
+				"propertyfo",
+				"frontend/map/scripts/services/propertyFormatters.coffee"
+			],
+			[
+				"layers.ov",
+				"frontend/map/scripts/factories/layers.overlay.coffee"
+			],
+			[
+				"layers",
+				"frontend/map/scripts/factories/layers.base.coffee"
+			],
+			[
+				"cliententry.st",
+				"frontend/map/styles/views/clientEntry.styl"
+			],
+			[
+				"factory.log",
+				"frontend/map/scripts/factories/factory.login.coffee"
+			],
+			[
+				"factory.login",
+				"frontend/admin/scripts/factories/factory.login.coffee"
+			],
+			[
+				"service.login",
+				"frontend/common/scripts/services/service.login.coffee"
+			],
+			[
+				"validatorbuil",
+				"common/utils/util.validatorBuilder.coffee"
+			],
+			[
+				"controller.pro",
+				"frontend/map/scripts/controllers/controller.property.coffee"
+			],
+			[
+				"service.profile",
+				"backend/services/service.profiles.coffee"
+			],
+			[
+				"route.prop",
+				"backend/routes/route.properties.internals.coffee"
+			],
+			[
+				"factory.map",
+				"frontend/map/scripts/factories/factory.map.coffee"
+			],
+			[
+				"property",
+				"frontend/map/html/views/property.jade"
+			],
+			[
+				"propertyfor",
+				"frontend/map/scripts/services/propertyFormatters.coffee"
+			],
+			[
+				"service.properties.",
+				"frontend/map/scripts/services/service.properties.coffee"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 229.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

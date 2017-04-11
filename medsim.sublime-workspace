@@ -1,0 +1,2437 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"cacheF",
+				"cacheFilename"
+			],
+			[
+				"total",
+				"totalFeaturesForThisClass"
+			],
+			[
+				"classD",
+				"classData"
+			],
+			[
+				"classDa",
+				"classDataFile"
+			],
+			[
+				"class",
+				"classLabels"
+			],
+			[
+				"these",
+				"theseTotalSamples"
+			],
+			[
+				"clickpo",
+				"clickpos1"
+			],
+			[
+				"playba",
+				"playbackDSFactor"
+			],
+			[
+				"set",
+				"setappdata"
+			],
+			[
+				"payment",
+				"payment_cached"
+			],
+			[
+				"filterBin",
+				"filterBinTracking"
+			],
+			[
+				"projec",
+				"project_id"
+			],
+			[
+				"discon",
+				"discontinued_date"
+			],
+			[
+				"accoun",
+				"accountInfo"
+			],
+			[
+				"taskTem",
+				"taskTemplatesJson"
+			],
+			[
+				"getPlan",
+				"getPlanById"
+			],
+			[
+				"listin",
+				"listing_data_truth"
+			],
+			[
+				"listing_",
+				"listing_data_truth"
+			],
+			[
+				"listing",
+				"listingDataCols"
+			],
+			[
+				"cancel",
+				"cancel_plan_url"
+			],
+			[
+				"subscr",
+				"subscription_deactivated"
+			],
+			[
+				"vero",
+				"veroUserId"
+			],
+			[
+				"show",
+				"showCancelButton"
+			],
+			[
+				"filter",
+				"filterService"
+			],
+			[
+				"var",
+				"varThreshold"
+			],
+			[
+				"stripe",
+				"stripe_subscription_id"
+			],
+			[
+				"cust",
+				"customer_id"
+			],
+			[
+				"sub",
+				"subscription"
+			],
+			[
+				"getClass",
+				"getClassNaiveBayes"
+			],
+			[
+				"valid",
+				"validateSingleField"
+			],
+			[
+				"graphFil",
+				"graphFileMaybe"
+			],
+			[
+				"sqft",
+				"sqft_finished"
+			],
+			[
+				"popup",
+				"popupIsHovered"
+			],
+			[
+				"truth",
+				"truthyOutput"
+			],
+			[
+				"expect",
+				"expectedOutput"
+			],
+			[
+				"Dist",
+				"DistributionNames"
+			],
+			[
+				"featuresB",
+				"featuresByClassCount"
+			],
+			[
+				"features",
+				"featuresByClassCount"
+			],
+			[
+				"sampl",
+				"samplesPerPartition"
+			],
+			[
+				"this",
+				"thisSampleCount"
+			],
+			[
+				"thisS",
+				"thisSignal"
+			],
+			[
+				"mapp",
+				"mappingType"
+			],
+			[
+				"normalized",
+				"normalizedData"
+			],
+			[
+				"norm",
+				"normalizedData"
+			],
+			[
+				"current",
+				"currentSignal"
+			],
+			[
+				"curren",
+				"currentSignal"
+			],
+			[
+				"dataS",
+				"dataSourceType"
+			],
+			[
+				"getT",
+				"getTableOptions"
+			],
+			[
+				"clas",
+				"classifierListValue"
+			],
+			[
+				"classified",
+				"classifiedStats"
+			],
+			[
+				"classifi",
+				"classifierStatsPath"
+			],
+			[
+				"classif",
+				"classifierStatsPath"
+			],
+			[
+				"clasi",
+				"classifierRoot"
+			],
+			[
+				"column",
+				"columnNames"
+			],
+			[
+				"classifie",
+				"classifierRoot"
+			],
+			[
+				"property",
+				"propertyId"
+			],
+			[
+				"play",
+				"playHeadLoc"
+			],
+			[
+				"click",
+				"clickpos2"
+			],
+			[
+				"audio",
+				"audio_info"
+			],
+			[
+				"down",
+				"downSampleFactor"
+			],
+			[
+				"config",
+				"config_data_normalization"
+			],
+			[
+				"valida",
+				"validationMap"
+			],
+			[
+				"record",
+				"recordChangeCounts"
+			],
+			[
+				"norma",
+				"normalizeData"
+			],
+			[
+				"get",
+				"getappdata"
+			],
+			[
+				"playback",
+				"playbackOptions"
+			],
+			[
+				"refresh",
+				"refreshPlaybackAxes"
+			],
+			[
+				"els",
+				"elseif\telseif"
+			],
+			[
+				"mainMa",
+				"mainMapIndex"
+			],
+			[
+				"location",
+				"locationHandler"
+			],
+			[
+				"loca",
+				"locationListener"
+			],
+			[
+				"signal",
+				"signalClassified"
+			],
+			[
+				"postP",
+				"postProcess"
+			],
+			[
+				"postPro",
+				"postProcessingEnd"
+			],
+			[
+				"conver",
+				"convertHighlights"
+			],
+			[
+				"subSegment",
+				"subSegmentScores"
+			],
+			[
+				"subSeg",
+				"subSegmentCount"
+			],
+			[
+				"text",
+				"textAngularManager"
+			],
+			[
+				"reference",
+				"referenceNode"
+			],
+			[
+				"focus",
+				"focusNode"
+			],
+			[
+				"percent",
+				"percentCorrect"
+			],
+			[
+				"subse",
+				"subSegmentCount"
+			],
+			[
+				"selectedR",
+				"selectedResultId"
+			],
+			[
+				"setCur",
+				"setCurrentProfileByProfileId"
+			],
+			[
+				"el",
+				"elseif\telseif"
+			],
+			[
+				"_o",
+				"_originalElement"
+			],
+			[
+				"rmaps",
+				"rmapsRequireProjectEditor"
+			],
+			[
+				"setCu",
+				"setCurrent"
+			],
+			[
+				"local",
+				"localFilePath"
+			],
+			[
+				"map",
+				"map_position"
+			],
+			[
+				"files",
+				"filesForDelete"
+			],
+			[
+				"subtask",
+				"subtaskStartTime"
+			],
+			[
+				"expe",
+				"expectedQueue"
+			],
+			[
+				"create",
+				"createReadStream"
+			],
+			[
+				"is",
+				"isDisabledEvent"
+			],
+			[
+				"query",
+				"queryParams"
+			],
+			[
+				"favor",
+				"favoriteIds"
+			],
+			[
+				"fav",
+				"favoriteIds"
+			],
+			[
+				"html",
+				"htmlToPdf"
+			],
+			[
+				"url",
+				"originalUrl"
+			],
+			[
+				"lob",
+				"lobResponse"
+			],
+			[
+				"pro",
+				"project_id"
+			],
+			[
+				"A",
+				"Assign"
+			],
+			[
+				"uib",
+				"uibTooltip"
+			],
+			[
+				"option",
+				"optionalFlags"
+			],
+			[
+				"project",
+				"projectIdParam"
+			],
+			[
+				"require",
+				"requireProjectParent"
+			],
+			[
+				"data",
+				"data_list_type"
+			],
+			[
+				"data_",
+				"data_source_id"
+			],
+			[
+				"fro",
+				"frontendRoutes"
+			],
+			[
+				"MAIN_D",
+				"MAIN_DATABASE_URL"
+			],
+			[
+				"un",
+				"unsubscribe"
+			],
+			[
+				"type",
+				"typeStr"
+			],
+			[
+				"apiBase",
+				"apiBasePaymentMethod"
+			],
+			[
+				"stri",
+				"stripe_customer_id"
+			],
+			[
+				"apiBaseMail",
+				"apiBaseMailPdf"
+			],
+			[
+				"redirect",
+				"redirectState"
+			],
+			[
+				"admin",
+				"adminRoutes"
+			],
+			[
+				"desired",
+				"desiredLocation"
+			],
+			[
+				"modelTable",
+				"modelTablePath"
+			],
+			[
+				"thum",
+				"thumbnails"
+			],
+			[
+				"f",
+				"forin\tArray Comprehension"
+			],
+			[
+				"caret",
+				"caretToElement"
+			],
+			[
+				"rmap",
+				"rmapsMailTemplate"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"contents": "function varargout = medsim_train(varargin)\n% MEDSIM_TRAIN MATLAB code for medsim_train.fig\n%      MEDSIM_TRAIN, by itself, creates a new MEDSIM_TRAIN or raises the existing\n%      singleton*.\n%\n%      H = MEDSIM_TRAIN returns the handle to a new MEDSIM_TRAIN or the handle to\n%      the existing singleton*.\n%\n%      MEDSIM_TRAIN('CALLBACK',hObject,eventData,handles,...) calls the local\n%      function named CALLBACK in MEDSIM_TRAIN.M with the given input arguments.\n%\n%      MEDSIM_TRAIN('Property','Value',...) creates a new MEDSIM_TRAIN or raises the\n%      existing singleton*.  Starting from the left, property value pairs are\n%      applied to the GUI before medsim_train_OpeningFcn gets called.  An\n%      unrecognized property name or invalid value makes property application\n%      stop.  All inputs are passed to medsim_train_OpeningFcn via varargin.\n%\n%      *See GUI Options on GUIDE's Tools menu.  Choose \"GUI allows only one\n%      instance to run (singleton)\".\n%\n% See also: GUIDE, GUIDATA, GUIHANDLES\n\n% Edit the above text to modify the response to help medsim_train\n\n% Last Modified by GUIDE v2.5 24-Feb-2017 12:01:27\n\n% Begin initialization code - DO NOT EDIT\ngui_Singleton = 1;\ngui_State = struct('gui_Name',       mfilename, ...\n                   'gui_Singleton',  gui_Singleton, ...\n                   'gui_OpeningFcn', @medsim_train_OpeningFcn, ...\n                   'gui_OutputFcn',  @medsim_train_OutputFcn, ...\n                   'gui_LayoutFcn',  [] , ...\n                   'gui_Callback',   []);\nif nargin && ischar(varargin{1})\n    gui_State.gui_Callback = str2func(varargin{1});\nend\n\nif nargout\n    [varargout{1:nargout}] = gui_mainfcn(gui_State, varargin{:});\nelse\n    gui_mainfcn(gui_State, varargin{:});\nend\n% End initialization code - DO NOT EDIT\n\n\n% --- Executes just before medsim_train is made visible.\nfunction medsim_train_OpeningFcn(hObject, eventdata, handles, varargin)\n  % This function has no output args, see OutputFcn.\n  % hObject    handle to figure\n  % eventdata  reserved - to be defined in a future version of MATLAB\n  % handles    structure with handles and user data (see GUIDATA)\n  % varargin   command line arguments to medsim_train (see VARARGIN)\n\n  % Choose default command line output for medsim_train\n  handles.output = hObject;\n\n  % Update handles structure\n  guidata(hObject, handles);\n  disp('Loading config...')\n  appConf = loadConfig('/Users/justin/Documents/MATLAB/medsim/config/app_config.ini');\n  setappdata(0, 'appConf', appConf);\n  disp(appConf);\n  % UIWAIT makes medsim_train wait for user response (see UIRESUME)\n  % uiwait(handles.figure1);\n\n\n% --- Outputs from this function are returned to the command line.\nfunction varargout = medsim_train_OutputFcn(hObject, eventdata, handles)\n  % varargout  cell array for returning output args (see VARARGOUT);\n  % hObject    handle to figure\n  % eventdata  reserved - to be defined in a future version of MATLAB\n  % handles    structure with handles and user data (see GUIDATA)\n\n  % Get default command line output from handles structure\n  varargout{1} = handles.output;\n\n\n% --- Executes on button press in btnLoadDataPath.\nfunction btnLoadDataPath_Callback(hObject, eventdata, handles)\n  % hObject    handle to btnLoadDataPath (see GCBO)\n  % eventdata  reserved - to be defined in a future version of MATLAB\n  % handles    structure with handles and user data (see GUIDATA)\n\n  dataPath = uigetdir('.', 'select an `ini` file');\n  %dataPath = '/Users/justin/Documents/MATLAB/medsim/data/med4_mashup';\n\n  disp('dataPath:');\n  disp(dataPath);\n\n  set(handles.dataPath, 'String', ['DATA PATH:  ',dataPath]);\n  conf = resetConfig(dataPath);\n\n  initializeEnvironment(conf, handles);\n\n\n\nfunction initializeEnvironment(conf, handles)\n  % audio data & info\n  audio_info = audioinfo(conf.audioFile);\n  audio_data = audioread(conf.audioFile);\n  gnd_data_g = load(conf.truthFile);\n  gnd_data = gnd_data_g.g;\n  setappdata(0, 'audio_data', audio_data);\n  setappdata(0, 'gnd_data', gnd_data);\n  setappdata(0, 'audio_info', audio_info);\n\n  disp('Audio Info:');\n  disp(audio_info);\n\n  % init playback options\n  set(handles.axesTimeStart, 'String', '0');\n  set(handles.axesTimeEnd, 'String', audio_info.Duration);\n  set(handles.playHeadLoc, 'String', '0');\n  playbackOptions.start = str2num(get(handles.axesTimeStart, 'String'));\n  playbackOptions.end = str2num(get(handles.axesTimeEnd, 'String'));\n  playbackOptions.playHeadLoc = str2num(get(handles.playHeadLoc, 'String'));\n  playbackOptions.downSampleFactor = conf.playbackDSFactor;\n  playbackOptions.figure = handles.signalFigure;\n  playbackOptions.sample_rate = audio_info.SampleRate;\n  playbackOptions.samplelimits = [1 audio_info.TotalSamples];\n  playbackOptions.title = 'Ground Truth';\n  setappdata(0, 'playbackOptions', playbackOptions);\n\n  gndOptions = playbackOptions;\n  gndOptions.figure = handles.gndFigure;\n  gndOptions.title = 'Classified';\n  setappdata(0, 'gndOptions', gndOptions);\n\n  set(handles.signalFigure, 'buttondownfcn', @signalFigure_buttondownfcn);\n  setappdata(0, 'clickpos1', 1);\n  setappdata(0, 'clickpos2', floor(audio_info.TotalSamples/conf.playbackDSFactor));\n\n  setappdata(0, 'signalClassified', gnd_data);  % may represent small segment of signal\n  setappdata(0, 'fullClassified', gnd_data);    % represents entire classified signal\n\n  % refresh list of classes\n  classes = unique(gnd_data);\n  % continuousClassSignals.(classLabels{currentClass}){} = segments of signals\n  classData.continuousClassSignals = struct;\n  classData.classSampleCounts = struct;\n  classData.limits = struct;\n  classData.featuresByClass = {};\n  classData.classesAssigned = []; % list of classes that have been populated (should be unique set)\n  classData.colors = [0.9 0.0 0.0; 0.0 0.9 0.0; 0.0 0.0 0.9; 0.0 0.9 0.9; 0.9 0.0 0.9; 0.0 0.0 0.0];\n  classData.classLabels = {};\n  classData.undo = []; % list of previously touched classes (so that we can remove \"previous\" set)\n  classData.truth = gnd_data;\n\n  list = {'Class...'};\n  for c = 1:length(classes)\n    list{(length(list)+1)} = classes(c);\n    label = getClassLabel(c);\n\n    classData.featuresByClass{c} = [];\n    classData.classLabels{c} = label;\n\n    classData.continuousClassSignals.(label) = {};\n    classData.classSampleCounts.(label) = 0;\n    classData.limits.(label) = {};\n\n  end\n  set(handles.classlist, 'String', list);\n  setappdata(0, 'classData', classData);\n\n  % feature list, init available list\n  available = conf.availableFeatures;\n  set(handles.feature_listbox, 'String', available);\n\n  % feature list, init selected list\n  selected = conf.selectedFeatures;\n  if ~iscell(selected)\n    selected = {selected};\n  end\n  values = [];\n  for i = 1:length(selected)\n    v = find(strcmp(available,selected{i}));\n    values = [values v];\n  end\n  set(handles.feature_listbox, 'Value', values);\n\n  train_seconds_table_CreateFcn(handles.train_seconds_table);\n\n  % init playback gui\n  refreshPlaybackAxes();\n\n\n\n\n\n\n\n\n\n\n\n\n% --- Executes on button press in assignbutton.\nfunction assignbutton_Callback(hObject, eventdata, handles)\n  % hObject    handle to assignbutton (see GCBO)\n  % eventdata  reserved - to be defined in a future version of MATLAB\n  % handles    structure with handles and user data (see GUIDATA)\n  disp('assignbutton');\n\n  conf = getappdata(0, 'conf');\n  playbackOptions = getappdata(0, 'playbackOptions');\n  clickpos1 = getappdata(0, 'clickpos1');\n  clickpos2 = getappdata(0, 'clickpos2');\n  classData = getappdata(0, 'classData');\n  audio_data = getappdata(0, 'audio_data');\n  contents = cellstr(get(handles.classlist,'String'));\n  c = str2num(contents{get(handles.classlist,'Value')});\n\n  if ~((clickpos1 > 1) && (clickpos2 < (length(audio_data) / playbackOptions.downSampleFactor)) && (length(contents) > 1) && (get(handles.classlist,'Value') > 1))\n    disp('useless parameters, returning...');\n    return\n  end\n\n  label = getClassLabel(c);\n  thisSetSize = length(classData.continuousClassSignals.(label));\n  thisSegment = getSignalClipNoSilence();\n\n  % push signal to cell array\n  classData.continuousClassSignals.(label){thisSetSize+1} = thisSegment;\n  classData.classSampleCounts.(label) = classData.classSampleCounts.(label) + length(thisSegment);\n  classData.classesAssigned = unique([classData.classesAssigned c]);\n\n  % check in bounds\n  if clickpos1 < 1\n    clickpos1 = 1;\n  end\n  if clickpos2 * playbackOptions.downSampleFactor > length(audio_data)\n    clickpos2 = floor(length(audio_data) / playbackOptions.downSampleFactor);\n  end\n  % clickpos1Up = clickpos1 * playbackOptions.downSampleFactor;\n  % clickpos2Up = clickpos2 * playbackOptions.downSampleFactor;\n\n  classData.limits.(label){thisSetSize+1} = [clickpos1 clickpos2];\n  classData.undo = [c];\n\n  save(conf.classDataFile, '-struct', 'classData');\n  % save(conf.extractedForTestFile, '-struct', 'classData.continuousClassSignals');\n  % save(conf.metaFile, '-struct', 'classData.classSampleCounts');\n  setappdata(0, 'classData', classData);\n\n  disp(sprintf('added signal to class %s', label));\n  plotTrainSegments(classData, playbackOptions);\n  train_seconds_table_CreateFcn(handles.train_seconds_table);\n\n\n\nfunction refreshPlaybackAxes()\n  % options\n  playbackOptions = getappdata(0, 'playbackOptions');\n  gndOptions = getappdata(0, 'gndOptions');\n  classData = getappdata(0, 'classData');\n  clickpos1 = getappdata(0, 'clickpos1');\n  clickpos2 = getappdata(0, 'clickpos2');\n  audio_info = getappdata(0, 'audio_info');\n\n  % audio data\n  [audio_data limits] = getSignalClip(getappdata(0, 'audio_data'), playbackOptions.downSampleFactor);\n  [playbackOptions.signalClassified limits] = getSignalClip(getappdata(0, 'gnd_data'), playbackOptions.downSampleFactor);\n  playbackOptions.samplelimits = limits;\n  gndOptions.samplelimits = limits;\n  setappdata(0, 'playbackOptions', playbackOptions);\n  setappdata(0, 'gndOptions', gndOptions);\n\n  % display audio\n  signalClassified = getappdata(0, 'signalClassified');\n  fullClassified = getappdata(0, 'fullClassified');\n\n  % if full signal, ensure it's same size as audio_data above\n  % keeping the top \"playback\" area as gnd, and the current gnd as classifier display\n  if length(fullClassified) > 0\n    gndOptions.signalClassified = getSignalClip(fullClassified, gndOptions.downSampleFactor);\n  else\n    gndOptions.signalClassified = signalClassified;\n  end\n\n  % % if full signal, ensure it's same size as audio_data above\n  % if (clickpos1 <= playbackOptions.downSampleFactor) && clickpos2 >= floor(audio_info.TotalSamples/playbackOptions.downSampleFactor)\n  %   playbackOptions.signalClassified = getSignalClip(signalClassified, playbackOptions.downSampleFactor);\n  % else\n  %   playbackOptions.signalClassified = signalClassified;\n  % end\n\n  refreshaxes(audio_data, audio_info, playbackOptions);\n  refreshaxes(audio_data, audio_info, gndOptions);\n\n  % new player\n  newPlayer(audio_data, audio_info, playbackOptions);\n\n  plotTrainSegments(classData, playbackOptions);\n\n\nfunction src = stopCallback(src, eventdata)\n  % reset playhead\n  myStruct = get(src, 'UserData');\n  myStruct.playHeadLoc = 1;\n  set(myStruct.ax, 'Xdata', [0 0]);\n  set(src, 'UserData', myStruct);\n\n\nfunction newPlayer(audio_data, audio_info, playbackOptions)\n  % requires pre-scaled, pre-snipped audio data (which is why these are params, and not getappdata)\n  playbackOptions.playHeadLoc = 1;\n  setappdata(0, 'playbackOptions', playbackOptions);\n  player = refreshplayback(audio_data, audio_info, playbackOptions);\n  set(player, 'StopFcn', @stopCallback);\n  setappdata(0, 'player_handle', player);\n\n\n\nfunction [signal_clip limits] = getSignalClip(signal, sampleScale)\n  % selected area\n  clickpos1 = getappdata(0, 'clickpos1');\n  clickpos2 = getappdata(0, 'clickpos2');\n\n  if clickpos1 <= sampleScale\n    clickpos1Up = 1;\n  else\n    clickpos1Up = clickpos1 * sampleScale;\n  end\n\n  if clickpos2 * sampleScale > (length(signal) - sampleScale)\n    clickpos2Up = length(signal);\n  else\n    clickpos2Up = clickpos2 * sampleScale;\n  end\n\n  signal_clip = signal( clickpos1Up:clickpos2Up , :);\n  limits = [clickpos1Up clickpos2Up];\n\n\nfunction [signal_clip limits] = getSignalClipNoSilence()\n  gnd_data = getappdata(0, 'gnd_data');\n  audio_data = getappdata(0, 'audio_data');\n  playbackOptions = getappdata(0, 'playbackOptions');\n  clickpos1 = getappdata(0, 'clickpos1');\n  clickpos2 = getappdata(0, 'clickpos2');\n\n  % if clickpos1 < 1\n  %   clickpos1 = 1;\n  % end\n\n  % if clickpos2 * playbackOptions.downSampleFactor > length(audio_data)\n  %   clickpos2 = floor(length(audio_data) / playbackOptions.downSampleFactor);\n  % end\n\n  if clickpos1 < 1\n    clickpos1Up = 1;\n  else\n    clickpos1Up = clickpos1 * playbackOptions.downSampleFactor;\n  end\n\n  if clickpos2 * playbackOptions.downSampleFactor > (length(audio_data) - playbackOptions.downSampleFactor)\n    clickpos2Up = length(audio_data);\n  else\n    clickpos2Up = clickpos2 * playbackOptions.downSampleFactor;\n  end\n\n  gnd_clip = gnd_data( clickpos1Up:clickpos2Up , :);\n  signal_clip = audio_data( clickpos1Up:clickpos2Up , :);\n  signal_clip = signal_clip(gnd_clip(:) ~= 5);\n  limits = [clickpos1Up clickpos2Up];\n\n\nfunction signalFigure_buttondownfcn(ax, hit)\n  audio_info = getappdata(0, 'audio_info');\n  clickpos1 = getappdata(0, 'clickpos1');\n  clickpos2 = getappdata(0, 'clickpos2');\n  playbackOptions = getappdata(0, 'playbackOptions');\n\n  ax; % figure axes1\n\n  setappdata(0, 'signalClassified', []);\n\n\n  % playbackOptions.figure;\n  % hitDownSampled = round(hit.IntersectionPoint(1))/playbackOptions.downSampleFactor;\n\n  fprintf('pre click positions:\\n');\n  fprintf('clickpos1:\\n');\n  disp(getappdata(0, 'clickpos1'));\n  fprintf('clickpos2:\\n');\n  disp(getappdata(0, 'clickpos2'));\n\n  hold on;\n  if clickpos1 == 1 || round(hit.IntersectionPoint(1)) < clickpos1\n    if round(hit.IntersectionPoint(1)) < clickpos1\n      plot([clickpos1 clickpos1], [-1 1], 'w', 'LineWidth', 2);\n    end\n    clickpos1 = round(hit.IntersectionPoint(1));\n    playbackOptions.playHeadLoc = clickpos1;\n    plot([clickpos1 clickpos1], [-1 1], 'k', 'LineWidth', 2);\n  elseif clickpos2 < floor(audio_info.TotalSamples/playbackOptions.downSampleFactor)\n    plot([clickpos1 clickpos1], [-1 1], 'w', 'LineWidth', 2);\n    plot([clickpos2 clickpos2], [-1 1], 'w', 'LineWidth', 2);\n    clickpos1 = round(hit.IntersectionPoint(1));\n    playbackOptions.playHeadLoc = clickpos1;\n    clickpos2 = floor(audio_info.TotalSamples/playbackOptions.downSampleFactor);\n    plot([clickpos1 clickpos1], [-1 1], 'k', 'LineWidth', 2);\n  else\n    clickpos2 = round(hit.IntersectionPoint(1));\n    plot([clickpos2 clickpos2], [-1 1], 'k', 'LineWidth', 2);\n  end\n  hold off;\n  setappdata(0, 'clickpos1', clickpos1);\n  setappdata(0, 'clickpos2', clickpos2);\n  setappdata(0, 'playbackOptions', playbackOptions);\n\n  fprintf('set click positions:\\n');\n  fprintf('clickpos1:\\n');\n  disp(getappdata(0, 'clickpos1'));\n  fprintf('clickpos2:\\n');\n  disp(getappdata(0, 'clickpos2'));\n\n\n\nfunction refreshAxes_Callback(hObject, eventdata, handles)\n  % --- Executes on button press in refreshAxes.\n  audio_info = getappdata(0, 'audio_info');\n  playbackOptions = getappdata(0, 'playbackOptions');\n\n  % refresh playbackOptions ?????? remove ???????\n  playbackOptions.start = str2num(get(handles.axesTimeStart, 'String')) * audio_info.SampleRate;\n  playbackOptions.end = str2num(get(handles.axesTimeEnd, 'String')) * audio_info.SampleRate;\n\n  % playbackOptions.playHeadLoc = str2num(get(handles.axesTimeStart, 'String')) * audio_info.SampleRate;\n  playbackOptions.playHeadLoc = 1;\n  setappdata(0, 'playbackOptions', playbackOptions);\n  setappdata(0, 'clickpos1', 1);\n  setappdata(0, 'clickpos2', floor(audio_info.TotalSamples/playbackOptions.downSampleFactor));\n\n\n  % view changes, deprecates this signalClassified\n  fullClassified = getappdata(0, 'fullClassified');\n  if length(fullClassified) > 0\n    clickpos1 = getappdata(0, 'clickpos1');\n    clickpos2 = getappdata(0, 'clickpos2');\n    if clickpos2*playbackOptions.downSampleFactor > length(fullClassified)\n      clickpos2 = floor(length(fullClassified) / playbackOptions.downSampleFactor);\n      setappdata(0, 'clickpos2', clickpos2);\n    end\n    % setappdata(0, 'signalClassified', fullClassified(clickpos1*playbackOptions.downSampleFactor:clickpos2*playbackOptions.downSampleFactor));\n    setappdata(0, 'signalClassified', getSignalClip(fullClassified, playbackOptions.downSampleFactor));\n  else\n    setappdata(0, 'signalClassified', []);\n  end\n\n  % refresh axes\n  refreshPlaybackAxes();\n  % refreshGndAxes(handles.axes6);\n\n\nfunction playbutton_Callback(hObject, eventdata, handles)\n  % begin playback\n  playbackOptions = getappdata(0, 'playbackOptions');\n  player = getappdata(0, 'player_handle');\n  audio_info = getappdata(0, 'audio_info');\n  % t = get(handles.axesTimeStart, 'String')\n\n  % timeStart = str2num(t);\n  % sampleStart = timeStart * audio_info.SampleRate;\n  % vprint(sprintf('Starting at time %f (sample %f)', timeStart, sampleStart));\n\n  sampleStart = playbackOptions.playHeadLoc*playbackOptions.downSampleFactor;\n\n  myStruct = get(player, 'UserData');\n  myStruct.playHeadLoc = playbackOptions.playHeadLoc;\n  set(player, 'UserData', myStruct);\n\n  disp('playing...');\n  play(player, sampleStart);\n\n\nfunction stopbutton_Callback(hObject, eventdata, handles)\n  % stop playback\n  player = getappdata(0, 'player_handle');\n  stop(player);\n  myStruct = get(player, 'UserData');\n  % myStruct.playHeadLoc = get(handles.playHeadLoc, 'String');\n  myStruct.playHeadLoc = 1;\n  set(myStruct.ax, 'Xdata', [0 0]);\n  set(player, 'UserData', myStruct);\n\n\nfunction pausebutton_Callback(hObject, eventdata, handles)\n  % pause / resume playback\n  action = get(hObject, 'String');\n  player = getappdata(0, 'player_handle');\n  if strcmp(action, 'Pause')\n    pause(player);\n    set(hObject, 'String', 'Resume');\n  else\n    resume(player);\n    set(hObject, 'String', 'Pause');\n  end\n\n\n\n%\n% helpers\n%\n\n\n\nfunction conf = resetConfig(dataPath)\n  conf = getappdata(0, 'appConf');\n  dataConf = loadConfig([dataPath, '/', conf.dataConfigFile]);\n  pathConf = loadConfig([dataPath, '/', conf.dataPathFile]);\n\n  disp('path of pathConf:');\n  disp([dataPath, '/', conf.dataPathFile]);\n  disp('pathConf:');\n  disp(pathConf);\n\n\n  % add paths to dataConf: prepend `dataPath` (which is absolute) to paths as defined in config\n  fields = fieldnames(pathConf);\n  for i = 1:numel(fields)\n    dataConf.(fields{i}) = [dataPath, '/', pathConf.(fields{i})];\n  end\n\n  % now add all dataConf fields to a central `conf` struct\n  fields = fieldnames(dataConf);\n  for i = 1:numel(fields)\n    conf.(fields{i}) = dataConf.(fields{i});\n  end\n\n  % ensure fields that can be lists are consistently cells even with one item\n  if isstr(conf.selectedFeatures)\n    conf.selectedFeatures = {conf.selectedFeatures};\n  end\n\n  setappdata(0, 'conf', conf);\n\n\n\n\n\nfunction label = getClassLabel(classNum)\n  conf = getappdata(0, 'conf');\n  label = sprintf(conf.classLabelStr, classNum);\n\n\n\n\n\n\n\n\n\n\n\nfunction axesTimeStart_Callback(hObject, eventdata, handles)\n% hObject    handle to axesTimeStart (see GCBO)\n% eventdata  reserved - to be defined in a future version of MATLAB\n% handles    structure with handles and user data (see GUIDATA)\n\n% Hints: get(hObject,'String') returns contents of axesTimeStart as text\n%        str2double(get(hObject,'String')) returns contents of axesTimeStart as a double\n\n\n% --- Executes during object creation, after setting all properties.\nfunction axesTimeStart_CreateFcn(hObject, eventdata, handles)\n% hObject    handle to axesTimeStart (see GCBO)\n% eventdata  reserved - to be defined in a future version of MATLAB\n% handles    empty - handles not created until after all CreateFcns called\n\n% Hint: edit controls usually have a white background on Windows.\n%       See ISPC and COMPUTER.\nif ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))\n    set(hObject,'BackgroundColor','white');\nend\n\n\n\nfunction axesTimeEnd_Callback(hObject, eventdata, handles)\n% hObject    handle to axesTimeEnd (see GCBO)\n% eventdata  reserved - to be defined in a future version of MATLAB\n% handles    structure with handles and user data (see GUIDATA)\n\n% Hints: get(hObject,'String') returns contents of axesTimeEnd as text\n%        str2double(get(hObject,'String')) returns contents of axesTimeEnd as a double\n\n\n% --- Executes during object creation, after setting all properties.\nfunction axesTimeEnd_CreateFcn(hObject, eventdata, handles)\n% hObject    handle to axesTimeEnd (see GCBO)\n% eventdata  reserved - to be defined in a future version of MATLAB\n% handles    empty - handles not created until after all CreateFcns called\n\n% Hint: edit controls usually have a white background on Windows.\n%       See ISPC and COMPUTER.\nif ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))\n    set(hObject,'BackgroundColor','white');\nend\n\n\n\nfunction playHeadLoc_Callback(hObject, eventdata, handles)\n% hObject    handle to playHeadLoc (see GCBO)\n% eventdata  reserved - to be defined in a future version of MATLAB\n% handles    structure with handles and user data (see GUIDATA)\n\n% Hints: get(hObject,'String') returns contents of playHeadLoc as text\n%        str2double(get(hObject,'String')) returns contents of playHeadLoc as a double\n\n\n% --- Executes during object creation, after setting all properties.\nfunction playHeadLoc_CreateFcn(hObject, eventdata, handles)\n% hObject    handle to playHeadLoc (see GCBO)\n% eventdata  reserved - to be defined in a future version of MATLAB\n% handles    empty - handles not created until after all CreateFcns called\n\n% Hint: edit controls usually have a white background on Windows.\n%       See ISPC and COMPUTER.\nif ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))\n    set(hObject,'BackgroundColor','white');\nend\n\n\n\n% % --- Executes on button press in playbutton.\n% function playbutton_Callback(hObject, eventdata, handles)\n% % hObject    handle to playbutton (see GCBO)\n% % eventdata  reserved - to be defined in a future version of MATLAB\n% % handles    structure with handles and user data (see GUIDATA)\n\n\n% % --- Executes on button press in pausebutton.\n% function pausebutton_Callback(hObject, eventdata, handles)\n% % hObject    handle to pausebutton (see GCBO)\n% % eventdata  reserved - to be defined in a future version of MATLAB\n% % handles    structure with handles and user data (see GUIDATA)\n\n\n% % --- Executes on button press in stopbutton.\n% function stopbutton_Callback(hObject, eventdata, handles)\n% % hObject    handle to stopbutton (see GCBO)\n% % eventdata  reserved - to be defined in a future version of MATLAB\n% % handles    structure with handles and user data (see GUIDATA)\n\n\n% --- Executes on button press in zoombutton.\nfunction zoombutton_Callback(hObject, eventdata, handles)\n  % hObject    handle to zoombutton (see GCBO)\n  % eventdata  reserved - to be defined in a future version of MATLAB\n  % handles    structure with handles and user data (see GUIDATA)\n  % playbackOptions = getappdata(0, 'playbackOptions');\n  % playbackOptions.\n  % gndOptions = getappdata(0, 'gndOptions');\n  refreshPlaybackAxes();\n\n\n\n\n\n\n\n\n% --- Executes on selection change in classlist.\nfunction classlist_Callback(hObject, eventdata, handles)\n% hObject    handle to classlist (see GCBO)\n% eventdata  reserved - to be defined in a future version of MATLAB\n% handles    structure with handles and user data (see GUIDATA)\n\n% Hints: contents = cellstr(get(hObject,'String')) returns classlist contents as cell array\n%        contents{get(hObject,'Value')} returns selected item from classlist\n\n\n% --- Executes during object creation, after setting all properties.\nfunction classlist_CreateFcn(hObject, eventdata, handles)\n% hObject    handle to classlist (see GCBO)\n% eventdata  reserved - to be defined in a future version of MATLAB\n% handles    empty - handles not created until after all CreateFcns called\n\n% Hint: popupmenu controls usually have a white background on Windows.\n%       See ISPC and COMPUTER.\nif ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))\n    set(hObject,'BackgroundColor','white');\nend\n\n\n\n% --- Executes on selection change in feature_listbox.\nfunction feature_listbox_Callback(hObject, eventdata, handles)\n  % hObject    handle to feature_listbox (see GCBO)\n  % eventdata  reserved - to be defined in a future version of MATLAB\n  % handles    structure with handles and user data (see GUIDATA)\n\n  % Hints: contents = cellstr(get(hObject,'String')) returns feature_listbox contents as cell array\n  %        contents{get(hObject,'Value')} returns selected item from feature_listbox\n  conf = getappdata(0, 'conf');\n  contents = cellstr(get(hObject,'String'));\n  values = get(hObject,'Value');\n  conf.selectedFeatures = contents(values);\n  disp('feature list:');\n  disp(conf.selectedFeatures);\n  setappdata(0, 'feature_list', conf.selectedFeatures');\n  setappdata(0, 'conf', conf);\n\n\n% --- Executes during object creation, after setting all properties.\nfunction feature_listbox_CreateFcn(hObject, eventdata, handles)\n  % hObject    handle to feature_listbox (see GCBO)\n  % eventdata  reserved - to be defined in a future version of MATLAB\n  % handles    empty - handles not created until after all CreateFcns called\n\n  % Hint: listbox controls usually have a white background on Windows.\n  %       See ISPC and COMPUTER.\n  if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))\n      set(hObject,'BackgroundColor','white');\n  end\n\n  set(hObject,'Max', 4, 'Min', 1);\n  % ZCR: zero-crossing\n  % STE: short-time-enerty\n  options = {'Features...'};\n  set(hObject,'String',options);\n\n\n% --- Executes on button press in analyze_pushbutton.\nfunction analyze_pushbutton_Callback(hObject, eventdata, handles)\n  % hObject    handle to analyze_pushbutton (see GCBO)\n  % eventdata  reserved - to be defined in a future version of MATLAB\n  % handles    structure with handles and user data (see GUIDATA)\n  conf = getappdata(0, 'conf');\n  conf.removeCount = str2num(get(handles.filterbin_edit, 'String'));\n  conf.filterBins  = str2num(get(handles.filterbinattempts_edit, 'String'));\n  setappdata(0, 'conf', conf);\n\n  classData = getappdata(0, 'classData');\n  playbackOptions = getappdata(0, 'playbackOptions');\n  audio_info = getappdata(0, 'audio_info');\n  audio_data = getappdata(0, 'audio_data');\n  gnd_data = getappdata(0, 'gnd_data');\n\n\n  disp('Beginning analysis...');\n  disp('classData:');\n  disp(classData);\n  % outputHandle = figure();\n  % descr = {\n  %   'Analyzing selected training source...';\n  %   '... still analysing...';\n\n  % };\n  % % text(0, 0, descr);\n  % tBox = uicontrol('style','text');\n\n  % set(tBox,'Units','characters');\n  % set(tBox,'String',descr);\n  % set(tBox,'Position',[0, 0, 80, 10]);\n\n  [finalResults, filterStats] = analyze(conf, classData);\n  setappdata(0, 'clickpos1', 1);\n  setappdata(0, 'clickpos2', floor(audio_info.TotalSamples/playbackOptions.downSampleFactor));\n  setappdata(0, 'fullClassified', finalResults.signalClassified);\n  refreshPlaybackAxes();\n  saveAnalysis(conf, audio_data, gnd_data, finalResults, filterStats, playbackOptions);\n\n  disp('Completed analysis.');\n\n\nfunction train_seconds_table_CreateFcn(hObject, eventdata, handles)\n  classData = getappdata(0, 'classData');\n  audio_info = getappdata(0, 'audio_info');\n\n  colNames = {'Time'};\n  rowNames = {};\n  tableData = [];\n  for c = 1:length(classData.classLabels)\n    label = getClassLabel(c);\n    rowNames{c} = c;\n    theseTotalSamples = sum(classData.classSampleCounts.(label));\n    % secondsString = sprintf('%2.2f', theseTotalSamples/audio_info.SampleRate);\n    % tableData{c} = secondsString;\n    tableData = [tableData; theseTotalSamples/audio_info.SampleRate];\n  end\n  set(hObject, 'ColumnWidth', 'auto');\n  set(hObject, 'ColumnName', colNames);\n  set(hObject, 'RowName', rowNames);\n  set(hObject, 'Data', tableData);\n\n\n% --- Executes on button press in clearclass_pushbutton.\nfunction clearclass_pushbutton_Callback(hObject, eventdata, handles)\n  conf = getappdata(0, 'conf');\n  playbackOptions = getappdata(0, 'playbackOptions');\n  classData = getappdata(0, 'classData');\n  audio_data = getappdata(0, 'audio_data');\n  audio_info = getappdata(0, 'audio_info');\n\n  classData.continuousClassSignals = struct;\n  classData.classSampleCounts = struct;\n  classData.limits = struct;\n  classData.featuresByClass = {};\n  classData.classesAssigned = []; % list of classes that have been populated (should be unique set)\n\n  for c = 1:length(classData.classLabels)\n    label = classData.classLabels{c};\n\n    classData.featuresByClass{c} = [];\n    classData.continuousClassSignals.(label) = {};\n    classData.classSampleCounts.(label) = 0;\n    classData.limits.(label) = {};\n\n  end\n\n  setappdata(0, 'clickpos1', 1);\n  setappdata(0, 'clickpos2', floor(audio_info.TotalSamples/playbackOptions.downSampleFactor));\n  setappdata(0, 'classData', classData);\n  save(conf.classDataFile, '-struct', 'classData');\n\n  refreshaxes(audio_data, audio_info, playbackOptions);\n  plotTrainSegments(classData, playbackOptions);\n  train_seconds_table_CreateFcn(handles.train_seconds_table);\n\n\n\n% --- Executes on button press in clearprevious_pushbutton.\nfunction clearprevious_pushbutton_Callback(hObject, eventdata, handles)\n% hObject    handle to clearprevious_pushbutton (see GCBO)\n% eventdata  reserved - to be defined in a future version of MATLAB\n% handles    structure with handles and user data (see GUIDATA)\n  disp('clearprevious');\n\n  conf = getappdata(0, 'conf');\n  playbackOptions = getappdata(0, 'playbackOptions');\n  clickpos1 = getappdata(0, 'clickpos1');\n  clickpos2 = getappdata(0, 'clickpos2');\n  classData = getappdata(0, 'classData');\n  audio_data = getappdata(0, 'audio_data');\n  audio_info = getappdata(0, 'audio_info');\n\n  if ~(length(classData.undo) > 0)\n    disp('no class data, returning...');\n    return\n  end\n\n  c = classData.undo(end);\n  classData.undo(end) = [];\n\n  label = getClassLabel(c);\n  thisSetSize = length(classData.continuousClassSignals.(label));\n  thisSegmentLength = length(classData.continuousClassSignals.(label){thisSetSize});\n\n  % remove from cell array\n  classData.continuousClassSignals.(label)(thisSetSize) = [];\n  classData.classSampleCounts.(label) = classData.classSampleCounts.(label) - thisSegmentLength;\n  classData.limits.(label)(thisSetSize) = [];\n\n  setappdata(0, 'clickpos1', 1);\n  setappdata(0, 'clickpos2', floor(audio_info.TotalSamples/playbackOptions.downSampleFactor));\n  setappdata(0, 'classData', classData);\n  save(conf.classDataFile, '-struct', 'classData');\n  % save(conf.extractedForTestFile, '-struct', 'classData.continuousClassSignals');\n  % save(conf.metaFile, '-struct', 'classData.classSampleCounts');\n\n  disp(sprintf('removed signal from class %s', label));\n\n  refreshaxes(audio_data, audio_info, playbackOptions);\n  plotTrainSegments(classData, playbackOptions);\n  train_seconds_table_CreateFcn(handles.train_seconds_table);\n\n\n% --- Executes on button press in loadclassdata_pushbutton.\nfunction loadclassdata_pushbutton_Callback(hObject, eventdata, handles)\n  % hObject    handle to loadclassdata_pushbutton (see GCBO)\n  % eventdata  reserved - to be defined in a future version of MATLAB\n  % handles    structure with handles and user data (see GUIDATA)\n  conf = getappdata(0, 'conf');\n  playbackOptions = getappdata(0, 'playbackOptions');\n  audio_info = getappdata(0, 'audio_info');\n  if ~(exist(conf.classDataFile, 'file') == 2)\n    disp('No class data found.');\n    return\n  end\n\n  classData = load(conf.classDataFile);\n  setappdata(0, 'clickpos1', 1);\n  setappdata(0, 'clickpos2', floor(audio_info.TotalSamples/playbackOptions.downSampleFactor));\n  setappdata(0, 'classData', classData);\n  disp(sprintf('Loaded class data from %s', conf.classDataFile));\n  plotTrainSegments(classData, playbackOptions);\n  train_seconds_table_CreateFcn(handles.train_seconds_table);\n\n% --- Executes on button press in savenew_pushbutton.\nfunction savenew_pushbutton_Callback(hObject, eventdata, handles)\n% hObject    handle to savenew_pushbutton (see GCBO)\n% eventdata  reserved - to be defined in a future version of MATLAB\n% handles    structure with handles and user data (see GUIDATA)\n\n\n% --- Executes on button press in cachefeature_pushbutton.\nfunction cachefeature_pushbutton_Callback(hObject, eventdata, handles)\n% hObject    handle to cachefeature_pushbutton (see GCBO)\n% eventdata  reserved - to be defined in a future version of MATLAB\n% handles    structure with handles and user data (see GUIDATA)\nconf = getappdata(0, 'conf');\n\ncacheFile = getFeatureCacheName(conf);\n\ndisp();\n\n\n\nfunction filterbin_edit_Callback(hObject, eventdata, handles)\n% hObject    handle to filterbin_edit (see GCBO)\n% eventdata  reserved - to be defined in a future version of MATLAB\n% handles    structure with handles and user data (see GUIDATA)\n\n% Hints: get(hObject,'String') returns contents of filterbin_edit as text\n%        str2double(get(hObject,'String')) returns contents of filterbin_edit as a double\n\n\n% --- Executes during object creation, after setting all properties.\nfunction filterbin_edit_CreateFcn(hObject, eventdata, handles)\n% hObject    handle to filterbin_edit (see GCBO)\n% eventdata  reserved - to be defined in a future version of MATLAB\n% handles    empty - handles not created until after all CreateFcns called\n\n% Hint: edit controls usually have a white background on Windows.\n%       See ISPC and COMPUTER.\nif ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))\n    set(hObject,'BackgroundColor','white');\nend\n\n\n\nfunction filterbinattempts_edit_Callback(hObject, eventdata, handles)\n% hObject    handle to filterbinattempts_edit (see GCBO)\n% eventdata  reserved - to be defined in a future version of MATLAB\n% handles    structure with handles and user data (see GUIDATA)\n\n% Hints: get(hObject,'String') returns contents of filterbinattempts_edit as text\n%        str2double(get(hObject,'String')) returns contents of filterbinattempts_edit as a double\n\n\n% --- Executes during object creation, after setting all properties.\nfunction filterbinattempts_edit_CreateFcn(hObject, eventdata, handles)\n% hObject    handle to filterbinattempts_edit (see GCBO)\n% eventdata  reserved - to be defined in a future version of MATLAB\n% handles    empty - handles not created until after all CreateFcns called\n\n% Hint: edit controls usually have a white background on Windows.\n%       See ISPC and COMPUTER.\nif ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))\n    set(hObject,'BackgroundColor','white');\nend\n",
+			"file": "gui_medsim_train/medsim_train.m",
+			"file_size": 34597,
+			"file_write_time": 131326913860000000,
+			"settings":
+			{
+				"buffer_size": 34597,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "tools_features/getFeatureCacheName.m",
+			"settings":
+			{
+				"buffer_size": 651,
+				"encoding": "UTF-8",
+				"line_ending": "Unix",
+				"name": "getFeatureCacheName"
+			}
+		},
+		{
+			"file": "tools_figure/saveAnalysis.m",
+			"settings":
+			{
+				"buffer_size": 3592,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "tools_figure/refreshaxes.m",
+			"settings":
+			{
+				"buffer_size": 3728,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "[Root]\nrootPath=/Users/justin/Documents/MATLAB/medsim\ndataPath=/data/<dataset>\n\n[DownSampling]\nplaybackDSFactor=20\nplotDSFactor=4\n\n[classify]\nscan_wintime=1.0\nscan_hoptime=0.5\ntopPosteriorThreshold=0\npostProcess=true\nglazeThreshold=1.0\nshowPCA=true\n; trainPartition=0.10 ; 0.10\n; whichTrainingSegment=1\n\n[Features]\nclassLabelStr=class%d\navailableFeatures=mfcc,melfcc,STE,ZCR,SpectralCentroid\nselectedFeatures=melfcc\n\nfeature_wintime=0.04 ; 0.025\nfeature_hoptime=0.01\n\n\n\nfeature_numcep=12; % 13\nfeature_lifterexp=0; % 0.6\nfeature_sumpower=1.0;\nfeature_preemph=0.97;\nfeature_dither=0;\nfeature_minfreq=80; % 0\nfeature_maxfreq=6200; % 8000\nfeature_nbands=26;\nfeature_bwidth=1.0;\nfeature_dcttype=2;\nfeature_fbtype=mel; % 'bark' | 'mel' | 'htkmel' | 'fcmel'\nfeature_usecmp=0;\nfeature_modelorder=0;\n\n\n[Mapping]\nnumClasses=4\nclassifiedSignalFile=classifiedSignal.mat\nmappingType=fuzzy ; crisp | fuzzy | probabilistic\nclassifier=naivebayes ; knn | naivebayes | myNB\nnumClusters=30\n\n; uses either varFilterThreshold or removeCount for determining how many to remove\nfilterBins=1 ; number of attempts to remove bins (0 to turn off)\nvarFilterThreshold=0.000008 ; used only with variance usage in filter\nremoveCount=2\n\n\nwrapperBins=0 ; number of attempts to remove bins (0 to turn off)\nwrapperRemoveCount=25\n\n\nknn_NumNeighbors=3\nknn_Distance=cosine\nknn_Standardize=1\n\n; only applicable with `naivebayes` classifier\nnaivebayes_DistributionNames=mn\nnaivebayes_Kernel=normal\n; naivebayes_Width=0.00001\n\n",
+			"file": "data/med4_mashup/config/medsim_config.ini",
+			"file_size": 1487,
+			"file_write_time": 131323872330000000,
+			"settings":
+			{
+				"buffer_size": 1487,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "tools_classify/getModel.m",
+			"settings":
+			{
+				"buffer_size": 10282,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "tools_classify/doTrain.m",
+			"settings":
+			{
+				"buffer_size": 2126,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "controllers/analyze.m",
+			"settings":
+			{
+				"buffer_size": 7806,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "tools_figure/plotGnd.m",
+			"settings":
+			{
+				"buffer_size": 6412,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "tools_figure/makePlot.m",
+			"settings":
+			{
+				"buffer_size": 3520,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "tools_classify/test_20161013.m",
+			"settings":
+			{
+				"buffer_size": 10783,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "tools_figure/plotTrainSegments.m",
+			"settings":
+			{
+				"buffer_size": 1862,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "Searching 14 files for \"extractedForTestFile\" (case sensitive)\n\n/Users/justin/Documents/MATLAB/medsim/data/med4_mashup/config/data_path_config.ini:\n    2  audioFile=audio.wav\n    3  truthFile=gndbysam.mat\n    4: extractedForTestFile=extractedForTest.mat\n    5  metaFile=meta.mat\n    6  mappingFile=classifier/mapping.mat\n\n/Users/justin/Documents/MATLAB/medsim/gui_medsim_train/medsim_train.m:\n  219  \n  220  \n  221:   save(conf.extractedForTestFile, '-struct', 'classData.continuousClassSignals');\n  222    save(conf.metaFile, '-struct', 'classData.classSampleCounts');\n  223    setappdata(0, 'classData', classData);\n\n/Users/justin/Documents/MATLAB/medsim/tools_classify/getModel.m:\n   87  % continuousClassSignals.(classLabels{currentClass}){thisSetSize+1} = thisSegment;\n   88  % classSampleCounts.(classLabels{currentClass}) = classSampleCounts.(classLabels{currentClass}) + length(thisSegment);\n   89: % save(conf.extractedForTestFile, '-struct', 'continuousClassSignals');\n   90  % save(conf.metaFile, '-struct', 'classSampleCounts');\n   91  \n\n3 matches across 3 files\n\n\nSearching 14 files for \"extractedForTestFile\" (case sensitive)\n\n/Users/justin/Documents/MATLAB/medsim/data/med4_mashup/config/data_path_config.ini:\n    2  audioFile=audio.wav\n    3  truthFile=gndbysam.mat\n    4: ;extractedForTestFile=extractedForTest.mat\n    5  metaFile=meta.mat\n    6  mappingFile=classifier/mapping.mat\n\n/Users/justin/Documents/MATLAB/medsim/gui_medsim_train/medsim_train.m:\n  219  \n  220  \n  221:   save(conf.extractedForTestFile, '-struct', 'classData.continuousClassSignals');\n  222    save(conf.metaFile, '-struct', 'classData.classSampleCounts');\n  223    setappdata(0, 'classData', classData);\n\n/Users/justin/Documents/MATLAB/medsim/tools_classify/getModel.m:\n   87  % continuousClassSignals.(classLabels{currentClass}){thisSetSize+1} = thisSegment;\n   88  % classSampleCounts.(classLabels{currentClass}) = classSampleCounts.(classLabels{currentClass}) + length(thisSegment);\n   89: % save(conf.extractedForTestFile, '-struct', 'continuousClassSignals');\n   90  % save(conf.metaFile, '-struct', 'classSampleCounts');\n   91  \n\n3 matches across 3 files\n\n\nSearching 14 files for \"classSampleCounts\" (case sensitive)\n\n/Users/justin/Documents/MATLAB/medsim/gui_medsim_train/medsim_train.m:\n  141    % continuousClassSignals.(classLabels{currentClass}){} = segments of signals\n  142    classData.continuousClassSignals = struct;\n  143:   classData.classSampleCounts = struct;\n  144    classData.featuresByClass = {};\n  145    classData.classesAssigned = []; % list of classes that have been populated (should be unique set)\n  ...\n  153  \n  154      classData.continuousClassSignals.(label) = {};\n  155:     classData.classSampleCounts.(label) = 0;\n  156  \n  157    end\n  ...\n  214    % push signal to cell array\n  215    classData.continuousClassSignals.(label){thisSetSize+1} = thisSegment;\n  216:   classData.classSampleCounts.(label) = classData.classSampleCounts.(label) + length(thisSegment);\n  217  \n  218  \n  ...\n  220  \n  221    save(conf.extractedForTestFile, '-struct', 'classData.continuousClassSignals');\n  222:   save(conf.metaFile, '-struct', 'classData.classSampleCounts');\n  223    setappdata(0, 'classData', classData);\n  224  \n\n/Users/justin/Documents/MATLAB/medsim/tools_classify/getModel.m:\n   45  classCount = length(unique(signalGnd));\n   46  continuousClassSignals = struct;\n   47: classSampleCounts = struct;\n   48  featuresByClass = {};\n   49  \n   ..\n   63  %   classLabels{c} = label;\n   64  %   continuousClassSignals.(label) = {};\n   65: %   classSampleCounts.(label) = 0;\n   66  %   featuresByClass{c} = [];\n   67  % end\n   ..\n   77  %     thisSetSize = length(continuousClassSignals.(classLabels{currentClass}));\n   78  %     continuousClassSignals.(classLabels{currentClass}){thisSetSize+1} = thisSegment;\n   79: %     classSampleCounts.(classLabels{currentClass}) = classSampleCounts.(classLabels{currentClass}) + length(thisSegment);\n   80  %     currentClass = signalGnd(i);\n   81  %     limit_start = i;\n   ..\n   86  % thisSetSize = length(continuousClassSignals.(classLabels{currentClass}));\n   87  % continuousClassSignals.(classLabels{currentClass}){thisSetSize+1} = thisSegment;\n   88: % classSampleCounts.(classLabels{currentClass}) = classSampleCounts.(classLabels{currentClass}) + length(thisSegment);\n   89  % save(conf.extractedForTestFile, '-struct', 'continuousClassSignals');\n   90: % save(conf.metaFile, '-struct', 'classSampleCounts');\n   91  \n   92  \n   ..\n  112  \n  113    % label = 'class1';\n  114:   trainingSize = floor(classSampleCounts.(label));\n  115  \n  116    % set start limit and segments\n\n13 matches across 2 files\n",
+			"settings":
+			{
+				"buffer_size": 4673,
+				"line_ending": "Unix",
+				"name": "Find Results",
+				"scratch": true
+			}
+		},
+		{
+			"file": "tools_classify/calculateErr.m",
+			"settings":
+			{
+				"buffer_size": 314,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "tools_figure/displayClassBoxes.m",
+			"settings":
+			{
+				"buffer_size": 1409,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "tools_figure/refreshplayback.m",
+			"settings":
+			{
+				"buffer_size": 1567,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "[General]\nrootPath=/Users/justin/Documents/MATLAB/medsim\ndataPath=/data/<dataset>\ndataConfigFile=config/medsim_config.ini\ndataPathFile=config/data_path_config.ini\n",
+			"file": "config/app_config.ini",
+			"file_size": 163,
+			"file_write_time": 131314041230000000,
+			"settings":
+			{
+				"buffer_size": 163,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "tools_generic/loadConfig.m",
+			"settings":
+			{
+				"buffer_size": 784,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "[TestData]\naudioFile=audio.wav\ntruthFile=gndbysam.mat\nclassDataFile=classData.mat\n;extractedForTestFile=extractedForTest.mat\n;metaFile=meta.mat\nmodelFile=classifier/models.mat\nfeatureCachePath=cache\n\ngraphDirNB=trials_NB\ngraphDirKNN=trials_KNN\n\n\n\n[classify]\nmodelknnFile=classifier/knnModel.mat\nmodelcnbFile=classifier/cnbModel.mat\nmodelmyNBFile=classifier/myNBModel.mat\n",
+			"file": "data/med4_mashup/config/data_path_config.ini",
+			"file_size": 371,
+			"file_write_time": 131324212360000000,
+			"settings":
+			{
+				"buffer_size": 371,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "pi",
+		"selected_items":
+		[
+			[
+				"pi",
+				"Package Control: Install Package"
+			],
+			[
+				"Install Package",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/justin/Documents/MATLAB"
+	],
+	"file_history":
+	[
+		"/Users/justin/Documents/MATLAB/medsim/config/medsim_config.ini",
+		"/Users/justin/Documents/MATLAB/medsim/config/data_path_config.ini",
+		"/Users/justin/Documents/MATLAB/scratch/medsimClassify.m",
+		"/Users/justin/ACS/staging/data/din-dfw-web1-www.driveitnow.net/html/javascript/cobalt.js",
+		"/Users/justin/ACS/staging/data/usr-local-backup/www.driveitnow.net/html/javascript/din_text_payment.js.php",
+		"/Users/justin/ACS/staging/data/usr-local/www.driveitnow.net/html/javascript/din_text_payment.js.php",
+		"/Users/justin/ACS/staging/data/usr-local/www.driveitnow.net/html/pm/driveitnow.sbp.js",
+		"/Users/justin/ACS/staging/deploy.sh",
+		"/Users/justin/ACS/staging/Vagrantfile",
+		"/Users/justin/Documents/MATLAB/scratch/filterMisClassified.m",
+		"/private/var/www/acs/index.html",
+		"/Users/justin/phptest/data/usr-local/www.driveitnow.net/html/confirm/index.html",
+		"/Users/justin/dockertemp/start.sh",
+		"/Users/justin/dockertemp/config_mysql.sh",
+		"/Users/justin/dockertemp/supervisord.conf",
+		"/Users/justin/dockertemp/Dockerfile",
+		"/private/var/www/web/index.html",
+		"/Users/justin/mynode/map/backend/utils/util.sql.helpers.coffee",
+		"/Users/justin/mynode/map/backend/services/services.user.coffee",
+		"/Users/justin/mynode/map/backend/utils/transforms/transforms.userSession.coffee",
+		"/Users/justin/mynode/map/backend/routes/route.email.coffee",
+		"/Users/justin/mynode/map/backend/utils/transforms/transforms.email.coffee",
+		"/Users/justin/mynode/map/backend/services/service.user.project.coffee",
+		"/Users/justin/mynode/map/backend/services/service.profiles.coffee",
+		"/Users/justin/mynode/map/backend/routes/route.user_projects.coffee",
+		"/Users/justin/mynode/map/backend/utils/transforms/transforms.project.coffee",
+		"/Users/justin/mynode/map/backend/routes/route.projectSession.internal.coffee",
+		"/Users/justin/mynode/map/backend/config/config.coffee",
+		"/Users/justin/mynode/map/backend/routes/index.coffee",
+		"/Users/justin/mynode/map/backend/services/service.userSession.coffee",
+		"/Users/justin/mynode/map/common/utils/enums/util.enums.subscription.status.coffee",
+		"/Users/justin/mynode/map/backend/utils/util.user.coffee",
+		"/Users/justin/mynode/map/frontend/map/html/views/onboarding/onboardingLocation.jade",
+		"/Users/justin/mynode/map/frontend/map/html/views/onboarding/onboardingPlan.jade",
+		"/Users/justin/mynode/map/tmp/updateAll.sh",
+		"/Users/justin/mynode/map/tmp/updateFromProd2.sh",
+		"/Users/justin/mynode/map/tmp/updateFromProd.sh",
+		"/Users/justin/mynode/map/backend/routes/route.charges.coffee",
+		"/Users/justin/mynode/map/migrations/main/2016-12-23__discl_text.sql",
+		"/Users/justin/mynode/map/frontend/map/scripts/config/mainOptions.coffee",
+		"/Users/justin/mynode/map/frontend/map/scripts/app.coffee",
+		"/Users/justin/mynode/map/backend/routes/route.onboarding.coffee",
+		"/Users/justin/mynode/map/frontend/admin/scripts/controllers/dataSource/county.coffee",
+		"/Users/justin/mynode/map/frontend/admin/html/views/dataSource/county.jade",
+		"/Users/justin/mynode/map/backend/routes/route.user_subscription.coffee",
+		"/Users/justin/mynode/map/backend/services/service.sessionSecurity.coffee",
+		"/Users/justin/mynode/map/frontend/admin/html/includes/dataSource/fieldConfig/common/decimal.jade",
+		"/Users/justin/mynode/map/frontend/admin/html/views/dataSource/normalize.jade",
+		"/Users/justin/mynode/map/frontend/admin/html/views/dataSource/mls.jade",
+		"/Users/justin/mynode/map/frontend/admin/scripts/constants/admin.coffee",
+		"/Users/justin/mynode/map/frontend/admin/scripts/controllers/dataSource/mls.coffee",
+		"/Users/justin/mynode/map/frontend/map/html/views/property.jade",
+		"/Users/justin/mynode/map/frontend/map/html/views/project.jade",
+		"/Users/justin/mynode/map/frontend/map/scripts/controllers/user/userPaymentMethod.coffee",
+		"/Users/justin/mynode/map/frontend/map/html/views/user/userPaymentMethod.jade",
+		"/Users/justin/mynode/map/backend/routes/route.paymentMethod.coffee",
+		"/Users/justin/mynode/map/backend/services/service.user_subscription.coffee",
+		"/Users/justin/mynode/map/frontend/map/scripts/config/routes.coffee",
+		"/Users/justin/mynode/map/spec/backendUnit/services/email/vero/service.email.impl.vero.events.spec.coffee",
+		"/Users/justin/mynode/map/backend/services/email/vero/service.email.impl.vero.events.internals.coffee",
+		"/Users/justin/mynode/map/tmp/mockrequest.js",
+		"/Users/justin/mynode/map/backend/routes/tmp:mockrequest.js",
+		"/Users/justin/mynode/map/frontend/common/scripts/services/principal.coffee",
+		"/Users/justin/mynode/map/scripts/misc/subscribe",
+		"/Users/justin/mynode/map/backend/routes/route.onboarding.internals.coffee",
+		"/Users/justin/mynode/map/backend/services/services.payment.coffee",
+		"/Users/justin/mynode/map/backend/services/payment/stripe/service.payment.impl.stripe.customers.coffee",
+		"/Users/justin/mynode/map/frontend/map/scripts/controllers/user/userSubscription.coffee",
+		"/Users/justin/mynode/map/frontend/map/html/views/templates/modals/confirm.jade",
+		"/Users/justin/mynode/map/backend/utils/util.auth.coffee",
+		"/Users/justin/mynode/map/migrations/main/2016_12_06__user_history.sql",
+		"/Users/justin/mynode/map/migrations/main/2016-10-12__data_agent.sql",
+		"/Users/justin/mynode/map/migrations/main/2016-08-02__photo_error_handling.sql",
+		"/Users/justin/mynode/map/frontend/map/scripts/config/config.validation.coffee",
+		"/Users/justin/mynode/map/frontend/map/html/views/user.jade",
+		"/Users/justin/mynode/map/frontend/map/scripts/controllers/project.coffee",
+		"/Users/justin/mynode/map/frontend/map/scripts/providers/providers.onboarding.coffee",
+		"/Users/justin/mynode/map/frontend/map/html/views/mail.jade",
+		"/Users/justin/mynode/map/frontend/map/scripts/directives/rmapsAuthDirectives.coffee",
+		"/Users/justin/mynode/map/frontend/map/scripts/controllers/controller.notes.coffee",
+		"/Users/justin/mynode/map/frontend/map/scripts/controllers/addProject.coffee",
+		"/Users/justin/mynode/map/frontend/map/scripts/controllers/clientButton.coffee",
+		"/Users/justin/mynode/map/frontend/map/scripts/controllers/controllers.onboarding.coffee",
+		"/Users/justin/mynode/map/node_modules/ng-img-crop-full-extended/compile/unminified/ng-img-crop.js",
+		"/Users/justin/mynode/map/package.json",
+		"/Users/justin/mynode/map/node_modules/ng-img-crop-full-extended/package.json",
+		"/Users/justin/Documents/MATLAB/scratch/train_20160901.m",
+		"/Users/justin/mynode/map/backend/utils/validation/util.validation.float.coffee",
+		"/Users/justin/mynode/map/backend/utils/validation/util.impl.validateAndTransformSingleOutput.coffee",
+		"/Users/justin/mynode/map/backend/utils/validation/util.validation.integer.coffee",
+		"/Users/justin/mynode/map/backend/utils/validation/util.validation.currency.coffee",
+		"/Users/justin/mynode/map/backend/utils/validation/util.validation.format.coffee",
+		"/Users/justin/mynode/map/stripetest.coffee",
+		"/Users/justin/mynode/map/backend/services/payment/stripe/service.payment.impl.stripe.bootstrap.coffee",
+		"/Users/justin/mynode/map/backend/routes/route.userSession.coffee",
+		"/Users/justin/mynode/map/common/utils/util.validatorBuilder.coffee",
+		"/Users/justin/mynode/map/migrations/main/2016-11-15__reconfig_rules.sql",
+		"/Users/justin/mynode/map/backend/services/service.externalAccounts.coffee",
+		"/Users/justin/mynode/map/backend/services/payment/stripe/index.coffee",
+		"/Users/justin/mynode/map/frontend/map/scripts/factories/factory.map.coffee",
+		"/Users/justin/mynode/map/frontend/map/scripts/services/service.currentMap.coffee",
+		"/Users/justin/mynode/map/backend/routes/route.userSession.internals.coffee",
+		"/Users/justin/mynode/map/backend/config/tables.coffee",
+		"/Users/justin/mynode/map/frontend/map/scripts/factories/priorState.coffee",
+		"/Users/justin/mynode/map/frontend/map/scripts/factories/factory.login.coffee",
+		"/Users/justin/mynode/map/frontend/map/scripts/services/loginHack.coffee",
+		"/Users/justin/mynode/map/frontend/map/scripts/controllers/login.coffee",
+		"/Users/justin/Documents/MATLAB/scratch/getHist.m",
+		"/Users/justin/Documents/MATLAB/medsim/gui_classify/getHist.m",
+		"/Users/justin/Documents/MATLAB/medsim/lib/util/findcell.m",
+		"/Users/justin/Documents/MATLAB/shuang/audioseg_old/Main_SpeakerClustering_test.m",
+		"/Users/justin/Documents/MATLAB/medsim/data/med9/manual_truth_full.m",
+		"/Users/justin/Documents/MATLAB/scratch/scratch.m",
+		"/Users/justin/Documents/MATLAB/medsim/scratch/scratch.m",
+		"/Users/justin/mynode/map/test.coffee",
+		"/Users/justin/realtymaps/documentation/scratch.coffee",
+		"/Users/justin/mynode/map/backend/routes/route.mail.coffee",
+		"/Users/justin/mynode/map/backend/services/service.mail_campaigns.coffee",
+		"/Users/justin/Downloads/struct2ini/struct2ini.m",
+		"/Users/justin/mynode/map/frontend/admin/scripts/factories/validatorBuilder.coffee",
+		"/Users/justin/mynode/map/spec/frontend/admin/factories/validatorBuilder.spec.coffee",
+		"/Users/justin/mynode/map/frontend/map/scripts/controllers/controller.property.coffee",
+		"/Users/justin/mynode/map/frontend/map/scripts/services/propertyFormatters.coffee",
+		"/Users/justin/mynode/map/frontend/map/scripts/services/eventsHandler.coffee",
+		"/Users/justin/mynode/map/frontend/map/scripts/factories/factory.baseMap.coffee",
+		"/Users/justin/mynode/map/frontend/map/scripts/services/quasi-directive/popup-loader.coffee",
+		"/Users/justin/mynode/map/frontend/map/scripts/services/eventHandlersInternals.coffee",
+		"/Users/justin/mynode/map/frontend/map/scripts/controllers/templates/modalMailTemplatePreview.coffee"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"<open files>",
+			"/Users/justin/ACS/staging/data/usr-local/www.driveitnow.net/html",
+			"/Users/justin/phptest/data/usr-local/www.driveitnow.net/html",
+			"/Users/justin/phptest/data/usr-local/www.driveitnow.net",
+			"/Users/justin/phptest/data/usr-local",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/migrations",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/frontend/map/html",
+			"/Users/justin/mynode/map/migrations/main",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/frontend/map/scripts",
+			"/Users/justin/mynode/map/frontend/map/script",
+			"/Users/justin/mynode/map/frontend/map/html",
+			"/Users/justin/mynode/map/frontend/map/scripts",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/frontend/admin/html",
+			"/Users/justin/mynode/map/migrations",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/common",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/common",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/frontend/map/html/includes/mail",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/common",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/frontned",
+			"/Users/justin/mynode/map/gulp",
+			"/Users/justin/mynode/map/scripts",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/migrations",
+			"/Users/justin/mynode/map/scripts",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/frontend/map/html",
+			"/Users/justin/mynode/map/frontend/html",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/migrations",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/spec",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/spec",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/frontend/map",
+			"/Users/justin/mynode/map/frontend/map/styles",
+			"/Users/justin/mynode/map/frontend/styles",
+			"/Users/justin/mynode/map",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/frontend/map",
+			"/Users/justin/mynode/map/frontend/map/html",
+			"/Users/justin/mynode/map/frontend/html",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/frontend/map/styles",
+			"/Users/justin/mynode/map/frontend/styles",
+			"/Users/justin/mynode/map/frontend/",
+			"/Users/justin/mynode/map/backend/",
+			"/Users/justin/mynode/map/frontend/map/styles",
+			"/Users/justin/mynode/map/frontend/styles",
+			"/Users/justin/Documents/MATLAB/shuang/audioseg_old",
+			"/Users/justin/mynode/map/gulp",
+			"/Users/justin/mynode/map/spec",
+			"/Users/justin/mynode/map/frontend",
+			"/Users/justin/mynode/map/backend",
+			"/Users/justin/mynode/map/frontend"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"audio_info.Total",
+			".start",
+			"resetConfig",
+			"segsByClass",
+			"refreshplayback",
+			"gndOptions",
+			"plotTrainSeg",
+			"playbackOptions",
+			"gca",
+			"filterMuTracking",
+			"filterBinTrack",
+			"filterBin",
+			"filterMuTracking",
+			"getSignalClipNo",
+			"filterY",
+			"classesAssigned",
+			"initialPrototype",
+			"sample_rate",
+			"sample_down",
+			"makePlot",
+			"makePolot",
+			"graphFile",
+			"sample_down",
+			"gndFigure",
+			"classData",
+			"resetConfig",
+			"featuresByClass",
+			"continuousClassSignals",
+			"modelData",
+			"doTrain",
+			"classCount",
+			"getSignalClip",
+			"total_working_samples",
+			"mapping",
+			"modelData",
+			"totalFeaturesForThisClass",
+			"classesAssigned",
+			"whichTrainingSegment",
+			"trainPartition",
+			"featuresByClass",
+			"save(conf.classDataFile",
+			"getSignalClip",
+			"fullClassified",
+			"playbackOptions.signalClassified",
+			"refreshPlaybackAxes",
+			"playbutton_Callback",
+			"classlist",
+			"getSignalClip",
+			"refreshaxes",
+			"train_seconds_table",
+			"classSampleCounts",
+			"extractedForTestFile",
+			"filterErrStats",
+			"conf",
+			"filterErrStats",
+			"returnData",
+			"sample_down",
+			"truth",
+			"modelSums",
+			"badIndices",
+			"percentError",
+			"test_2016",
+			"percentError",
+			"x_down",
+			"signalGnd",
+			"truth",
+			"finalResults",
+			"returnData",
+			"setConfig",
+			"Path",
+			"whichTrainingSegment",
+			"trainPartition",
+			"Path",
+			"getModel",
+			"classData",
+			"conf.o",
+			"conf.override",
+			"modelData",
+			"test_20",
+			"getModel",
+			"classData",
+			"getSignalClip",
+			"conf.over",
+			"override",
+			"modelData",
+			"returnData",
+			"getConfig",
+			"setConfig",
+			"trainPartition",
+			"axesHandle",
+			"refreshPlaybackAxes",
+			"handles.axes",
+			"refreshAxes",
+			"player_handle",
+			"audio_info",
+			"refreshPlaybackAxes",
+			"refreshaxes",
+			"refreshplayback",
+			"getSignalClip",
+			"DisplayPayment",
+			"ErrorOut",
+			"logger",
+			"ErrorOut",
+			"logger",
+			"6265",
+			"din_insert_button",
+			"6265",
+			"console",
+			"mathbox-cblt-list",
+			"6265",
+			" 6265",
+			"'",
+			"mysql",
+			"gcc",
+			"php-devel",
+			"php-pear",
+			"ssh2",
+			"din_code",
+			"style=\"white-space\"",
+			"wa_or",
+			"dinCancel",
+			"driveitnow_container",
+			"din_placeholder",
+			"6440",
+			"driveitnow",
+			"drive_it_now",
+			"din_",
+			"driveitnow_"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"filterStats",
+			"modelData",
+			"",
+			"filterBins3",
+			"jesse",
+			"nick",
+			"dan",
+			"justin",
+			"parent1",
+			"newOptions",
+			"logger.error",
+			"featuresByClass",
+			"agent_data",
+			"]]",
+			"[[",
+			"",
+			"feature",
+			"=",
+			"melfcc_",
+			"options",
+			"",
+			"setDirty",
+			"\"",
+			"wizard.mail.campaign",
+			"oldTemplateType",
+			")",
+			"(",
+			")",
+			"(",
+			"$log.debug"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"folders":
+	[
+		{
+			"path": "/Users/justin/Documents/MATLAB"
+		}
+	],
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "gui_medsim_train/medsim_train.m",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 34597,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								9739,
+								9739
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Matlab/Matlab.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "tools_features/getFeatureCacheName.m",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 651,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								594,
+								594
+							]
+						],
+						"settings":
+						{
+							"auto_name": "getFeatureCacheName",
+							"syntax": "Packages/Matlab/Matlab.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "tools_figure/saveAnalysis.m",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3592,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Matlab/Matlab.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "tools_figure/refreshaxes.m",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3728,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								753,
+								765
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Matlab/Matlab.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "data/med4_mashup/config/medsim_config.ini",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1487,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1191,
+								1202
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/INI/INI.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 102.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "tools_classify/getModel.m",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 10282,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								693,
+								693
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Matlab/Matlab.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3718.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "tools_classify/doTrain.m",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2126,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								167,
+								167
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Matlab/Matlab.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "controllers/analyze.m",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7806,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Matlab/Matlab.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1106.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "tools_figure/plotGnd.m",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6412,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								71,
+								123
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Matlab/Matlab.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 13,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "tools_figure/makePlot.m",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3520,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3242,
+								3242
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Matlab/Matlab.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 852.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "tools_classify/test_20161013.m",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 10783,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								327,
+								327
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Matlab/Matlab.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1810.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "tools_figure/plotTrainSegments.m",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1862,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								900,
+								900
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Matlab/Matlab.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 15,
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4673,
+						"regions":
+						{
+							"match":
+							{
+								"flags": 112,
+								"regions":
+								[
+									[
+										212,
+										232
+									],
+									[
+										428,
+										448
+									],
+									[
+										919,
+										939
+									],
+									[
+										1290,
+										1310
+									],
+									[
+										1506,
+										1526
+									],
+									[
+										1997,
+										2017
+									],
+									[
+										2444,
+										2461
+									],
+									[
+										2713,
+										2730
+									],
+									[
+										2907,
+										2924
+									],
+									[
+										2945,
+										2962
+									],
+									[
+										3164,
+										3181
+									],
+									[
+										3401,
+										3418
+									],
+									[
+										3566,
+										3583
+									],
+									[
+										3846,
+										3863
+									],
+									[
+										3894,
+										3911
+									],
+									[
+										4223,
+										4240
+									],
+									[
+										4271,
+										4288
+									],
+									[
+										4460,
+										4477
+									],
+									[
+										4570,
+										4587
+									]
+								],
+								"scope": ""
+							}
+						},
+						"selection":
+						[
+							[
+								2155,
+								2155
+							]
+						],
+						"settings":
+						{
+							"detect_indentation": false,
+							"line_numbers": false,
+							"output_tag": 3,
+							"result_base_dir": "",
+							"result_file_regex": "^([^ \t].*):$",
+							"result_line_regex": "^ +([0-9]+):",
+							"scroll_past_end": true,
+							"syntax": "Packages/Default/Find Results.hidden-tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 765.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 17,
+					"type": "text"
+				},
+				{
+					"buffer": 13,
+					"file": "tools_classify/calculateErr.m",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 314,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								21,
+								21
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Matlab/Matlab.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 16,
+					"type": "text"
+				},
+				{
+					"buffer": 14,
+					"file": "tools_figure/displayClassBoxes.m",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1409,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								90,
+								140
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Matlab/Matlab.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 18,
+					"type": "text"
+				},
+				{
+					"buffer": 15,
+					"file": "tools_figure/refreshplayback.m",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1567,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								699,
+								699
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Matlab/Matlab.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 14,
+					"type": "text"
+				},
+				{
+					"buffer": 16,
+					"file": "config/app_config.ini",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 163,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								158,
+								158
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/INI/INI.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 11,
+					"type": "text"
+				},
+				{
+					"buffer": 17,
+					"file": "tools_generic/loadConfig.m",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 784,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								100,
+								100
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Matlab/Matlab.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 12,
+					"type": "text"
+				},
+				{
+					"buffer": 18,
+					"file": "data/med4_mashup/config/data_path_config.ini",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 371,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								192,
+								192
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/INI/INI.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "",
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"cobalt_vdp",
+				"data/usr-local/www.driveitnow.net/html/javascript/cobalt_vdp.js"
+			],
+			[
+				"cobalt.js",
+				"data/usr-local/www.driveitnow.net/html/javascript/cobalt.js"
+			],
+			[
+				"coba",
+				"data/din-dfw-web1-www.driveitnow.net/html/javascript/cobalt.js"
+			],
+			[
+				"din_text",
+				"data/usr-local/www.driveitnow.net/html/javascript/din_text_payment.js.php"
+			],
+			[
+				"din_include_ps_dealerspike",
+				"data/usr-local/www.driveitnow.net/html/javascript/din_include_ps_dealerspike.js"
+			],
+			[
+				"engine_interface_vehdata",
+				"data/usr-local/www.driveitnow.net/html/javascript/engine_interface_vehdata.php"
+			],
+			[
+				"din_text_",
+				"data/usr-local/www.driveitnow.net/html/javascript/din_text_payment.js.php"
+			],
+			[
+				".conf",
+				"usr-local/www.driveitnow.net/html/confirm/index.html"
+			],
+			[
+				"config.",
+				"backend/config/config.coffee"
+			],
+			[
+				"service.perm",
+				"backend/services/service.permissions.coffee"
+			],
+			[
+				"user_sub",
+				"backend/services/service.user_subscription.coffee"
+			],
+			[
+				"service.properties",
+				"frontend/map/scripts/services/service.properties.coffee"
+			],
+			[
+				"usersub",
+				"frontend/map/scripts/controllers/user/userSubscription.coffee"
+			],
+			[
+				"route.user_sub",
+				"backend/routes/route.user_subscription.coffee"
+			],
+			[
+				"sqlcol",
+				"backend/utils/util.sql.columns.coffee"
+			],
+			[
+				"util.sql.hel",
+				"backend/utils/util.sql.helpers.coffee"
+			],
+			[
+				"services.user",
+				"backend/services/services.user.coffee"
+			],
+			[
+				"conf",
+				"backend/config/config.coffee"
+			],
+			[
+				"index.",
+				"backend/routes/index.coffee"
+			],
+			[
+				"config",
+				"backend/config/config.coffee"
+			],
+			[
+				"ezcrud.rou",
+				"backend/utils/crud/util.ezcrud.route.helpers.coffee"
+			],
+			[
+				"confi",
+				"backend/config/config.coffee"
+			],
+			[
+				"ezcrud",
+				"backend/utils/crud/util.ezcrud.service.helpers.coffee"
+			],
+			[
+				"backend.",
+				"common/config/routes.backend.coffee"
+			],
+			[
+				"util.rou",
+				"backend/utils/util.route.helpers.coffee"
+			],
+			[
+				"auth.co",
+				"backend/utils/util.auth.coffee"
+			],
+			[
+				"usersubs",
+				"frontend/map/scripts/controllers/user/userSubscription.coffee"
+			],
+			[
+				"commonc",
+				"common/config/commonConfig.coffee"
+			],
+			[
+				"util.auth",
+				"backend/utils/util.auth.coffee"
+			],
+			[
+				"providers.on",
+				"frontend/map/scripts/providers/providers.onboarding.coffee"
+			],
+			[
+				"princi",
+				"frontend/common/scripts/services/principal.coffee"
+			],
+			[
+				"usersubsc",
+				"frontend/map/html/views/user/userSubscription.jade"
+			],
+			[
+				"util.user",
+				"backend/utils/util.user.coffee"
+			],
+			[
+				"subscript",
+				"frontend/map/scripts/services/service.subscription.coffee"
+			],
+			[
+				"comm",
+				"common/config/commonConfig.coffee"
+			],
+			[
+				"route.char",
+				"backend/routes/route.charges.coffee"
+			],
+			[
+				"user",
+				"frontend/map/scripts/controllers/user/userSubscription.coffee"
+			],
+			[
+				"property.ja",
+				"frontend/map/html/views/property.jade"
+			],
+			[
+				"format",
+				"frontend/map/scripts/services/formatters.coffee"
+			],
+			[
+				"service.exter",
+				"backend/services/service.externalAccounts.coffee"
+			],
+			[
+				"service.mls_con",
+				"backend/services/service.mls_config.coffee"
+			],
+			[
+				"route.onb",
+				"backend/routes/route.onboarding.coffee"
+			],
+			[
+				"onboarding",
+				"frontend/map/html/views/onboarding/onboardingPlan.jade"
+			],
+			[
+				"onboard.",
+				"frontend/map/html/views/onboarding.jade"
+			],
+			[
+				"mainoptions",
+				"frontend/map/scripts/config/mainOptions.coffee"
+			],
+			[
+				"onboarding.",
+				"frontend/map/scripts/controllers/controllers.onboarding.coffee"
+			],
+			[
+				"analyze",
+				"common/utils/util.analyzeValue.coffee"
+			],
+			[
+				"util.error.p",
+				"backend/utils/errors/util.error.partiallyHandledError.coffee"
+			],
+			[
+				"util.errors.on",
+				"backend/utils/errors/util.errors.onboarding.coffee"
+			],
+			[
+				"plans",
+				"frontend/map/scripts/services/plans.coffee"
+			],
+			[
+				"controller.on",
+				"frontend/map/scripts/controllers/controllers.onboarding.coffee"
+			],
+			[
+				"service.pla",
+				"backend/services/service.plans.coffee"
+			],
+			[
+				"service.sessi",
+				"backend/services/service.sessionSecurity.coffee"
+			],
+			[
+				"usersession",
+				"backend/routes/route.userSession.coffee"
+			],
+			[
+				"county.ja",
+				"frontend/admin/html/views/dataSource/county.jade"
+			],
+			[
+				"mls.ja",
+				"frontend/admin/html/views/dataSource/mls.jade"
+			],
+			[
+				"mls.cof",
+				"frontend/admin/scripts/controllers/dataSource/mls.coffee"
+			],
+			[
+				"proper",
+				"frontend/map/html/views/property.jade"
+			],
+			[
+				"project.ja",
+				"frontend/map/html/views/project.jade"
+			],
+			[
+				"cc-form.t",
+				"frontend/map/html/views/templates/cc-form.tpl.jade"
+			],
+			[
+				"replacecc",
+				"frontend/map/html/views/templates/modals/replaceCC.jade"
+			],
+			[
+				"userpay",
+				"frontend/map/scripts/controllers/user/userPaymentMethod.coffee"
+			],
+			[
+				"route.mls",
+				"backend/routes/route.mls.coffee"
+			],
+			[
+				"service.mls",
+				"backend/services/service.mls.coffee"
+			],
+			[
+				"route.bac",
+				"common/config/routes.backend.coffee"
+			],
+			[
+				"route.price",
+				"backend/routes/route.prices.coffee"
+			],
+			[
+				"services.pri",
+				"backend/services/service.prices.coffee"
+			],
+			[
+				"route.web",
+				"backend/routes/route.webhooks.coffee"
+			],
+			[
+				"verospec",
+				"spec/backendUnit/services/email/vero/service.email.impl.vero.events.spec.coffee"
+			],
+			[
+				"util.errors.ver",
+				"backend/utils/errors/util.errors.vero.coffee"
+			],
+			[
+				"tables.co",
+				"backend/config/tables.coffee"
+			],
+			[
+				"transforms.we",
+				"backend/utils/transforms/transforms.webhooks.stripe.coffee"
+			],
+			[
+				"services.pay",
+				"backend/services/services.payment.coffee"
+			],
+			[
+				"onboarding.intern",
+				"backend/routes/route.onboarding.internals.coffee"
+			],
+			[
+				"subscri",
+				"scripts/misc/subscribe"
+			],
+			[
+				"confirm",
+				"frontend/map/html/views/templates/modals/confirm.jade"
+			],
+			[
+				"users",
+				"frontend/map/scripts/controllers/user/userSubscription.coffee"
+			],
+			[
+				"principal",
+				"frontend/common/scripts/services/principal.coffee"
+			],
+			[
+				"subscr",
+				"scripts/misc/subscribe"
+			],
+			[
+				"common",
+				"common/config/commonConfig.coffee"
+			],
+			[
+				"user.jad",
+				"frontend/map/html/views/user.jade"
+			],
+			[
+				"config.validation",
+				"frontend/map/scripts/config/config.validation.coffee"
+			],
+			[
+				"user.jade",
+				"frontend/map/html/views/user.jade"
+			],
+			[
+				"subscription",
+				"frontend/map/scripts/services/service.subscription.coffee"
+			],
+			[
+				"authdire",
+				"frontend/map/scripts/directives/rmapsAuthDirectives.coffee"
+			],
+			[
+				"sqlhel",
+				"backend/utils/util.sql.helpers.coffee"
+			],
+			[
+				"subscribe",
+				"scripts/misc/subscribe"
+			],
+			[
+				"validatorb",
+				"common/utils/util.validatorBuilder.coffee"
+			],
+			[
+				"service.user_su",
+				"backend/services/service.user_subscription.coffee"
+			],
+			[
+				"user_subscr",
+				"backend/routes/route.user_subscription.coffee"
+			],
+			[
+				"sessionsec",
+				"backend/services/service.sessionSecurity.coffee"
+			],
+			[
+				"utils.sty",
+				"frontend/admin/styles/views/utils.styl"
+			],
+			[
+				"service.session",
+				"backend/services/service.sessionSecurity.coffee"
+			],
+			[
+				"auth.coff",
+				"backend/utils/util.auth.coffee"
+			],
+			[
+				"property.sty",
+				"frontend/map/styles/views/property.styl"
+			],
+			[
+				"browserify.int",
+				"gulp/util/browserify/browserify.internals.coffee"
+			],
+			[
+				"app.co",
+				"frontend/admin/scripts/app.coffee"
+			],
+			[
+				"template-",
+				"frontend/admin/scripts/runners/template-cache-hack.coffee"
+			],
+			[
+				"template-cache",
+				"frontend/admin/scripts/runners/template-cache-hack.coffee"
+			],
+			[
+				"county.co",
+				"frontend/admin/scripts/controllers/dataSource/county.coffee"
+			],
+			[
+				"validation.int",
+				"backend/utils/validation/util.validation.integer.coffee"
+			],
+			[
+				"validation.defaults",
+				"backend/utils/validation/util.validation.defaults.coffee"
+			],
+			[
+				"util.validation.nu",
+				"backend/utils/validation/util.validation.nullify.coffee"
+			],
+			[
+				"util.validation.fl",
+				"backend/utils/validation/util.validation.float.coffee"
+			],
+			[
+				"validationand",
+				"backend/utils/validation/util.impl.validateAndTransformSingleOutput.coffee"
+			],
+			[
+				"advanced.jade",
+				"frontend/admin/html/includes/dataSource/fieldConfig/common/advanced.jade"
+			],
+			[
+				"county.",
+				"frontend/admin/html/views/dataSource/county.jade"
+			],
+			[
+				"validatorbuild",
+				"common/utils/util.validatorBuilder.coffee"
+			],
+			[
+				"validation.fl",
+				"backend/utils/validation/util.validation.float.coffee"
+			],
+			[
+				"confirm.jade",
+				"frontend/map/html/views/templates/modals/confirm.jade"
+			],
+			[
+				"norm",
+				"frontend/admin/scripts/controllers/dataSource/normalize.coffee"
+			],
+			[
+				"normalize",
+				"frontend/admin/scripts/services/normalize.coffee"
+			],
+			[
+				"controller",
+				"frontend/map/scripts/controllers/controller.property.coffee"
+			],
+			[
+				"propertyfo",
+				"frontend/map/scripts/services/propertyFormatters.coffee"
+			],
+			[
+				"layers.ov",
+				"frontend/map/scripts/factories/layers.overlay.coffee"
+			],
+			[
+				"layers",
+				"frontend/map/scripts/factories/layers.base.coffee"
+			],
+			[
+				"cliententry.st",
+				"frontend/map/styles/views/clientEntry.styl"
+			],
+			[
+				"factory.log",
+				"frontend/map/scripts/factories/factory.login.coffee"
+			],
+			[
+				"factory.login",
+				"frontend/admin/scripts/factories/factory.login.coffee"
+			],
+			[
+				"service.login",
+				"frontend/common/scripts/services/service.login.coffee"
+			],
+			[
+				"validatorbuil",
+				"common/utils/util.validatorBuilder.coffee"
+			],
+			[
+				"controller.pro",
+				"frontend/map/scripts/controllers/controller.property.coffee"
+			],
+			[
+				"service.profile",
+				"backend/services/service.profiles.coffee"
+			],
+			[
+				"route.prop",
+				"backend/routes/route.properties.internals.coffee"
+			],
+			[
+				"factory.map",
+				"frontend/map/scripts/factories/factory.map.coffee"
+			],
+			[
+				"property",
+				"frontend/map/html/views/property.jade"
+			],
+			[
+				"propertyfor",
+				"frontend/map/scripts/services/propertyFormatters.coffee"
+			],
+			[
+				"service.properties.",
+				"frontend/map/scripts/services/service.properties.coffee"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 392.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"train_seconds",
+				"train_seconds_table_CreateFcn"
+			]
+		],
+		"width": 1108.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 229.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

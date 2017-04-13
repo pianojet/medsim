@@ -22,7 +22,7 @@ function varargout = medsim_gui(varargin)
 
 % Edit the above text to modify the response to help medsim_gui
 
-% Last Modified by GUIDE v2.5 11-Apr-2017 21:04:26
+% Last Modified by GUIDE v2.5 13-Apr-2017 15:12:57
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -57,7 +57,7 @@ function medsim_gui_OpeningFcn(hObject, eventdata, handles, varargin)
 
   % Update handles structure
   guidata(hObject, handles);
-  initializeConfig();
+  initializeConfig('/Users/justin/Documents/MATLAB/medsim/config/app_config.ini');
   % UIWAIT makes medsim_gui wait for user response (see UIRESUME)
   % uiwait(handles.figure1);
 
@@ -254,12 +254,3 @@ function pushbutton_save_Callback(hObject, eventdata, handles)
   % handles    structure with handles and user data (see GUIDATA)
   modelData = getappdata(0, 'modelData');
   conf = getappdata(0, 'conf');
-
-
-
-
-
-
-
-
-

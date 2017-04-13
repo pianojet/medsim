@@ -2,10 +2,11 @@ function refreshPlaybackAxes()
   % options
   playbackOptions = getappdata(0, 'playbackOptions');
   % gndOptions = getappdata(0, 'gndOptions');
-  modelData = getappdata(0, 'modelData');
+  % modelData = getappdata(0, 'modelData');
   clickpos1 = getappdata(0, 'clickpos1');
   clickpos2 = getappdata(0, 'clickpos2');
   audio_info = getappdata(0, 'audio_info');
+  user_def_refresh_callbacks = getappdata(0, 'user_def_refresh_callbacks');
 
   % audio data
   [audio_data limits] = getSignalClip(getappdata(0, 'audio_data'));
@@ -40,4 +41,6 @@ function refreshPlaybackAxes()
   % new player
   newPlayer(audio_data, audio_info, playbackOptions);
 
-  plotTrainSegments(modelData, playbackOptions);
+  if user_def_refresh_callbacks
+  end
+  % plotTrainSegments(modelData, playbackOptions);

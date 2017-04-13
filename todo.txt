@@ -1,0 +1,57 @@
+#################   MAIN APP TODOS
+########################################################################################################################
+
+####  basic UI friendliness
+- utilize `clickpos1` more like a selector
+
+####  basic error handling / edge cases / expanding configurables
+- better defaults / init for `modelData`
+- connect the `modelData.feature` (or just `modelData` in general), table in gui, and conf.selectedFeatures
+- make `modelData.centers` configurable to more than '30';
+
+
+
+#################   NOTES TO REMEMBER NEXT STEPS
+########################################################################################################################
+
+####  branch model_gui:
+- implement `pushbutton_save_Callback`, feature extraction & save the data as class
+    - revise `getModelClass.m`
+
+
+
+
+#################   MISC NOTES
+########################################################################################################################
+
+
+####  frigui travel:
+may 13 - 23; july 8 - 22;
+
+
+####  emotion todo:
+angry & neutral testing, verbal vs. nonverbal?
+
+
+####  paper - latex, university template file - look online
+table of contents
+
+chapter 1 - intro
+highlight importance
+
+chapter 2 - related work
+- general stuff about audio features (similar to shuangs 'related work')
+- section that describes shuangs
+- differences / similarities   - comparison
+
+chapter 3 - my work
+
+
+####  defense committee
+check last day to submit thesis, work backwards
+defend 3 or 4 days before that
+10-14 weeks have thesis ready
+before that, figure out committee stuff
+
+
+

@@ -22,7 +22,7 @@ function varargout = medsim_gui(varargin)
 
 % Edit the above text to modify the response to help medsim_gui
 
-% Last Modified by GUIDE v2.5 24-Feb-2017 12:01:27
+% Last Modified by GUIDE v2.5 11-Apr-2017 21:04:26
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -96,6 +96,22 @@ function varargout = medsim_gui_OutputFcn(hObject, eventdata, handles)
 
 
 
+function initializeData(handles)
+  conf = getappdata(0, 'conf');
+
+  % track model data
+  modelData.name = '';
+  modelData.bins = 30;
+  modelData.features = 'melfcc';
+  modelData.audioClips = {};
+  modelData.audioFeatures = {}; % keeping association with clips in case we want to impl removal
+  modelData.centers = containers.Map;
+  modelData.centers('30') = [];
+  modelData.seconds = 0.0;
+  modelData.limits = {};
+  setappdata(0, 'modelData', modelData);
+
+
 function initializePlayback(handles)
   conf = getappdata(0, 'conf');
   if ~isfield(conf, 'audioFile')
@@ -140,9 +156,6 @@ function initializePlayback(handles)
   % setappdata(0, 'signalClassified', gnd_data);  % may represent small segment of signal
   % setappdata(0, 'fullClassified', gnd_data);    % represents entire classified signal
 
-  % track model data
-  modelData = struct;
-  setappdata(0, 'modelData', modelData);
 
   % refresh list of classes
   % classes = unique(gnd_data);
@@ -198,67 +211,6 @@ function initializePlayback(handles)
 
 
 
-
-
-
-
-
-
-
-% --- Executes on button press in assignbutton.
-function assignbutton_Callback(hObject, eventdata, handles)
-  % hObject    handle to assignbutton (see GCBO)
-  % eventdata  reserved - to be defined in a future version of MATLAB
-  % handles    structure with handles and user data (see GUIDATA)
-  disp('assignbutton');
-
-  conf = getappdata(0, 'conf');
-  playbackOptions = getappdata(0, 'playbackOptions');
-  clickpos1 = getappdata(0, 'clickpos1');
-  clickpos2 = getappdata(0, 'clickpos2');
-  classData = getappdata(0, 'classData');
-  audio_data = getappdata(0, 'audio_data');
-  contents = cellstr(get(handles.classlist,'String'));
-  c = str2num(contents{get(handles.classlist,'Value')});
-
-  if ~((clickpos1 > 1) && (clickpos2 < (length(audio_data) / playbackOptions.downSampleFactor)) && (length(contents) > 1) && (get(handles.classlist,'Value') > 1))
-    disp('useless parameters, returning...');
-    return
-  end
-
-  label = getClassLabel(c);
-  thisSetSize = length(classData.continuousClassSignals.(label));
-  thisSegment = getSignalClipNoSilence();
-
-  % push signal to cell array
-  classData.continuousClassSignals.(label){thisSetSize+1} = thisSegment;
-  classData.classSampleCounts.(label) = classData.classSampleCounts.(label) + length(thisSegment);
-  classData.classesAssigned = unique([classData.classesAssigned c]);
-
-  % check in bounds
-  if clickpos1 < 1
-    clickpos1 = 1;
-  end
-  if clickpos2 * playbackOptions.downSampleFactor > length(audio_data)
-    clickpos2 = floor(length(audio_data) / playbackOptions.downSampleFactor);
-  end
-  % clickpos1Up = clickpos1 * playbackOptions.downSampleFactor;
-  % clickpos2Up = clickpos2 * playbackOptions.downSampleFactor;
-
-  classData.limits.(label){thisSetSize+1} = [clickpos1 clickpos2];
-  classData.undo = [c];
-
-  save(conf.classDataFile, '-struct', 'classData');
-  % save(conf.extractedForTestFile, '-struct', 'classData.continuousClassSignals');
-  % save(conf.metaFile, '-struct', 'classData.classSampleCounts');
-  setappdata(0, 'classData', classData);
-
-  disp(sprintf('added signal to class %s', label));
-  plotTrainSegments(classData, playbackOptions);
-  train_seconds_table_CreateFcn(handles.train_seconds_table);
-
-
-
 function refreshPlaybackAxes()
   % options
   playbackOptions = getappdata(0, 'playbackOptions');
@@ -269,7 +221,7 @@ function refreshPlaybackAxes()
   audio_info = getappdata(0, 'audio_info');
 
   % audio data
-  [audio_data limits] = getSignalClip(getappdata(0, 'audio_data'), playbackOptions.downSampleFactor);
+  [audio_data limits] = getSignalClip(getappdata(0, 'audio_data'));
   % [playbackOptions.signalClassified limits] = getSignalClip(getappdata(0, 'gnd_data'), playbackOptions.downSampleFactor);
   playbackOptions.samplelimits = limits;
   % gndOptions.samplelimits = limits;
@@ -321,42 +273,12 @@ function newPlayer(audio_data, audio_info, playbackOptions)
   setappdata(0, 'player_handle', player);
 
 
+function [clickpos1Up clickpos2Up] = upScaledClickpos(signal)
+  % `signal` can be undefined
 
-function [signal_clip limits] = getSignalClip(signal, sampleScale)
-  % selected area
-  clickpos1 = getappdata(0, 'clickpos1');
-  clickpos2 = getappdata(0, 'clickpos2');
-
-  if clickpos1 <= sampleScale
-    clickpos1Up = 1;
-  else
-    clickpos1Up = ((clickpos1 * sampleScale) - sampleScale) + 1;
-  end
-
-  if clickpos2 * sampleScale > (length(signal) - sampleScale)
-    clickpos2Up = length(signal);
-  else
-    clickpos2Up = clickpos2 * sampleScale;
-  end
-
-  signal_clip = signal( clickpos1Up:clickpos2Up , :);
-  limits = [clickpos1Up clickpos2Up];
-
-
-function [signal_clip limits] = getSignalClipNoSilence()
-  gnd_data = getappdata(0, 'gnd_data');
-  audio_data = getappdata(0, 'audio_data');
   playbackOptions = getappdata(0, 'playbackOptions');
   clickpos1 = getappdata(0, 'clickpos1');
   clickpos2 = getappdata(0, 'clickpos2');
-
-  % if clickpos1 < 1
-  %   clickpos1 = 1;
-  % end
-
-  % if clickpos2 * playbackOptions.downSampleFactor > length(audio_data)
-  %   clickpos2 = floor(length(audio_data) / playbackOptions.downSampleFactor);
-  % end
 
   if clickpos1 <= playbackOptions.downSampleFactor
     clickpos1Up = 1;
@@ -364,15 +286,17 @@ function [signal_clip limits] = getSignalClipNoSilence()
     clickpos1Up = ((clickpos1 * playbackOptions.downSampleFactor) - playbackOptions.downSampleFactor) + 1;
   end
 
-  if clickpos2 * playbackOptions.downSampleFactor > (length(audio_data) - playbackOptions.downSampleFactor)
-    clickpos2Up = length(audio_data);
+  if ((exist('signal','var') && ~isempty(signal)) && clickpos2 * playbackOptions.downSampleFactor > (length(signal) - playbackOptions.downSampleFactor))
+    clickpos2Up = length(signal);
   else
     clickpos2Up = clickpos2 * playbackOptions.downSampleFactor;
   end
 
-  gnd_clip = gnd_data( clickpos1Up:clickpos2Up , :);
-  signal_clip = audio_data( clickpos1Up:clickpos2Up , :);
-  signal_clip = signal_clip(gnd_clip(:) ~= 5);
+
+function [signal_clip limits] = getSignalClip(signal)
+  % selected area
+  [clickpos1Up clickpos2Up] = upScaledClickpos(signal);
+  signal_clip = signal( clickpos1Up:clickpos2Up , :);
   limits = [clickpos1Up clickpos2Up];
 
 
@@ -444,20 +368,20 @@ function refreshAxes_Callback(hObject, eventdata, handles)
   setappdata(0, 'clickpos2', floor(audio_info.TotalSamples/playbackOptions.downSampleFactor));
 
 
-  % view changes, deprecates this signalClassified
-  fullClassified = getappdata(0, 'fullClassified');
-  if length(fullClassified) > 0
-    clickpos1 = getappdata(0, 'clickpos1');
-    clickpos2 = getappdata(0, 'clickpos2');
-    if clickpos2*playbackOptions.downSampleFactor > length(fullClassified)
-      clickpos2 = floor(length(fullClassified) / playbackOptions.downSampleFactor);
-      setappdata(0, 'clickpos2', clickpos2);
-    end
-    % setappdata(0, 'signalClassified', fullClassified(clickpos1*playbackOptions.downSampleFactor:clickpos2*playbackOptions.downSampleFactor));
-    setappdata(0, 'signalClassified', getSignalClip(fullClassified, playbackOptions.downSampleFactor));
-  else
-    setappdata(0, 'signalClassified', []);
-  end
+  % % view changes, deprecates this signalClassified
+  % fullClassified = getappdata(0, 'fullClassified');
+  % if length(fullClassified) > 0
+  %   clickpos1 = getappdata(0, 'clickpos1');
+  %   clickpos2 = getappdata(0, 'clickpos2');
+  %   if clickpos2*playbackOptions.downSampleFactor > length(fullClassified)
+  %     clickpos2 = floor(length(fullClassified) / playbackOptions.downSampleFactor);
+  %     setappdata(0, 'clickpos2', clickpos2);
+  %   end
+  %   % setappdata(0, 'signalClassified', fullClassified(clickpos1*playbackOptions.downSampleFactor:clickpos2*playbackOptions.downSampleFactor));
+  %   setappdata(0, 'signalClassified', getSignalClip(fullClassified));
+  % else
+  %   setappdata(0, 'signalClassified', []);
+  % end
 
   % refresh axes
   refreshPlaybackAxes();
@@ -663,4 +587,148 @@ function pushbutton_new_Callback(hObject, eventdata, handles)
   % % conf = resetConfig();
   % conf.audioFile = [pathname, filename];
 
+  initializeData(handles);
   initializePlayback(handles);
+
+
+% --- Executes when entered data in editable cell(s) in modelStats.
+function modelStats_CellEditCallback(hObject, eventdata, handles)
+  % hObject    handle to modelStats (see GCBO)
+  % eventdata  structure with the following fields (see MATLAB.UI.CONTROL.TABLE)
+  %	Indices: row and column indices of the cell(s) edited
+  %	PreviousData: previous data for the cell(s) edited
+  %	EditData: string(s) entered by the user
+  %	NewData: EditData or its converted form set on the Data property. Empty if Data was not changed
+  %	Error: error string when failed to convert EditData to appropriate value for Data
+  % handles    structure with handles and user data (see GUIDATA)
+
+  modelData = getappdata(0, 'modelData');
+  row = eventdata.Indices(1)
+
+  try
+    switch row
+      case 1
+        fprintf('`Name` changed to %s', eventdata.NewData);
+        modelData.name = eventdata.NewData;
+      case 2
+        fprintf('`Bins` changed to %s', eventdata.NewData);
+        modelData.bins = str2num(eventdata.NewData);
+      case 3
+        fprintf('Changing `Feature` is current unsupported.');
+        modelData.feature = 'melfcc';
+    end
+
+  catch Exception
+    disp('Possible error with input given.');
+  end
+
+  disp(eventdata);
+
+
+function modelStats_refresh(modelStats)
+  % colNames = {'Time'};
+  % rowNames = {};
+  % tableData = [];
+  % for c = 1:length(classData.classLabels)
+  %   label = getClassLabel(c);
+  %   rowNames{c} = c;
+  %   theseTotalSamples = sum(classData.classSampleCounts.(label));
+  %   % secondsString = sprintf('%2.2f', theseTotalSamples/audio_info.SampleRate);
+  %   % tableData{c} = secondsString;
+  %   tableData = [tableData; theseTotalSamples/audio_info.SampleRate];
+  % end
+  % set(hObject, 'ColumnWidth', 'auto');
+  % set(hObject, 'ColumnName', colNames);
+  % set(hObject, 'RowName', rowNames);
+  % set(hObject, 'Data', tableData);
+
+  modelData = getappdata(0, 'modelData');
+  displaySeconds = sprintf('%2.2f', modelData.seconds);
+  data = {modelData.name; '30'; 'melfcc'; displaySeconds};
+  set(modelStats, 'Data', data);
+
+
+
+% --- Executes during object creation, after setting all properties.
+function modelStats_CreateFcn(hObject, eventdata, handles)
+  % hObject    handle to modelStats (see GCBO)
+  % eventdata  reserved - to be defined in a future version of MATLAB
+  % handles    empty - handles not created until after all CreateFcns called
+
+
+% --- Executes on button press in pushbutton_add.
+function pushbutton_add_Callback(hObject, eventdata, handles)
+  % hObject    handle to pushbutton_add (see GCBO)
+  % eventdata  reserved - to be defined in a future version of MATLAB
+  % handles    structure with handles and user data (see GUIDATA)
+  disp('pushbutton_add_Callback');
+
+  conf = getappdata(0, 'conf');
+  playbackOptions = getappdata(0, 'playbackOptions');
+  clickpos1 = getappdata(0, 'clickpos1');
+  clickpos2 = getappdata(0, 'clickpos2');
+  modelData = getappdata(0, 'modelData');
+  audio_data = getappdata(0, 'audio_data');
+  audio_info = getappdata(0, 'audio_info')
+  sampleRate = audio_info.SampleRate;
+
+  disp('initial modelData:');
+  disp(modelData);
+
+
+  if ~((clickpos1 > 1) && (clickpos2 < (length(audio_data) / playbackOptions.downSampleFactor)))
+    disp('useless parameters, returning...');
+    return
+  end
+
+  % label = getClassLabel(c);
+  % thisSetSize = length(classData.continuousClassSignals.(label));
+  % thisSegment = getSignalClipNoSilence();
+
+  % % push signal to cell array
+  % classData.continuousClassSignals.(label){thisSetSize+1} = thisSegment;
+  % classData.classSampleCounts.(label) = classData.classSampleCounts.(label) + length(thisSegment);
+  % classData.classesAssigned = unique([classData.classesAssigned c]);
+
+  % % check in bounds
+  % if clickpos1 < 1
+  %   clickpos1 = 1;
+  % end
+  % if clickpos2 * playbackOptions.downSampleFactor > length(audio_data)
+  %   clickpos2 = floor(length(audio_data) / playbackOptions.downSampleFactor);
+  % end
+  % clickpos1Up = clickpos1 * playbackOptions.downSampleFactor;
+  % clickpos2Up = clickpos2 * playbackOptions.downSampleFactor;
+
+  clip = getSignalClip(audio_data);
+  modelData.audioClips{length(modelData.audioClips)+1} = clip;
+  modelData.limits{length(modelData.limits)+1} = [clickpos1 clickpos2];
+  modelData.seconds = modelData.seconds + (length(clip) / sampleRate);
+
+
+  disp('saving modelData:');
+  disp(modelData);
+
+  setappdata(0, 'modelData', modelData);
+
+  disp(sprintf('added signal to class'));
+  modelStats_refresh(handles.modelStats);
+  plotTrainSegments(modelData, playbackOptions);
+
+
+% --- Executes on button press in pushbutton_save.
+function pushbutton_save_Callback(hObject, eventdata, handles)
+  % hObject    handle to pushbutton_save (see GCBO)
+  % eventdata  reserved - to be defined in a future version of MATLAB
+  % handles    structure with handles and user data (see GUIDATA)
+  modelData = getappdata(0, 'modelData');
+  conf = getappdata(0, 'conf');
+
+
+
+
+
+
+
+
+

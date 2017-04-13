@@ -10,14 +10,20 @@ function plotTrainSegments(modelData, options)
   %   BoxShrink: percent size of max, (max being -1 to 1 (size 2))
   %
 
+
+  disp('`plotTrainSegments` Model Data:');
+  disp(modelData);
+
+  if (~isfield(modelData, 'limits') || isempty(modelData.limits))
+    disp('No training segments to plot, existing `plotTrainSegments` routine');
+    return
+  end
+
   if not (nargin > 1)
     options = struct;
   end
 
   if ~isfield(modelData, 'classLabels') modelData.classLabels = {};
-  end
-
-  if ~isfield(modelData, 'limits') modelData.limits = struct;
   end
 
   if isfield(options, 'LineStyle')
@@ -45,13 +51,10 @@ function plotTrainSegments(modelData, options)
 
   axes(options.figure);
   hold on;
-  for c = 1:length(modelData.classLabels)
-    label = modelData.classLabels{c};
-    for l = 1:length(modelData.limits.(label))
-      limits = modelData.limits.(label){l};
-      classBox = [limits(1), shiftShrink, limits(2)-limits(1), spanShrink];
-      rectangle('Position', classBox, 'EdgeColor', 'black', 'LineStyle', LineStyle, 'LineWidth', LineWidth);
-    end
+  for l = 1:length(modelData.limits)
+    limits = modelData.limits{l};
+    classBox = [limits(1), shiftShrink, limits(2)-limits(1), spanShrink];
+    rectangle('Position', classBox, 'EdgeColor', 'blue', 'LineStyle', LineStyle, 'LineWidth', LineWidth);
   end
   hold off;
 

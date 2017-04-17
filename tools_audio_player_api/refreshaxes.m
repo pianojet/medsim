@@ -58,6 +58,7 @@ function refreshaxes(audio_data, audio_info, options)
     end
     xlim_step = ceil((lim_down(2) - lim_down(1))/5);
     xlim_samples = lim_down(1):xlim_step:lim_down(2);  xlim_samples = [xlim_samples lim_down(2)];
+    xlim_samples = unique(xlim_samples);
     xlim_seconds = xlim_samples / sample_down;
     xlim_labels = {};
     for i = 1:length(xlim_seconds)
@@ -99,7 +100,7 @@ function refreshaxes(audio_data, audio_info, options)
     plot(xaxes, class4, 'Color', colors(4, :));
     plot(xaxes, class5, 'Color', colors(5, :));
     plot(xaxes, class6, 'Color', colors(6, :));
-    legend('Speaker #1','Speaker #2', 'Speaker #3', 'Speaker #4', 'Silence', 'Unknown');
+    %legend('Class #1','Class #2', 'Class #3', 'Class #4', 'Silence', 'Unknown');
 
 
     xlabel('Seconds', 'Color', 'black');

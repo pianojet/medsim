@@ -1,0 +1,12 @@
+wintime = 0.025;
+hoptime = 0.01;
+numcep = 12;
+
+[d1 sr1] = wavread('5.wav');
+d1 = mean(d1,2);
+[cep1, aspec1, spec1] = melfcc(d1,sr1,'wintime',wintime,'hoptime', hoptime, 'numcep',numcep, 'nbands',40);
+
+f_set = 2:2:8; % gabor scale >=2
+theta_set = 0:pi/8:pi*7/8; % gabor direction
+
+[GaborFeature Gab] = Gabor_Feature1(spec1,f_set,theta_set, 'Gabor', 17);

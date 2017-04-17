@@ -17,7 +17,10 @@ function refreshPlaybackAxes()
   % setappdata(0, 'gndOptions', gndOptions);
 
   % % display audio
-  % signalClassified = getappdata(0, 'signalClassified');
+  signalClassified = getappdata(0, 'signalClassified');
+  if length(signalClassified) > 0
+    playbackOptions.signalClassified = getSignalClip(signalClassified);
+  end
   % fullClassified = getappdata(0, 'fullClassified');
 
   % % if full signal, ensure it's same size as audio_data above

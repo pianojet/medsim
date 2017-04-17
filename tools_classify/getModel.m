@@ -303,7 +303,7 @@ modelData.modelTable = modelTable;
 modelData.modelLabel = modelLabel;
 % save the models
 
-save(conf.modelFile, '-struct', 'modelData');
+save(conf.modelDataFile, '-struct', 'modelData');
 
 
 disp('Models processed.');

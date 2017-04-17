@@ -6,7 +6,13 @@ function conf = resetConfig(appConfig)
   % add paths to dataConf: prepend `rootPath` (which is absolute) to paths as defined in config
   fields = fieldnames(pathConf);
   for i = 1:numel(fields)
-    dataConf.(fields{i}) = [appConfig.rootPath, '/', pathConf.(fields{i})];
+    % don't make absolute if already absolute
+    p = pathConf.(fields{i});
+    if strcmp(p(1), '/')
+      dataConf.(fields{i}) = p;
+    else
+      dataConf.(fields{i}) = [appConfig.rootPath, '/', p];
+    end
   end
 
   % now add all dataConf fields to a central `conf` struct

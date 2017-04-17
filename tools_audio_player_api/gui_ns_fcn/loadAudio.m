@@ -2,8 +2,8 @@ function loadAudio(handles)
   [filename, pathname] = uigetfile('*.wav', 'select an WAV file');
   %dataPath = '/Users/justin/Documents/MATLAB/medsim/data/med4_mashup';
 
-  disp('[filename, pathname]:');
-  disp([filename, pathname]);
+  disp('[pathname, filename]:');
+  disp([pathname, filename]);
 
   set(handles.dataPath, 'String', [pathname, filename]);
   % % conf = resetConfig();

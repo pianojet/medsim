@@ -29,6 +29,7 @@ function initializePlayback(handles)
   playbackOptions.samplelimits = [1 audio_info.TotalSamples];
   playbackOptions.title = 'Audio';
   setappdata(0, 'playbackOptions', playbackOptions);
+  setappdata(0, 'signalClassified', []);
 
   % gndOptions = playbackOptions;
   % gndOptions.figure = handles.gndFigure;

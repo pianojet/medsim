@@ -55,3 +55,10 @@ before that, figure out committee stuff
 
 
 
+#################   2017-04-17
+########################################################################################################################
+- use LPCC
+- normalized vs. unnorm
+- verbal+nonverbal vs. just verbal
+
+- speaker via hue, emotion via saturation

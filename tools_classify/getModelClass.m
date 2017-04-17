@@ -1,17 +1,5 @@
-function modelData = getModelClass(modelData)
-% generates a model for a single class
-% `modelData` has members like:
-  % modelData.name = '';
-  % modelData.bins = 30;
-  % modelData.features = 'melfcc';
-  % modelData.audioClips = {};
-  % modelData.audioFeatures = {}; % keeping association with clips in case we want to impl removal
-  % modelData.centers = containers.Map;
-  % modelData.centers('30') = [];
-  % modelData.seconds = 0.0;
-  % modelData.limits = {};
-% ... expect `audioClips`, `features`, `bins` to be populated
-% ... expect `audioFeatures` and `centers` to be fulfilled
+function modelData = getModelClass(conf, classData, options)
+
 
 if not (nargin > 2)
     options = struct;
@@ -315,7 +303,7 @@ modelData.modelTable = modelTable;
 modelData.modelLabel = modelLabel;
 % save the models
 
-save(conf.modelFile, '-struct', 'modelData');
+save(conf.modelDataFile, '-struct', 'modelData');
 
 
 disp('Models processed.');

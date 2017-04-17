@@ -1,6 +1,6 @@
 function [signalClassified, badIndices, modelSums] = test_20161013(conf, modelData)
 % function [signalClassified, percentError,   truth, x_down, c_down, sample_down,  badIndices, modelSums] = test_20161013(conf, modelData)
-
+disp('tools_classify/test_20161013');
 if (nargin > 1)
   mus = modelData.mus;
 else
@@ -128,6 +128,7 @@ signalWindows = {};
 limits = [];
 subSegmentIndex = 0;
 txt = ' ';
+allscores = [];
 % for s = 1:scanHopSam:(total_working_samples+mod(total_working_samples,scanHopSam))
 for s = 1:scanHopSam:total_working_samples
   for txt_i=1:size(txt,2) fprintf('\b'); end;
@@ -160,6 +161,7 @@ for s = 1:scanHopSam:total_working_samples
   norm_hist = getHist(features, mus, conf.mappingType, histOptions);
 
   [label, score] = customClassify(mdl, norm_hist);
+  allscores = [allscores; score];
   for scoreSeg = seg_start:seg_end
     subSegmentLimits{scoreSeg} = [subSegmentLimits{scoreSeg}; limit_start limit_end];
     subSegmentScores{scoreSeg} = [subSegmentScores{scoreSeg}; [score label]];
@@ -179,10 +181,14 @@ fprintf('\n\n######################################\nReferencing back to audio..
 fprintf('TIME:')
 disp(clock);
 signalClassified = [];
+
+if isfield(conf, 'topThreshold') getClassOptions.topThreshold = conf.topThreshold; else getClassOptions.topThreshold = 0; end;
+if isfield(conf, 'midThreshold') getClassOptions.midThreshold = conf.midThreshold; else getClassOptions.midThreshold = 0; end;
+
 for i = 1:subSegmentCount
   %c = subSegmentLabels(i);
   s = subSegmentScores{i};
-  c = getClass(s, conf.topPosteriorThreshold);
+  c = getClass(s, getClassOptions);
 
   sizeSoFar = size(signalClassified,1);
   augToSize = limits(i,2);

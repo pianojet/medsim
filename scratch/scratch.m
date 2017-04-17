@@ -852,3 +852,82 @@ set(handles.classlist, 'String', {1,2,3,4});
 
 
 
+audioPath = '/Users/justin/Documents/MATLAB/medsim/data/emotion/raw/angry_neutral_trainer_train80pct.wav';
+truthPath = '/Users/justin/Documents/MATLAB/medsim/data/emotion/raw/angry_neutral_trainer_train80pct_gnd.mat';
+x = audioread(audioPath);
+a = audioinfo(audioPath);
+
+mp = 530000;
+tot = 1002868; % a.TotalSamples
+
+class1 = ones(mp, 1);
+class2 = 2*ones((tot-mp), 1);
+gnd.g = [class1; class2];
+save(truthPath, '-struct', 'gnd');
+
+
+gnd = load(truthPath);
+gnd = gnd.g;
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+obsPath = '/Users/justin/Documents/MATLAB/medsim/data/emotion/raw/troubleshoot/obs.mat';
+modelPath = '/Users/justin/Documents/MATLAB/medsim_analysis/data/emotion/emotion_mapping.mat';
+obs = load(obsPath);
+modelData = load(modelPath);
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+scores = [0.9 0.1 1];
+
+
+
+
+
+scores = subSegmentScores{10};
+if size(scores, 1) > 1
+  scores = mean(scores);
+end
+
+topThreshold = 0.8;
+midThreshold = 0.5;
+lowThreshold = 0.0;
+
+numClasses = size(scores, 2) - 1;
+midClsDelta = numClasses;
+unconfident = 6; % class 6 is reserved for low confidence class
+
+scoresNoLabel = scores(1:(end-1));
+
+[M, cls] = max(scoresNoLabel);
+if (M >= topThreshold)
+  c = cls;
+elseif (M >= midThreshold)
+  c = cls + midClsDelta;
+else
+  c = unconfident;
+end
+
+
+
+
+
+
+
+
+
+
+
+tt.l1 = [1 2 3];
+for i = tt.l1
+  disp(i);
+end
+
+

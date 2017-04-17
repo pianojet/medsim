@@ -1,5 +1,6 @@
 .DS_Store
 tmp/
+data/tmp/
 
 data/audio/*.mat
 data/audio/*.wav

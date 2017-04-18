@@ -9,6 +9,10 @@
 - connect the `modelData.feature` (or just `modelData` in general), table in gui, and conf.selectedFeatures
 - make `modelData.centers` configurable to more than '30';
 
+####  holes in functionality (code defensiveness?)
+- at gui start, pre-make (if nec) all `data/` dir structure
+
+
 
 
 #################   NOTES TO REMEMBER NEXT STEPS

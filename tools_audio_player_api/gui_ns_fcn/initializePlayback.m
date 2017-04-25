@@ -3,23 +3,40 @@ function initializePlayback(handles)
   if ~isfield(conf, 'audioFile')
     conf.audioFile = get(handles.dataPath, 'String');
   end
+
+  if isempty(conf.audioFile)
+    maybeAudioData = getappdata(0, 'audioData');
+    if isempty(maybeAudioData)
+      warning('No audio data to load.');
+      audio_data = [0;0];
+      audio_info = defaultAudioInfo();
+      audio_info.TotalSamples = 2;
+      audio_info.Duration = 0.0;
+
+    else
+      audio_data = maybeAudioData;
+      audio_info = defaultAudioInfo();
+      audio_info.TotalSamples = length(audio_data);
+      audio_info.Duration = audio_info.TotalSamples / audio_info.SampleRate;
+
+    end
+  else
+    audio_info = audioinfo(conf.audioFile);
+    audio_data = audioread(conf.audioFile);
+  end
+
+  setappdata(0, 'audio_data', audio_data);
+  setappdata(0, 'audio_info', audio_info);
+
+  disp('Audio Info:');
+  disp(audio_info);
+
+
   usrInitHandle = getappdata(0, 'usrInit');
   if ~isempty(usrInitHandle)
     disp('calling usrinithandle...');
     usrInitHandle(handles);
   end
-
-  % audio data & info
-  audio_info = audioinfo(conf.audioFile);
-  audio_data = audioread(conf.audioFile);
-  % gnd_data_g = load(conf.truthFile);
-  % gnd_data = gnd_data_g.g;
-  setappdata(0, 'audio_data', audio_data);
-  % setappdata(0, 'gnd_data', gnd_data);
-  setappdata(0, 'audio_info', audio_info);
-
-  disp('Audio Info:');
-  disp(audio_info);
 
   % init playback options
   set(handles.axesTimeStart, 'String', '0');

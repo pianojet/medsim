@@ -376,6 +376,8 @@ function edit_label_Callback(hObject, eventdata, handles)
   appClassList = getappdata(0, 'appClassList'); % should be populated with valid class numbers by now
   audio_info = getappdata(0, 'audio_info');
   conf = getappdata(0, 'conf');
+  set(handles.dataPath, 'String', '');
+
 
   % try
   classNumber = str2num(get(hObject,'String'));
@@ -406,6 +408,26 @@ function edit_label_Callback(hObject, eventdata, handles)
   displaySeconds = sprintf('%2.2f', (classData.classSampleCounts.(label) / audio_info.SampleRate));
   set(handles.text_seconds_display, 'String', displaySeconds);
 
+  disp('`edit_label_Callback`');
+  disp('classData.classSampleCounts.(label)');
+  disp(classData.classSampleCounts.(label));
+
+  if classData.classSampleCounts.(label) > 0
+    audioData = [];
+    for i = 1:length(classData.continuousClassSignals.(label))
+      audioData = [audioData; classData.continuousClassSignals.(label){i}];
+    end
+    conf.audioFile = '';
+    setappdata(0, 'conf', conf);
+    setappdata(0, 'audioData', audioData);
+  else
+    conf.audioFile = '';
+    setappdata(0, 'conf', conf);
+    setappdata(0, 'audioData', [0;0]);
+
+  end
+
+  initializePlayback(handles);
   disp(eventdata);
 
 % --- Executes during object creation, after setting all properties.

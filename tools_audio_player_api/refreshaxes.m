@@ -13,7 +13,8 @@ function refreshaxes(audio_data, audio_info, options)
   end
   signalClassified = options.signalClassified;
 
-  if ~isfield(options, 'downSampleFactor') options.downSampleFactor = 1;
+  if ~isfield(options, 'downSampleFactor') || (isfield(options, 'downSampleFactor') && options.downSampleFactor >= length(audio_data))
+    options.downSampleFactor = 1;
   end
   downSampleFactor = options.downSampleFactor;
 

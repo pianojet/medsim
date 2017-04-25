@@ -1,5 +1,5 @@
 function [ features ] = ExtractMultipleFeatures(d, sr, featureList, options)
-% given featureList, extract the features 
+% given featureList, extract the features
 % (same frame length!, MIR not good here)
 
 
@@ -89,6 +89,7 @@ if ~isempty(findcell(featureList, {'all'}))
     featureList = {'mfcc';'melfcc';'dmfcc';'ddmfcc';
                    'plp'; 'dplp'; 'ddplp';
                    'lpcc';'dlpcc';'ddlpcc';
+                   'teo';
                    'rasplp';'feacalcmfcc';'feacalcplp';
                    'STE'; 'ZCR'; 'SpectralCentroid';'EnergyEntropy';
                    'SpectralEntropy';'SpectralFlux';'SpectralRollOff'; 'Gabor';
@@ -132,7 +133,7 @@ if ~isempty(findcell(featureList, {'mfcc'})) || ~isempty(findcell(featureList, {
     tp = mfcc(d, sr);
     features.mfcc = tp';
 
-    if ~isempty(findcell(featureList, {'dmfcc'})) 
+    if ~isempty(findcell(featureList, {'dmfcc'}))
         features.dmfcc = getDeltas(features.mfcc);
     end
     if ~isempty(findcell(featureList, {'ddmfcc'}))
@@ -161,7 +162,7 @@ if ~isempty(findcell(featureList, {'melfcc'})) || ~isempty(findcell(featureList,
       'modelorder', options.modelorder);
     features.melfcc = tp';
 
-    if ~isempty(findcell(featureList, {'dmfcc'})) 
+    if ~isempty(findcell(featureList, {'dmfcc'}))
         features.dmfcc = getDeltas(features.melfcc);
     end
     if ~isempty(findcell(featureList, {'ddmfcc'}))
@@ -175,7 +176,7 @@ end
 if ~isempty(findcell(featureList, {'plp'})) || ~isempty(findcell(featureList, {'dplp'})) || ~isempty(findcell(featureList, {'ddplp'}))
     tp = rastaplp(d, sr, 0, numcep-1, wintime, hoptime);
     features.plp = tp';
-    if ~isempty(findcell(featureList, {'dplp'})) 
+    if ~isempty(findcell(featureList, {'dplp'}))
         features.dplp = getDeltas(features.plp);
     end
     if ~isempty(findcell(featureList, {'ddplp'}))
@@ -185,12 +186,17 @@ end
 
 if ~isempty(findcell(featureList, {'lpcc'})) || ~isempty(findcell(featureList, {'dlpcc'})) || ~isempty(findcell(featureList, {'ddlpcc'}))
     features.lpcc = getLPCC(d, sr, numcep, wintime, hoptime);
-    if ~isempty(findcell(featureList, {'dlpcc'})) 
+    if ~isempty(findcell(featureList, {'dlpcc'}))
         features.dlpcc = getDeltas(features.lpcc);
     end
     if ~isempty(findcell(featureList, {'ddlpcc'}))
         features.ddlpcc = getDeltas(getDeltas(features.lpcc,5),5);
     end
+end
+
+if ~isempty(findcell(featureList, {'teo'})) % not good
+    teo = getEnergyOperator(sr);
+    features.teo = teo;
 end
 
 if ~isempty(findcell(featureList, {'rasplp'})) % not good

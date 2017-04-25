@@ -1,4 +1,4 @@
-function modelData = getModelWithGnd(conf)
+function modelData = getModelWithGnd(conf, gnd)
 disp('scratch getModel');
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -41,10 +41,15 @@ featExtOptions.fbtype = conf.feature_fbtype; % 'bark' | 'mel' | 'htkmel' | 'fcme
 featExtOptions.usecmp = conf.feature_usecmp;
 featExtOptions.modelorder = conf.feature_modelorder;
 
+[pathstr,thisAudioFileName,ext] = fileparts(conf.audioFile);
 x = audioread(conf.audioFile);
 a = audioinfo(conf.audioFile);
-gnd = load(conf.truthFile);
-gnd = gnd.g;
+if nargin < 2
+  gnd = load(conf.truthFile);
+  gnd = gnd.g;
+else
+  gnd.g = []; % noop
+end
 
 if size(gnd,2) > 1
   signal = x(gnd(:,2) ~= 5);
@@ -58,8 +63,6 @@ end
 trainPartition = conf.trainPartition;
 whichTrainingSegment = conf.whichTrainingSegment;
 
-classLabels = {};
-classCount = length(unique(signalGnd));
 continuousClassSignals = struct;
 classSampleCounts = struct;
 featuresByClass = {};
@@ -76,38 +79,56 @@ scanHopSam = floor(conf.scan_hoptime*sample_rate);
 %  group up continuous audio
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-for c = 1:classCount
-  label = sprintf('class%d', c);
-  classLabels{c} = label;
+classNumberList = sort(unique(signalGnd));
+%classCount = length(classNumberList);
+for classIndex = 1:length(classNumberList)
+  c = classNumberList(classIndex);
+  fprintf('init class number %d\n', c);
+  label = sprintf(conf.classLabelStr, c);
+  fprintf('init class label %s\n', label);
   continuousClassSignals.(label) = {};
   classSampleCounts.(label) = 0;
-  featuresByClass{c} = [];
+  featuresByClass.(label) = [];
 end
 
 
 segmentCount = 1;
 limit_start = 1;
 currentClass = signalGnd(1);
+thisLabel = sprintf(conf.classLabelStr, currentClass);
 for i = 1:length(signalGnd)
   if signalGnd(i) ~= currentClass
     limit_end = i-1;
     thisSegment = signal(limit_start:limit_end);
-    thisSetSize = length(continuousClassSignals.(classLabels{currentClass}));
-    continuousClassSignals.(classLabels{currentClass}){thisSetSize+1} = thisSegment;
-    classSampleCounts.(classLabels{currentClass}) = classSampleCounts.(classLabels{currentClass}) + length(thisSegment);
+    thisSetSize = length(continuousClassSignals.(thisLabel));
+    continuousClassSignals.(thisLabel){thisSetSize+1} = thisSegment;
+    classSampleCounts.(thisLabel) = classSampleCounts.(thisLabel) + length(thisSegment);
     currentClass = signalGnd(i);
+    thisLabel = sprintf(conf.classLabelStr, currentClass);
     limit_start = i;
   end
 end
 limit_end = length(signalGnd);
 thisSegment = signal(limit_start:limit_end);
-thisSetSize = length(continuousClassSignals.(classLabels{currentClass}));
-continuousClassSignals.(classLabels{currentClass}){thisSetSize+1} = thisSegment;
-classSampleCounts.(classLabels{currentClass}) = classSampleCounts.(classLabels{currentClass}) + length(thisSegment);
+thisSetSize = length(continuousClassSignals.(thisLabel));
+continuousClassSignals.(thisLabel){thisSetSize+1} = thisSegment;
+classSampleCounts.(thisLabel) = classSampleCounts.(thisLabel) + length(thisSegment);
 % save(conf.extractedForTestPath, '-struct', 'continuousClassSignals');
 % save(conf.metaPath, '-struct', 'classSampleCounts');
 
 
+
+classString = sprintf('%d', classNumberList(1));
+for classIndex = 2:length(classNumberList)
+  classString = [classString '|' sprintf('%d', classNumberList(classIndex))];
+end
+classFile = sprintf('%s/qt_%s.%s.mat', conf.classPath, classString, thisAudioFileName);
+classData = struct;
+classData.classNumberList = classNumberList;
+classData.continuousClassSignals = continuousClassSignals;
+classData.classSampleCounts = classSampleCounts;
+classData.featuresByClass = featuresByClass;
+save(classFile, '-struct', 'classData');
 
 
 
@@ -121,12 +142,14 @@ all_C = [];
 all_Idx = [];
 featuresByClass = {};
 
-for c = 1:classCount
-  featuresByClass{c} = [];
-  fprintf('\n\n####  Class %d  ####\n', c);
+for classIndex = 1:length(classNumberList)
+  c = classNumberList(classIndex);
+
+  label = sprintf(conf.classLabelStr, c);
+  featuresByClass.(label) = [];
+  fprintf('\n\n####  Class %s  ####\n', label);
 
   theseSignals = [];
-  label = sprintf('class%d', c);
   % label = 'class1';
   trainingSize = floor(classSampleCounts.(label) * trainPartition);
 
@@ -210,7 +233,7 @@ for c = 1:classCount
   [ctrs, U] = fcm(totalFeaturesForThisClass, conf.numClusters, [2.0]);
   mus = [mus; ctrs];
 
-  featuresByClass{c} = totalFeaturesForThisClass;
+  featuresByClass.(label) = totalFeaturesForThisClass;
 end
 
 
@@ -222,7 +245,7 @@ end
 %   end
 % end
 
-segsByClass = {};
+%segsByClass = {};
 
 
 
@@ -240,26 +263,32 @@ end
 
 
 fprintf('\n\nGetting observation segments:\n')
-for c = 1:classCount
-  segsByClass{c} = {};
+% for c = 1:classCount
+for classIndex = 1:length(classNumberList)
+  c = classNumberList(classIndex);
+
+  label = sprintf(conf.classLabelStr, c);
+  % featuresByClass.(label) = [];
+
+  % segsByClass{c} = {};
   % segCount = 1;
-  fprintf('\n####  Class %d:\n', c);
+  fprintf('\n####  Class %s:\n', label);
   txt = ' ';
   featuresPerSecond = floor(1 / (conf.feature_hoptime));
   limit_start = 1;
-  numSegs = ceil(length(featuresByClass{c})/featuresPerSecond);
+  numSegs = ceil(length(featuresByClass.(label))/featuresPerSecond);
   for i = 1:numSegs
     for txt_i=1:size(txt,2) fprintf('\b'); end;
     txt = sprintf('%15d / %d', [i numSegs]);
     fprintf(txt);
 
     limit_end = featuresPerSecond*i;
-    if limit_end > length(featuresByClass{c})
-      limit_end = length(featuresByClass{c});
+    if limit_end > length(featuresByClass.(label))
+      limit_end = length(featuresByClass.(label));
     end
 
     % segsByClass{c}{i} = featuresByClass{c}(limit_start:limit_end,:);
-    seg = featuresByClass{c}(limit_start:limit_end,:);
+    seg = featuresByClass.(label)(limit_start:limit_end,:);
     % histsByClass{c}{i} = getHist(segsByClass{c}{i}, mus, conf.mappingType);
     % segCount = segCount + 1;
     voteHist = getHist(seg, mus, conf.mappingType, histOptions);
@@ -284,7 +313,7 @@ modelData.modelTable = modelTable;
 modelData.modelLabel = modelLabel;
 % save the models
 
-save(conf.modelDataFile, '-struct', 'modelData');
+%save(conf.modelDataFile, '-struct', 'modelData');
 
 
 disp('Models processed.');

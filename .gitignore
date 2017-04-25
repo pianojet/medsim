@@ -1,21 +1,6 @@
 .DS_Store
 tmp/
-data/tmp/
-data/emotion/
+data/tmp
+data/speaker/
+data/emotion/ 
 
-data/modelData.mat
-
-data/audio/*.mat
-data/audio/*.wav
-
-data/classifier/*.mat
-data/classifier/*.wav
-
-data/models/*.mat
-data/models/*.wav
-
-data/trials_KNN/*.mat
-data/trials_KNN/*.wav
-
-data/trials_NB/*.mat
-data/trials_NB/*.wav

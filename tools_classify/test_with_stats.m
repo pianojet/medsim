@@ -36,7 +36,6 @@ featExtOptions.usecmp = conf.feature_usecmp;
 featExtOptions.modelorder = conf.feature_modelorder;
 
 
-
 x = audioread(conf.audioFile);
 a = audioinfo(conf.audioFile);
 gnd = load(conf.truthFile);
@@ -60,34 +59,91 @@ else
   %signalGnd = gnd;
 end
 
+
+
+% if isfield(conf, 'testWithNonTraining') && ~isempty(conf.testWithNonTraining) && conf.testWithNonTraining ~= 0 && ~strcmp(conf.testWithNonTraining, 'off')
+%   signal = signal((length(signal)*conf.trainPartition):end);
+%   signalGnd = signalGnd((length(signalGnd)*conf.trainPartition):end);
+% end
+
+
+classCount = length(unique(signalGnd));
+% try to test with untrained portion...
+if conf.trainPartition > 0.50 && conf.trainPartition < 1.0
+  allsnipped = [];
+  allsnippedGnd = [];
+  for c = 1:classCount
+    classSignal = signal(signalGnd==c);
+    classSignalGnd = signalGnd(signalGnd==c);
+    snipped = classSignal((length(classSignal)*conf.trainPartition):end);
+    snippedGnd = classSignalGnd((length(classSignalGnd)*conf.trainPartition):end);
+    allsnipped = [allsnipped; snipped];
+    allsnippedGnd = [allsnippedGnd; snippedGnd];
+  end
+  signal = allsnipped;
+  signalGnd = allsnippedGnd;
+end
+
+
+
+
+
+% % load classifier model data
+% if strcmp(conf.classifier, 'knn')
+%   mdlData = load(conf.modelknnFile, 'mdl');
+%   getClass = @getClassKnn;
+%   customClassify = @predict;
+% elseif strcmp(conf.classifier, 'naivebayes')
+%   mdlData = load(conf.modelcnbFile, 'mdl');
+%   getClass = @getClassNaiveBayes;
+%   customClassify = @predict;
+% elseif strcmp(conf.classifier, 'myNB')
+%   mdlData = load(conf.modelmyNBFile, 'mdl');
+%   getClass = @getClassNaiveBayes;
+%   customClassify = @myNB_getPosterior;
+% end
+% mdl = mdlData.mdl;
+
+% mappings
+badIndices = [];
+
+if isfield(conf, 'override') && isfield(conf.override, 'mus') && isfield(conf.override, 'mdl')
+  mdlData = conf.override;
+
+elseif isfield(conf, 'modelClassifierFile') && ~isempty(conf.modelClassifierFile)
+  mdlData = load(conf.modelClassifierFile, 'mdl');
+  if strcmp(class(mdlData.mdl), 'ClassificationKNN')
+    conf.classifier = 'knn';
+    % getClass = @getClassKnn;
+    % customClassify = @predict;
+
+  elseif strcmp(class(mdlData.mdl), 'ClassificationNaiveBayes')
+    conf.classifier = 'naivebayes';
+    % getClass = @getClassNaiveBayes;
+    % customClassify = @predict;
+  else
+    conf.classifier = 'myNB';
+
+  end
+end
+
 % load classifier model data
 if strcmp(conf.classifier, 'knn')
-  mdlData = load(conf.modelknnFile, 'mdl');
   getClass = @getClassKnn;
   customClassify = @predict;
 elseif strcmp(conf.classifier, 'naivebayes')
-  mdlData = load(conf.modelcnbFile, 'mdl');
   getClass = @getClassNaiveBayes;
   customClassify = @predict;
 elseif strcmp(conf.classifier, 'myNB')
-  mdlData = load(conf.modelmyNBFile, 'mdl');
   getClass = @getClassNaiveBayes;
   customClassify = @myNB_getPosterior;
 end
 mdl = mdlData.mdl;
-
-% mappings
-badIndices = [];
-if isfield(conf, 'override') && isfield(conf.override, 'mus')
-  mus = conf.override.mus;
-else
-  mapping = load(conf.modelDataFile);
-  mus = mapping.mus;
-end
+mus = mdlData.mus;
 
 % globals
 sample_rate = a.SampleRate;
-total_samples = a.TotalSamples; % original # samples of original signal
+%total_samples = length(signal);% a.TotalSamples; % original # samples of original signal
 total_working_samples = length(signal); % number of samples after accounting for possible silence removal
 
 bits = a.BitsPerSample;

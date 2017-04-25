@@ -5,6 +5,7 @@ if ~isempty(findcell(featureList, {'all'}))
 	featureList = {'mfcc';'melfcc';'dmfcc';'ddmfcc';
                'plp'; 'dplp'; 'ddplp';
                'lpcc';'dlpcc';'ddlpcc';
+               'teo';
                'rasplp';'feacalcmfcc';'feacalcplp';
                'STE'; 'ZCR'; 'SpectralCentroid';'EnergyEntropy';
                'SpectralEntropy';'SpectralFlux';'SpectralRollOff';

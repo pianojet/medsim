@@ -16,12 +16,15 @@ function refreshPlaybackAxes()
   setappdata(0, 'playbackOptions', playbackOptions);
   % setappdata(0, 'gndOptions', gndOptions);
 
+
   % % display audio
   signalClassified = getappdata(0, 'signalClassified');
   if length(signalClassified) > 0
+    disp('`refreshPlaybackAxes` acquiring classified signal clip...');
     playbackOptions.signalClassified = getSignalClip(signalClassified);
   end
   % fullClassified = getappdata(0, 'fullClassified');
+
 
   % % if full signal, ensure it's same size as audio_data above
   % % keeping the top "playback" area as gnd, and the current gnd as classifier display
@@ -46,4 +49,5 @@ function refreshPlaybackAxes()
 
   if user_def_refresh_callbacks
   end
+  disp('`refreshPlaybackAxes` done');
   % plotTrainSegments(modelData, playbackOptions);

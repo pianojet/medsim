@@ -1,4 +1,5 @@
 function pausebutton_Callback(hObject, eventdata, handles)
+  disp('`pausebutton_Callback`');
   % pause / resume playback
   action = get(hObject, 'String');
   player = getappdata(0, 'player_handle');

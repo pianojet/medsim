@@ -22,7 +22,7 @@ function c = getClassKnn(scores, options)
 
   numClasses = size(scores, 2) - 1;
   midClsDelta = numClasses;
-  unconfident = 6; % class 6 is reserved for low confidence class
+  unconfident = 100; % class 100 is reserved for unconfident / unknown class
 
   scoresNoLabel = scores(1:(end-1));
 

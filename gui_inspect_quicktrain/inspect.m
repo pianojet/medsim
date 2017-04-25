@@ -33,9 +33,6 @@ gui_State = struct('gui_Name',       mfilename, ...
                    'gui_LayoutFcn',  [] , ...
                    'gui_Callback',   []);
 
-disp('inspect.m');
-disp('varargin:');
-disp(varargin);
 
 if nargin && ischar(varargin{1})
     gui_State.gui_Callback = str2func(varargin{1});
@@ -65,7 +62,7 @@ handles.output = hObject;
 guidata(hObject, handles);
 
 % conf = initializeConfig('/Users/justin/Documents/MATLAB/medsim/scratch/emotion.ini');
-conf = initializeConfig('/Users/justin/Documents/MATLAB/medsim/quicktrain/config/app_config.ini');
+conf = initializeConfig('/Users/justin/Documents/MATLAB/medsim/quicktrain/config/emo_app_config.ini');
 % remove any existing audio file data from config (gui needs user to choose)
 if isfield(conf, 'audioFile')
   conf = rmfield(conf, 'audioFile');
@@ -122,5 +119,84 @@ function pushbutton_classify_emotion_Callback(hObject, eventdata, handles)
 
   setappdata(0, 'playbackOptions', playbackOptions);
   refreshPlaybackAxes();
+
+
+function pushbutton_classify_by_spkr_Callback(hObject, eventdata, handles)
+  disp('classifying by spkr...');
+
+  spkconf = initializeConfig('/Users/justin/Documents/MATLAB/medsim/quicktrain/config/spk_app_config.ini');
+  % remove any existing audio file data from config (gui needs user to choose)
+  if isfield(spkconf, 'audioFile')
+    spkconf = rmfield(spkconf, 'audioFile');
+  end
+
+  conf = spkconf;
+  setappdata(0, 'conf', conf);
+
+  conf = getappdata(0, 'conf');
+  conf.audioFile = get(handles.dataPath, 'String');
+
+  if (~isfield(conf, 'audioFile') || isempty(conf.audioFile))
+    disp('Cannot continue without selecting an audio file!');
+    return
+  end
+
+  modelData = load(conf.modelDataFile);
+  [spkSignalClassified, badIndices, modelSums] = test_20161013(conf, modelData);
+
+
+
+
+
+
+
+  %%%% get emotions...
+  emoconf = initializeConfig('/Users/justin/Documents/MATLAB/medsim/quicktrain/config/spk_app_config.ini');
+  % remove any existing audio file data from config (gui needs user to choose)
+  if isfield(emoconf, 'audioFile')
+    emoconf = rmfield(emoconf, 'audioFile');
+  end
+
+  conf = emoconf;
+  setappdata(0, 'conf', conf);
+  conf = getappdata(0, 'conf');
+  conf.audioFile = get(handles.dataPath, 'String');
+
+  if (~isfield(conf, 'audioFile') || isempty(conf.audioFile))
+    disp('Cannot continue without selecting an audio file!');
+    return
+  end
+
+  modelData = load(conf.modelDataFile);
+  [emoSignalClassified, badIndices, modelSums] = test_20161013(conf, modelData);
+
+  spkSignalClassified(emoSignalClassified==3) = spkSignalClassified(emoSignalClassified==3)+4;
+
+
+
+
+
+
+
+  playbackOptions = getappdata(0, 'playbackOptions');
+  % playbackOptions.colors = [1 0.8 0.8; 0.9 1 0.8; 0.8 1 1; 0.8 0.8 1; 0.9 0.0 0.9; 0.0 0.0 0.0];
+  % darkerColors = [0.6 0 0; 0.3 0.6 0.0; 0.0 0.6 0.6; 0.0 0.0 0.6; 0.9 0.0 0.9; 0.0 0.0 0.0];
+  playbackOptions.colors = [1 0.8 0.8; 0.9 1 0.8; 0.8 1 1; 0.8 0.8 1; 0.6 0 0; ...
+    0.3 0.6 0.0; 0.0 0.6 0.6; 0.0 0.0 0.6; 0.9 0.0 0.9; 0.0 0.0 0.0];
+  setappdata(0, 'playbackOptions', playbackOptions);
+
+
+
+
+  % playbackOptions.signalClassified = getSignalClip(spkSignalClassified);
+  setappdata(0, 'signalClassified', spkSignalClassified);
+
+  clickpos1 = getappdata(0, 'clickpos1');
+  clickpos2 = getappdata(0, 'clickpos2');
+  fprintf('clickpos1: %d, clickpos2: %d, size(spkSignalClassified,1): %d\n', clickpos1, clickpos2, size(spkSignalClassified));
+
+
+  refreshPlaybackAxes();
+  disp('`pushbutton_classify_by_spkr_Callback` done.');
 
 

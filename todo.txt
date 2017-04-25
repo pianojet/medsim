@@ -12,6 +12,9 @@
 ####  holes in functionality (code defensiveness?)
 - at gui start, pre-make (if nec) all `data/` dir structure
 
+####  housekeeping / tech-debt
+- detect class from modelClassifierFile to get conf.classifier
+
 
 
 
@@ -66,3 +69,58 @@ before that, figure out committee stuff
 - verbal+nonverbal vs. just verbal
 
 - speaker via hue, emotion via saturation
+
+-features? https://link.springer.com/article/10.1186/1687-4722-2012-16
+
+
+
+
+- all norm
+- all unnorm
+- no-neutral-nonverbal norm
+- no-neutral-nonverbal unnorm
+- verbal norm
+- verbal unnorm
+
+
+sox normalized/*.wav emo_all_norm_100pct.wav
+sox unnormalized/*.wav emo_all_unnorm_100pct.wav
+
+sox normalized/*.wav emo_NoNeutNonv_norm_100pct.wav
+sox unnormalized/*.wav emo_NoNeutNonv_unnorm_100pct.wav
+
+sox normalized/*_verbal*.wav emo_verbal_norm_100pct.wav
+sox unnormalized/*_verbal*.wav emo_verbal_unnorm_100pct.wav
+
+
+
+
+
+
+
+
+
+@(hObject,eventdata)medsim('pushbutton_emotion_classifier_Callback',hObject,eventdata,guidata(hObject))
+
+
+
+
+
+
+
+Aaron Calhoun
+
+
+
+
+
+
+
+
+Hello Dr. Calhoun, my name is Justin Taylor, and I'm a CS graduate student working on a Masters thesis on an extension to Shuang Jiang's dissertation on speech data analysis of audio/video of doctor/patient simulations.  His dissertation (which he defended a couple years ago May 2015) included an apparatus to analyze conversations between doctors and clients, including speaker identification, silence detection, and emotion classification.  My extension has focused on duplicating some of the speaker identification features, as well as deeper focus on the emotion detection.
+
+It is my understanding that you had helped in part by providing video (perhaps DVD or raw video files) of these simulated engagements (I think using actors).  I'm approaching the light at the end of the tunnel on my work on this, and am wondering if you happen to have some raw video data (e.g. DVD, .avi, etc) for me to use - in particular where there are one or more actors that appear in multiple videos.  If that can't be found, any available, original video would still be useful for me.
+
+
+
+  I'm wondering if you would happen to have     I'm approaching light at the end of the tunnel as far as my work in this, and am wondering if you have 

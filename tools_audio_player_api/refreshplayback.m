@@ -1,4 +1,5 @@
 function player = refreshplayback(audio_data, audio_info, options)
+  disp('`refreshplayback`');
   % instantiates an "audioplayer" coupled with a moving playhead
 
   if not (nargin > 2)

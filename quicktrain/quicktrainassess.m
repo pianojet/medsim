@@ -1,6 +1,7 @@
-rootConfPath = '/Users/justin/Documents/MATLAB/medsim/quicktrain/config/app_config.ini';
+rootConfPath = '/Users/justin/Documents/MATLAB/medsim/config/spk_app_config.ini';
 conf = resetConfig(loadConfig(rootConfPath));
 
+[pathstr,thisAudioFileName,ext] = fileparts(conf.audioFile);
 % conf.audioFile = 'data/emotion/raw/angry_neutral_trainer_train80pct.wav';
 % conf.truthFile = 'data/emotion/raw/angry_neutral_trainer_train80pct_gnd.mat';
 
@@ -67,8 +68,11 @@ featExtOptions.modelorder = conf.feature_modelorder;
 % newOptions.usecmp = conf.feature_usecmp;
 % newOptions.modelorder = conf.feature_modelorder;
 
-
-maxPartitions = floor(1/conf.trainPartition);
+if isfield(conf, 'continuousTraining') && conf.continuousTraining == 1
+  maxPartitions = floor(1/conf.trainPartition);
+else
+  maxPartitions = conf.whichTrainingSegment;
+end
 
 allFilterErrStats = struct;
 allFilterErrStats.filterX = [];
@@ -119,8 +123,21 @@ while conf.whichTrainingSegment <= maxPartitions
 
 
   returnData = getModelWithGnd(conf);
+  classifierFeatures = conf.selectedFeatures{1};
+  for f = 2:length(conf.selectedFeatures)
+    classifierFeatures = [classifierFeatures '|' conf.selectedFeatures{f}];
+  end
+  classNumberList = sort(unique(returnData.modelLabel));
+  classString = sprintf('%d', classNumberList(1));
+  for classIndex = 2:length(classNumberList)
+    classString = [classString '|' sprintf('%d', classNumberList(classIndex))];
+  end
+  modelFile = sprintf('%s/qt_%s_%dBins_%s.%s.mat', conf.modelPath, classifierFeatures, length(returnData.mus), classString, thisAudioFileName);
+  save(modelFile, '-struct', 'returnData');
+
 
   badIndices = [];
+  badIndexHistory = [];
   initialPrototypeData = struct;
 
   conf.override.modelLabel = returnData.modelLabel;
@@ -154,9 +171,7 @@ while conf.whichTrainingSegment <= maxPartitions
     % conf.override.modelTable(:, badIndices) = [];
     % conf.override.mus(badIndices, :) = [];
 
-
-    doTrain(conf, conf.override);
-
+    conf.override.mdl = doTrain(conf, conf.override);
     [signalClassified, err,    truth, x_down, c_down, sample_down,  badIndices, modelSums] = test_with_stats(conf);
 
 
@@ -180,10 +195,14 @@ while conf.whichTrainingSegment <= maxPartitions
       % used for wrapper filter later
       % finalResults.segLabel = segLabel;
       %finalResults.segTrain = segTrain;
+      finalResults.mdl = conf.override.mdl;
       finalResults.modelTable = conf.override.modelTable;
+      finalResults.modelLabel = conf.override.modelLabel;
       finalResults.mus = conf.override.mus;
     end
 
+
+    %badIndexHistory = [badIndexHistory badIndices];
     filterCount = filterCount + 1;
   end
 
@@ -205,7 +224,8 @@ while conf.whichTrainingSegment <= maxPartitions
     conf.override.modelTable(:, badIndices) = [];
     conf.override.mus(badIndices, :) = [];
 
-    doTrain(conf, conf.override);
+    mdl = doTrain(conf, conf.override);
+    conf.override.mdl = mdl;
     % [signalClassified, err,    truth, x_down, c_down, sample_down,  segLabel, segTable, segLimits] = test_with_stats(conf);
     [signalClassified, err,    truth, x_down, c_down, sample_down,  badIndices, modelSums] = test_with_stats(conf);
 
@@ -226,7 +246,9 @@ while conf.whichTrainingSegment <= maxPartitions
       % used for wrapper filter later
       % finalResults.segLabel = segLabel;
       %finalResults.segTrain = segTrain;
+      finalResults.mdl = mdl;
       finalResults.modelTable = conf.override.modelTable;
+      finalResults.modelLabel = conf.override.modelLabel;
       finalResults.mus = conf.override.mus;
     end
 
@@ -253,29 +275,73 @@ while conf.whichTrainingSegment <= maxPartitions
 
 
 
-
-
   n = -1;
   ex = 10000;
   while ex > 0
     n = n + 1;
-    if finalResults.err < 10
-      batchDir = sprintf('%s/err_0%d_%d', conf.graphDir, round(finalResults.err*1000), n);
-    else
-      batchDir = sprintf('%s/err_%d_%d', conf.graphDir, round(finalResults.err*1000), n);
-    end
+    batchDir = sprintf('%s/err_%04d_%s_%d', conf.trialPath, round(finalResults.err*100), thisAudioFileName, n);
+    % if finalResults.err < 10
+    %   batchDir = sprintf('%s/err_0%d_%s_%d', conf.trialPath, round(finalResults.err*100), thisAudioFileName, n);
+    % else
+    %   batchDir = sprintf('%s/err_%d_%s_%d', conf.trialPath, round(finalResults.err*1000), thisAudioFileName, n);
+    % end
     ex = exist(batchDir);
   end
+
+
+
 
   f = mkdir(batchDir);
   graphFile = sprintf('%s/graph.png', batchDir);
   filterBinFile = sprintf('%s/filtered.jpg', batchDir);
-  allFilterBinFile = sprintf('%s/allFiltered.jpg', conf.graphDir);
+  allFilterBinFile = sprintf('%s/allFiltered.jpg', conf.trialPath);
   wrapperBinFile = sprintf('%s/wrappered.jpg', batchDir);
-  allWrapperBinFile = sprintf('%s/allWrappered.jpg', conf.graphDir);
+  allWrapperBinFile = sprintf('%s/allWrappered.jpg', conf.trialPath);
   newConfFile = sprintf('%s/conf.mat', batchDir);
   initialPrototypes = sprintf('%s/initialPrototypes.jpg', batchDir);
 
+
+
+
+  classifierFeatures = conf.selectedFeatures{1};
+  for f = 2:length(conf.selectedFeatures)
+    classifierFeatures = [classifierFeatures '|' conf.selectedFeatures{f}];
+  end
+  classNumberList = sort(unique(returnData.modelLabel));
+  classString = sprintf('%d', classNumberList(1));
+  for classIndex = 2:length(classNumberList)
+    classString = [classString '|' sprintf('%d', classNumberList(classIndex))];
+  end
+  if strcmp(class(finalResults.mdl), 'ClassificationKNN')
+    conf.classifier = 'knn';
+  elseif strcmp(class(finalResults.mdl), 'ClassificationNaiveBayes')
+    conf.classifier = 'naivebayes';
+  else
+    conf.classifier = 'myNB';
+  end
+  rmfield(finalResults, 'err');
+  rmfield(finalResults, 'truth');
+  rmfield(finalResults, 'x_down');
+  rmfield(finalResults, 'c_down');
+  rmfield(finalResults, 'sample_down');
+
+  classifierFile = sprintf('%s/qt_err_%04d_%s_%s_%dBins_%s.%s.mat', conf.classifierPath, round(finalResults.err*100), conf.classifier, classifierFeatures, length(finalResults.mus), classString, thisAudioFileName);
+  save(classifierFile, '-struct', 'finalResults');
+
+
+
+
+
+  % save the best classifier
+  % finalClassifierDataFile = sprintf('%s/bestClassifier%s.mat', batchDir, conf.classifier);
+  % finalModelDataFile = sprintf('%s/bestModel%s.mat', conf.classifierPath, conf.classifier);
+
+
+  % tempconf = conf;
+  % tempconf.modelknnFile = finalClassifierDataFile;
+  % tempconf.modelcnbFile = finalClassifierDataFile;
+  % tempconf.modelmyNBFile = finalClassifierDataFile;
+  %mdl = doTrain(tempconf, finalResults);
 
 
 
@@ -365,6 +431,12 @@ while conf.whichTrainingSegment <= maxPartitions
   allWrapperErrStats.filterX = [allWrapperErrStats.filterX; wrapperErrStats.filterX];
   allWrapperErrStats.filterY = [allWrapperErrStats.filterY; wrapperErrStats.filterY];
 
+  % allFilterErrStats.filterX = [allFilterErrStats.filterX; filterErrStats.filterX];
+  % allFilterErrStats.filterY = [allFilterErrStats.filterY; filterErrStats.filterY];
+
+  % allWrapperErrStats.filterX = [allWrapperErrStats.filterX; wrapperErrStats.filterX];
+  % allWrapperErrStats.filterY = [allWrapperErrStats.filterY; wrapperErrStats.filterY];
+
 end
 
 
@@ -372,7 +444,7 @@ end
 
 if isfield(conf, 'filterBins') && (conf.filterBins)
   clf;
-  plot(allFilterErrStats.filterX(1,:), allFilterErrStats.filterY,'-*');
+  plot(allFilterErrStats.filterX(1,:), allFilterErrStats.filterY','-*');
   set(gca,'XTick',allFilterErrStats.filterX(1,:));
   xlabel('Prototype Count (after filtered)');
   ylabel('Error %');
@@ -383,7 +455,7 @@ end
 
 if isfield(conf, 'wrapperBins') && (conf.wrapperBins)
   clf;
-  plot(allWrapperErrStats.filterX(1,:), allWrapperErrStats.filterY,'-*');
+  plot(allWrapperErrStats.filterX(1,:), allWrapperErrStats.filterY','-*');
   set(gca,'XTick',allWrapperErrStats.filterX(1,:));
   xlabel('Prototype Count (after filtered)');
   ylabel('Error %');

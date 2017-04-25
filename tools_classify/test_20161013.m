@@ -1,12 +1,83 @@
-function [signalClassified, badIndices, modelSums] = test_20161013(conf, modelData)
+function [signalClassified, badIndices, modelSums] = test_20161013(conf, classifierData)
 % function [signalClassified, percentError,   truth, x_down, c_down, sample_down,  badIndices, modelSums] = test_20161013(conf, modelData)
 disp('tools_classify/test_20161013');
+% if (nargin > 1)
+%   mus = modelData.mus;
+% else
+%   mapping = load(conf.modelDataFile);
+%   mus = mapping.mus;
+% end
+
+% if isfield(conf, 'modelClassifierFile') && ~isempty(conf.modelClassifierFile)
+%   mdlData = load(conf.modelClassifierFile, 'mdl');
+%   if strcmp(class(mdlData.mdl), 'ClassificationKNN')
+%     conf.classifier = 'knn';
+%     getClass = @getClassKnn;
+%     customClassify = @predict;
+
+%   elseif strcmp(class(mdlData.mdl), 'ClassificationNaiveBayes')
+%     conf.classifier = 'naivebayes';
+%     getClass = @getClassNaiveBayes;
+%     customClassify = @predict;
+
+%   end
+
+% else
+%   % load classifier model data
+%   if strcmp(conf.classifier, 'knn')
+%     mdlData = load(conf.modelknnFile, 'mdl');
+%     getClass = @getClassKnn;
+%     customClassify = @predict;
+%   elseif strcmp(conf.classifier, 'naivebayes')
+%     mdlData = load(conf.modelcnbFile, 'mdl');
+%     getClass = @getClassNaiveBayes;
+%     customClassify = @predict;
+%   elseif strcmp(conf.classifier, 'myNB')
+%     mdlData = load(conf.modelmyNBFile, 'mdl');
+%     getClass = @getClassNaiveBayes;
+%     customClassify = @myNB_getPosterior;
+%   end
+% end
+% mdl = mdlData.mdl;
+
+
+
+
 if (nargin > 1)
-  mus = modelData.mus;
-else
-  mapping = load(conf.modelFile);
-  mus = mapping.mus;
+  mdlData = classifierData;
+
+elseif isfield(conf, 'modelClassifierFile') && ~isempty(conf.modelClassifierFile)
+  mdlData = load(conf.modelClassifierFile, 'mdl');
+  if strcmp(class(mdlData.mdl), 'ClassificationKNN')
+    conf.classifier = 'knn';
+    % getClass = @getClassKnn;
+    % customClassify = @predict;
+
+  elseif strcmp(class(mdlData.mdl), 'ClassificationNaiveBayes')
+    conf.classifier = 'naivebayes';
+    % getClass = @getClassNaiveBayes;
+    % customClassify = @predict;
+
+  else
+    conf.classifier = 'myNB';
+  end
 end
+
+% load classifier model data
+if strcmp(conf.classifier, 'knn')
+  getClass = @getClassKnn;
+  customClassify = @predict;
+elseif strcmp(conf.classifier, 'naivebayes')
+  getClass = @getClassNaiveBayes;
+  customClassify = @predict;
+elseif strcmp(conf.classifier, 'myNB')
+  getClass = @getClassNaiveBayes;
+  customClassify = @myNB_getPosterior;
+end
+mdl = mdlData.mdl;
+mus = mdlData.mus;
+
+
 
 % feature options & features (NOTE: mfcc (as opposed to melfcc) does not currently utilize options as thoroughly)
 featExtOptions.wintime = conf.feature_wintime;
@@ -40,21 +111,6 @@ else
   %signalGnd = gnd;
 end
 
-% load classifier model data
-if strcmp(conf.classifier, 'knn')
-  mdlData = load(conf.modelknnFile, 'mdl');
-  getClass = @getClassKnn;
-  customClassify = @predict;
-elseif strcmp(conf.classifier, 'naivebayes')
-  mdlData = load(conf.modelcnbFile, 'mdl');
-  getClass = @getClassNaiveBayes;
-  customClassify = @predict;
-elseif strcmp(conf.classifier, 'myNB')
-  mdlData = load(conf.modelmyNBFile, 'mdl');
-  getClass = @getClassNaiveBayes;
-  customClassify = @myNB_getPosterior;
-end
-mdl = mdlData.mdl;
 
 % mappings
 badIndices = [];
@@ -129,6 +185,7 @@ limits = [];
 subSegmentIndex = 0;
 txt = ' ';
 allscores = [];
+noFeaturesFound = [];
 % for s = 1:scanHopSam:(total_working_samples+mod(total_working_samples,scanHopSam))
 for s = 1:scanHopSam:total_working_samples
   for txt_i=1:size(txt,2) fprintf('\b'); end;
@@ -158,7 +215,12 @@ for s = 1:scanHopSam:total_working_samples
   signal_window = signal(limit_start:limit_end);
   features = getFeatures(signal_window, sample_rate, conf.selectedFeatures, featExtOptions);
   % mus = getMus(features, classCount, conf.numClusters);
-  norm_hist = getHist(features, mus, conf.mappingType, histOptions);
+  if size(features,1) > 0
+    norm_hist = getHist(features, mus, conf.mappingType, histOptions);
+  else
+    noFeaturesFound = [noFeaturesFound; [limit_start limit_end]];
+    norm_hist = zeros(1,totalClusters);
+  end
 
   [label, score] = customClassify(mdl, norm_hist);
   allscores = [allscores; score];
@@ -171,6 +233,10 @@ for s = 1:scanHopSam:total_working_samples
   subSegmentLabels(seg_start:seg_end) = repmat(label, seg_end-seg_start+1, 1);
 
   % disp([limit_start limit_end]);
+end
+
+if length(noFeaturesFound) > 0
+  fprintf('NO FEATURES FOUND for %d segments', size(noFeaturesFound, 1));
 end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

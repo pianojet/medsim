@@ -10,6 +10,7 @@ function c = getClassNaiveBayes(scores, options)
   topThreshold = options.topThreshold;
 
   c = NaN;
+  unconfident = 100; % class 100 is reserved for unconfident / unknown class
 
   classCount = size(scores,2) - 1;
   topPct = max(abs(diff(mean(scores(:,1:classCount), 1)))); % get the % diff of top percent
@@ -22,5 +23,5 @@ function c = getClassNaiveBayes(scores, options)
   end
 
   if isnan(c)
-    c = classCount + 2;
+    c = unconfident;
   end

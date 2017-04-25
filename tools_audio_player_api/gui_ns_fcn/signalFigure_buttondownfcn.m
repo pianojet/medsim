@@ -6,17 +6,18 @@ function signalFigure_buttondownfcn(ax, hit)
 
   ax; % figure axes1
 
-  setappdata(0, 'signalClassified', []);
+
+  % setappdata(0, 'signalClassified', []);
 
 
   % playbackOptions.figure;
   % hitDownSampled = round(hit.IntersectionPoint(1))/playbackOptions.downSampleFactor;
 
-  fprintf('pre click positions:\n');
-  fprintf('clickpos1:\n');
-  disp(getappdata(0, 'clickpos1'));
-  fprintf('clickpos2:\n');
-  disp(getappdata(0, 'clickpos2'));
+  % fprintf('pre click positions:\n');
+  % fprintf('clickpos1:\n');
+  % disp(getappdata(0, 'clickpos1'));
+  % fprintf('clickpos2:\n');
+  % disp(getappdata(0, 'clickpos2'));
 
   hold on;
   if clickpos1 == 1 || round(hit.IntersectionPoint(1)) < clickpos1
@@ -42,8 +43,8 @@ function signalFigure_buttondownfcn(ax, hit)
   setappdata(0, 'clickpos2', clickpos2);
   setappdata(0, 'playbackOptions', playbackOptions);
 
-  fprintf('set click positions:\n');
-  fprintf('clickpos1:\n');
-  disp(getappdata(0, 'clickpos1'));
-  fprintf('clickpos2:\n');
-  disp(getappdata(0, 'clickpos2'));
+  % fprintf('set click positions:\n');
+  % fprintf('clickpos1:\n');
+  % disp(getappdata(0, 'clickpos1'));
+  % fprintf('clickpos2:\n');
+  % disp(getappdata(0, 'clickpos2'));

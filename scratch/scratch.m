@@ -852,13 +852,13 @@ set(handles.classlist, 'String', {1,2,3,4});
 
 
 
-audioPath = '/Users/justin/Documents/MATLAB/medsim/data/emotion/raw/angry_neutral_trainer_train80pct.wav';
-truthPath = '/Users/justin/Documents/MATLAB/medsim/data/emotion/raw/angry_neutral_trainer_train80pct_gnd.mat';
+audioPath = '/Users/justin/Documents/MATLAB/medsim/data/emotion/raw/emo_verbal_unnorm_100pct.wav';
+truthPath = '/Users/justin/Documents/MATLAB/medsim/data/emotion/raw/emo_verbal_unnorm_100pct_gnd.mat';
 x = audioread(audioPath);
 a = audioinfo(audioPath);
 
-mp = 530000;
-tot = 1002868; % a.TotalSamples
+mp = 437406;
+tot = 781824; % a.TotalSamples
 
 class1 = ones(mp, 1);
 class2 = 2*ones((tot-mp), 1);
@@ -929,5 +929,49 @@ tt.l1 = [1 2 3];
 for i = tt.l1
   disp(i);
 end
+
+
+
+
+
+
+
+
+
+
+l1 = [1;2;3;4;5;6;7;8;9;10];
+l2 = [1;1;1;1;2;2;2;2;2;2];
+
+l1(l2=1)
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+l1 = [1;2;3;4;5;6;7;8;9;10];
+
+l2 = [1;1;2;2;2;3;3;4;4;4];  % +4 for strong
+l3 = [1;3;3;2;2;2;4;4;4;4];
+
+l2(l3==3||l3==4) = l2(l3==3||l3==4)+4;
+
+
+
+
+
+
+spkSignalClassified(emoSignalClassified==3|emoSignalClassified==4) = spkSignalClassified(emoSignalClassified==3|emoSignalClassified==4)+4;
+
+
+
+
+
+emo = ones(275625, 1);
+emo = [emo; 2*ones(275625,1)];
+emo = [emo; 3*ones(275625,1)];
+emo = [emo; 4*ones(275625,1)];
+
+
 
 

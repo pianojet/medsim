@@ -1,4 +1,5 @@
 function stopbutton_Callback(hObject, eventdata, handles)
+  disp('`stopbutton_Callback`');
   % stop playback
   player = getappdata(0, 'player_handle');
   stop(player);

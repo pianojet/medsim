@@ -93,6 +93,12 @@ function refreshaxes(audio_data, audio_info, options)
     class4 = c_down==4; class4 = class4.*x_down;
     class5 = c_down==5; class5 = class5.*x_down;
     class6 = c_down==6; class6 = class6.*x_down;
+    class7 = c_down==7; class7 = class7.*x_down;
+    class8 = c_down==8; class8 = class8.*x_down;
+
+    class100 = c_down==100; class100 = class100.*x_down;
+    class101 = c_down==101; class101 = class101.*x_down;
+
 
     plot(xaxes, class1, 'Color', colors(1, :));
     plot(xaxes, class2, 'Color', colors(2, :));
@@ -100,6 +106,12 @@ function refreshaxes(audio_data, audio_info, options)
     plot(xaxes, class4, 'Color', colors(4, :));
     plot(xaxes, class5, 'Color', colors(5, :));
     plot(xaxes, class6, 'Color', colors(6, :));
+    plot(xaxes, class7, 'Color', colors(7, :));
+    plot(xaxes, class8, 'Color', colors(8, :));
+
+    plot(xaxes, class100, 'Color', 'black');
+    plot(xaxes, class101, 'Color', 'black');
+
     %legend('Class #1','Class #2', 'Class #3', 'Class #4', 'Silence', 'Unknown');
 
 
@@ -117,3 +129,6 @@ function refreshaxes(audio_data, audio_info, options)
   end
 
   hold off;
+
+
+  disp('`refreshaxes` done.');

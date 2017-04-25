@@ -31,6 +31,7 @@ featExtOptions.fbtype = conf.feature_fbtype; % 'bark' | 'mel' | 'htkmel' | 'fcme
 featExtOptions.usecmp = conf.feature_usecmp;
 featExtOptions.modelorder = conf.feature_modelorder;
 
+%[pathstr,thisAudioFileName,ext] = fileparts(conf.audioFile);
 x = audioread(conf.audioFile);
 a = audioinfo(conf.audioFile);
 % gnd = load(conf.truthFile);
@@ -54,6 +55,7 @@ a = audioinfo(conf.audioFile);
 % classSampleCounts = struct;
 % featuresByClass = {};
 
+%classLabels = classData.classLabels;
 sample_rate = a.SampleRate;
 total_samples = a.TotalSamples; % original # samples of original signal
 % total_working_samples = length(signal); % number of samples after accounting for possible silence removal
@@ -108,12 +110,14 @@ sigmas = [];
 mus = [];
 all_C = [];
 all_Idx = [];
-classData.featuresByClass = {};
+classData.featuresByClass = struct;
 
-for c = classData.classesAssigned
-  classData.featuresByClass{c} = [];
-  totalFeaturesForThisClass = [];
+for classIndex = 1:length(classData.classNumberList)
+  c = classData.classNumberList(classIndex);
+
   label = sprintf(conf.classLabelStr, c);
+  classData.featuresByClass.(label) = [];
+  totalFeaturesForThisClass = [];
 
   for s = 1:length(classData.continuousClassSignals.(label))
     thisSignal = classData.continuousClassSignals.(label){s};
@@ -137,7 +141,7 @@ for c = classData.classesAssigned
     end
   end
 
-  classData.featuresByClass{c} = totalFeaturesForThisClass;
+  classData.featuresByClass.(label) = totalFeaturesForThisClass;
 
   [ctrs, U] = fcm(totalFeaturesForThisClass, conf.numClusters, [2.0]);
   mus = [mus; ctrs];
@@ -262,25 +266,26 @@ end
 
 
 fprintf('\n\nGetting observation segments:\n')
-for c = classData.classesAssigned
-
+for classIndex = 1:length(classData.classNumberList)
+  c = classData.classNumberList(classIndex);
+  label = sprintf(conf.classLabelStr, c);
   % segCount = 1;
-  fprintf('\n####  Class %d:\n', c);
+  fprintf('\n####  Class %s:\n', label);
   txt = ' ';
   featuresPerSecond = floor(1 / (conf.feature_hoptime));
   limit_start = 1;
-  numSegs = ceil(length(classData.featuresByClass{c})/featuresPerSecond);
+  numSegs = ceil(length(classData.featuresByClass.(label))/featuresPerSecond);
   for i = 1:numSegs
     for txt_i=1:size(txt,2) fprintf('\b'); end;
     txt = sprintf('%15d / %d', [i numSegs]);
     fprintf(txt);
 
     limit_end = featuresPerSecond*i;
-    if limit_end > length(classData.featuresByClass{c})
-      limit_end = length(classData.featuresByClass{c});
+    if limit_end > length(classData.featuresByClass.(label))
+      limit_end = length(classData.featuresByClass.(label));
     end
 
-    seg = classData.featuresByClass{c}(limit_start:limit_end,:);
+    seg = classData.featuresByClass.(label)(limit_start:limit_end,:);
     % histsByClass{c}{i} = getHist(segsByClass{c}{i}, mus, conf.mappingType);
     % segCount = segCount + 1;
     voteHist = getHist(seg, mus, conf.mappingType, histOptions);
@@ -303,7 +308,7 @@ modelData.modelTable = modelTable;
 modelData.modelLabel = modelLabel;
 % save the models
 
-save(conf.modelDataFile, '-struct', 'modelData');
+%save(conf.modelDataFile, '-struct', 'modelData');
 
 
 disp('Models processed.');

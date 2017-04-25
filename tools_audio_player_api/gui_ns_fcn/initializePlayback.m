@@ -3,6 +3,11 @@ function initializePlayback(handles)
   if ~isfield(conf, 'audioFile')
     conf.audioFile = get(handles.dataPath, 'String');
   end
+  usrInitHandle = getappdata(0, 'usrInit');
+  if ~isempty(usrInitHandle)
+    disp('calling usrinithandle...');
+    usrInitHandle(handles);
+  end
 
   % audio data & info
   audio_info = audioinfo(conf.audioFile);

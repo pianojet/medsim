@@ -1,4 +1,4 @@
-function doTrain(conf, modelData)
+function mdl = doTrain(conf, modelData)
 
 
 if isfield(modelData, 'modelTable')
@@ -23,7 +23,7 @@ if strcmp(conf.classifier, 'knn')
   % IncludeTies = true;
   % BreakTies = 'nearest';
   mdl = fitcknn(modelTable, modelLabel, 'NumNeighbors',NumNeighbors, 'Distance',Distance); % default num neighbors: 1
-  save(conf.modelknnFile,'mdl');
+  % save(conf.modelknnFile,'mdl');
 elseif strcmp(conf.classifier, 'naivebayes')
   DistributionNames = conf.naivebayes_DistributionNames;
   Kernel = conf.naivebayes_Kernel;
@@ -37,13 +37,13 @@ elseif strcmp(conf.classifier, 'naivebayes')
   else
     mdl = fitcnb(modelTable, modelLabel, 'DistributionNames',DistributionNames); % default distribution: normal
   end
-  save(conf.modelcnbFile,'mdl');
+  % save(conf.modelcnbFile,'mdl');
 %%% needs more logic to reduce to multiple 2-class modals for svm
 % else
 %   mdl = fitcsvm(modelTable, modelLabel);
 elseif strcmp(conf.classifier, 'myNB')
   mdl = myNB_trainClassConditionals(modelTable, modelLabel);
-  save(conf.modelmyNBFile,'mdl');
+  % save(conf.modelmyNBFile,'mdl');
 end
 
 disp('Training completed.');

@@ -9,6 +9,17 @@ end
 if ~isfield(options, 'mode') options.mode = 'normal';
 end
 
+if ~isfield(classData, 'sample_rate')
+  if ~isfield(options, 'sample_rate')
+    a = defaultAudioInfo();
+    sample_rate = a.SampleRate;
+  else
+    sample_rate = options.sample_rate;
+  end
+else
+  sample_rate = classData.sample_rate;
+end
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %  Data Loading & Configuration
@@ -32,8 +43,8 @@ featExtOptions.usecmp = conf.feature_usecmp;
 featExtOptions.modelorder = conf.feature_modelorder;
 
 %[pathstr,thisAudioFileName,ext] = fileparts(conf.audioFile);
-x = audioread(conf.audioFile);
-a = audioinfo(conf.audioFile);
+% x = audioread(conf.audioFile);
+% a = audioinfo(conf.audioFile);
 % gnd = load(conf.truthFile);
 % gnd = gnd.g;
 
@@ -56,8 +67,8 @@ a = audioinfo(conf.audioFile);
 % featuresByClass = {};
 
 %classLabels = classData.classLabels;
-sample_rate = a.SampleRate;
-total_samples = a.TotalSamples; % original # samples of original signal
+% sample_rate = a.SampleRate;
+% total_samples = a.TotalSamples; % original # samples of original signal
 % total_working_samples = length(signal); % number of samples after accounting for possible silence removal
 
 scanWinSam = floor(conf.scan_wintime*sample_rate);

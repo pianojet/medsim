@@ -22,7 +22,7 @@ function varargout = medsim_gui(varargin)
 
 % Edit the above text to modify the response to help medsim_gui
 
-% Last Modified by GUIDE v2.5 13-Apr-2017 15:12:57
+% Last Modified by GUIDE v2.5 25-Apr-2017 15:19:24
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -57,7 +57,13 @@ function medsim_gui_OpeningFcn(hObject, eventdata, handles, varargin)
 
   % Update handles structure
   guidata(hObject, handles);
-  initializeConfig('/Users/justin/Documents/MATLAB/medsim/config/app_config.ini');
+
+  initializeConfig('/Users/justin/Documents/MATLAB/medsim/config/spk_app_config.ini');
+  initializeData(handles);
+  setappdata(0, 'usrInit', []);
+  setappdata(0, 'audio_info', defaultAudioInfo());
+
+
   % UIWAIT makes medsim_gui wait for user response (see UIRESUME)
   % uiwait(handles.figure1);
 
@@ -97,19 +103,25 @@ function initializeData(handles)
   conf = getappdata(0, 'conf');
 
   % track model data
-  modelData.name = '';
-  modelData.bins = 30;
-  modelData.features = 'melfcc';
-  modelData.audioClips = {};
-  modelData.audioFeatures = {}; % keeping association with clips in case we want to impl removal
-  modelData.centers = containers.Map;
-  modelData.centers('30') = [];
-  modelData.seconds = 0.0;
-  modelData.limits = {};
-  setappdata(0, 'modelData', modelData);
-
-
-
+  % classData.name = '';
+  % classData.bins = 30;
+  % classData.features = {'melfcc'};
+  % classData.audioClips = {};
+  % classData.audioFeatures = {}; % keeping association with clips in case we want to impl removal
+  % classData.centers = containers.Map;
+  % classData.centers('30') = [];
+  % classData.seconds = 0.0;
+  % classData.limits = {};
+  classData.classNumberList = [];
+  classData.continuousClassSignals = struct;
+  classData.classSampleCounts = struct;
+  classData.featuresByClass = struct;
+  classData.centers = struct;
+  % = containers.Map;
+  % classData.centers('30') = [];
+  setappdata(0, 'classData', classData);
+  set(handles.text_seconds_display, 'String', '0.0');
+  set(handles.edit_label, 'String', 'N/A');
 
 
 % --- Executes on button press in pushbutton_new.
@@ -117,43 +129,49 @@ function pushbutton_new_Callback(hObject, eventdata, handles)
   % hObject    handle to pushbutton_new (see GCBO)
   % eventdata  reserved - to be defined in a future version of MATLAB
   % handles    structure with handles and user data (see GUIDATA)
+  classData = getappdata(0, 'classData');
+  if isempty(classData.classNumberList)
+    initializeData(handles);
+    classData = getappdata(0, 'classData');
+  end
   loadAudio(handles);
-  initializeData(handles);
-
 
 
 % --- Executes when entered data in editable cell(s) in modelStats.
-function modelStats_CellEditCallback(hObject, eventdata, handles)
-  % hObject    handle to modelStats (see GCBO)
-  % eventdata  structure with the following fields (see MATLAB.UI.CONTROL.TABLE)
-  %	Indices: row and column indices of the cell(s) edited
-  %	PreviousData: previous data for the cell(s) edited
-  %	EditData: string(s) entered by the user
-  %	NewData: EditData or its converted form set on the Data property. Empty if Data was not changed
-  %	Error: error string when failed to convert EditData to appropriate value for Data
-  % handles    structure with handles and user data (see GUIDATA)
+% function modelStats_CellEditCallback(hObject, eventdata, handles)
+%   % hObject    handle to modelStats (see GCBO)
+%   % eventdata  structure with the following fields (see MATLAB.UI.CONTROL.TABLE)
+%   %	Indices: row and column indices of the cell(s) edited
+%   %	PreviousData: previous data for the cell(s) edited
+%   %	EditData: string(s) entered by the user
+%   %	NewData: EditData or its converted form set on the Data property. Empty if Data was not changed
+%   %	Error: error string when failed to convert EditData to appropriate value for Data
+%   % handles    structure with handles and user data (see GUIDATA)
 
-  modelData = getappdata(0, 'modelData');
-  row = eventdata.Indices(1)
+%   classData = getappdata(0, 'classData');
+%   row = eventdata.Indices(1)
 
-  try
-    switch row
-      case 1
-        fprintf('`Name` changed to %s', eventdata.NewData);
-        modelData.name = eventdata.NewData;
-      case 2
-        fprintf('`Bins` changed to %s', eventdata.NewData);
-        modelData.bins = str2num(eventdata.NewData);
-      case 3
-        fprintf('Changing `Feature` is current unsupported.');
-        modelData.feature = 'melfcc';
-    end
+%   try
+%     classNumber = str2num(eventdata.NewData);
+%     if isempty(classData.classNumberList(classData.classNumberList==classNumber))
+%       classData.classNumberList = sort([classData.classNumberList classNumber]);
+%       label = sprintf(conf.classLabelStr, classNumber);
+%       classData.continuousClassSignals.(label) = {};
+%       classData.classSampleCounts.(label) = 0;
+%       classData.featuresByClass.(label) = [];
+%     end
+%     setappdata(0, 'classData', classData);
 
-  catch Exception
-    disp('Possible error with input given.');
-  end
 
-  disp(eventdata);
+%     fprintf('`Label` changed to %s', eventdata.NewData);
+%     % modelData.label = eventdata.NewData;
+
+%   catch Exception
+%     disp('Possible error with input given.');
+%   end
+
+%   modelStats_refresh(handles.modelStats);
+%   disp(eventdata);
 
 
 function modelStats_refresh(modelStats)
@@ -172,11 +190,47 @@ function modelStats_refresh(modelStats)
   % set(hObject, 'ColumnName', colNames);
   % set(hObject, 'RowName', rowNames);
   % set(hObject, 'Data', tableData);
+  % conf = getappdata(0, 'conf');
+  % audio_info = getappdata(0, 'audio_info');
+  % classData = getappdata(0, 'classData');
+  % if ~isempty(classData.classNumberList)
+  %   classNumber = classData.classNumberList(1);
+  %   label = sprintf(conf.classLabelStr, classNumber);
+  %   displaySeconds = sprintf('%2.2f', (classData.classSampleCounts.(label) / audio_info.SampleRate));
+  %   data = {classNumber, displaySeconds};
+  % else
+  %   data = {'N/A'; 0};
+  % end
+  % set(modelStats, 'Data', data);
 
-  modelData = getappdata(0, 'modelData');
-  displaySeconds = sprintf('%2.2f', modelData.seconds);
-  data = {modelData.name; '30'; 'melfcc'; displaySeconds};
-  set(modelStats, 'Data', data);
+  conf = getappdata(0, 'conf');
+  audio_info = getappdata(0, 'audio_info');
+  tableData = [];
+  appClassList = [];
+
+  for classNumber = 1:100
+    filename = getClassFile(classNumber);
+    if exist(filename) == 2
+      classFileData = load(filename);
+      label = sprintf(conf.classLabelStr, classNumber);
+      displaySeconds = sprintf('%2.2f', (classFileData.classSampleCounts.(label) / audio_info.SampleRate));
+      colData = [classNumber {displaySeconds}];
+      tableData = [tableData; colData];
+      appClassList = [appClassList classNumber];
+      % tableData{size(tableData,1)+1, 1} = classNumber;
+      % tableData{size(tableData,1)+1, 2} = displaySeconds;
+    end
+  end
+  columnNames = {'Label', 'Seconds'};
+  rowNames = {};
+
+
+  %set(hObject, 'ColumnEditable', {0, 0});
+  setappdata(0, 'appClassList', appClassList);
+  set(modelStats, 'ColumnWidth', {60});
+  set(modelStats, 'ColumnName', columnNames);
+  set(modelStats, 'RowName', rowNames);
+  set(modelStats, 'Data', tableData);
 
 
 
@@ -185,6 +239,31 @@ function modelStats_CreateFcn(hObject, eventdata, handles)
   % hObject    handle to modelStats (see GCBO)
   % eventdata  reserved - to be defined in a future version of MATLAB
   % handles    empty - handles not created until after all CreateFcns called
+  % rowNames = {'scan_wintime', 'scan_hoptime', 'topPosteriorThreshold', 'feature_maxfreq', 'mappingType', 'numClusters', 'Classified?', 'Success %'}
+  modelStats_refresh(hObject);
+  % conf = getappdata(0, 'conf');
+  % audio_info = getappdata(0, 'audio_file');
+  % tableData = {};
+
+  % for classNumber = 1:100
+  %   filename = getClassFile(classNumber);
+  %   if exist(filename) == 2
+  %     classFileData = load(filename);
+  %     label = sprintf(conf.classLabelStr, classNumber);
+  %     displaySeconds = sprintf('%2.2f', (classFileData.classSampleCounts.(label) / audio_info.SampleRate));
+  %     tableData{size(tableData,1)+1, 1} = classNumber;
+  %     tableData{size(tableData,1)+1, 2} = displaySeconds;
+  %   end
+  % end
+  % columnNames = {'Label', 'Seconds'};
+  % rowNames = {};
+
+
+  % %set(hObject, 'ColumnEditable', {0, 0});
+  % set(hObject, 'ColumnWidth', {60});
+  % set(hObject, 'ColumnName', columnNames);
+  % set(hObject, 'RowName', rowNames);
+  % set(hObject, 'Data', tableData);
 
 
 % --- Executes on button press in pushbutton_add.
@@ -198,17 +277,22 @@ function pushbutton_add_Callback(hObject, eventdata, handles)
   playbackOptions = getappdata(0, 'playbackOptions');
   clickpos1 = getappdata(0, 'clickpos1');
   clickpos2 = getappdata(0, 'clickpos2');
-  modelData = getappdata(0, 'modelData');
+  classData = getappdata(0, 'classData');
   audio_data = getappdata(0, 'audio_data');
   audio_info = getappdata(0, 'audio_info')
   sampleRate = audio_info.SampleRate;
 
-  disp('initial modelData:');
-  disp(modelData);
+  disp('initial classData:');
+  disp(classData);
 
 
   if ~((clickpos1 > 1) && (clickpos2 < (length(audio_data) / playbackOptions.downSampleFactor)))
-    disp('useless parameters, returning...');
+    disp('unusable clickpositions, returning...');
+    return
+  end
+
+  if isempty(classData.classNumberList)
+    disp('missing label for class!');
     return
   end
 
@@ -232,19 +316,38 @@ function pushbutton_add_Callback(hObject, eventdata, handles)
   % clickpos2Up = clickpos2 * playbackOptions.downSampleFactor;
 
   clip = getSignalClip(audio_data);
-  modelData.audioClips{length(modelData.audioClips)+1} = clip;
-  modelData.limits{length(modelData.limits)+1} = [clickpos1 clickpos2];
-  modelData.seconds = modelData.seconds + (length(clip) / sampleRate);
+  classNumber = classData.classNumberList(1);
+  label = sprintf(conf.classLabelStr, classNumber);
+  sigCount = length(classData.continuousClassSignals.(label));
+  classData.continuousClassSignals.(label){sigCount+1} = clip;
+  classData.classSampleCounts.(label) = classData.classSampleCounts.(label) + length(clip);
 
+  disp('saving classData:');
+  disp(classData);
 
-  disp('saving modelData:');
-  disp(modelData);
-
-  setappdata(0, 'modelData', modelData);
-
+  setappdata(0, 'classData', classData);
+  displaySeconds = sprintf('%2.2f', (classData.classSampleCounts.(label) / audio_info.SampleRate));
+  set(handles.text_seconds_display, 'String', displaySeconds);
   disp(sprintf('added signal to class'));
-  modelStats_refresh(handles.modelStats);
-  plotTrainSegments(modelData, playbackOptions);
+  % modelStats_refresh(handles.modelStats);
+  % plotTrainSegments(modelData, playbackOptions);
+
+
+function classFile = getClassFile(label)
+  classData = getappdata(0, 'classData');
+  conf = getappdata(0, 'conf');
+  if (nargin < 1 && isempty(classData.classNumberList))
+    disp('no audio label set, cannot resolve path for classFile');
+    classFile = '';
+    return
+  end
+
+  if nargin < 1
+    label = classData.classNumberList(1);
+  end
+
+  classString = sprintf('%d', label);
+  classFile = sprintf('%sapp_%s.mat', conf.classPath, classString);
 
 
 % --- Executes on button press in pushbutton_save.
@@ -252,5 +355,67 @@ function pushbutton_save_Callback(hObject, eventdata, handles)
   % hObject    handle to pushbutton_save (see GCBO)
   % eventdata  reserved - to be defined in a future version of MATLAB
   % handles    structure with handles and user data (see GUIDATA)
-  modelData = getappdata(0, 'modelData');
+  classData = getappdata(0, 'classData');
+  classFile = getClassFile();
+  save(classFile, '-struct', 'classData');
+  modelStats_refresh(handles.modelStats);
+  fprintf('%s saved.\n', classFile);
+  disp('classData:');
+  disp(classData);
+
+
+
+function edit_label_Callback(hObject, eventdata, handles)
+  % hObject    handle to edit_label (see GCBO)
+  % eventdata  reserved - to be defined in a future version of MATLAB
+  % handles    structure with handles and user data (see GUIDATA)
+
+  % Hints: get(hObject,'String') returns contents of edit_label as text
+  %        str2double(get(hObject,'String')) returns contents of edit_label as a double
+  classData = getappdata(0, 'classData');
+  appClassList = getappdata(0, 'appClassList'); % should be populated with valid class numbers by now
+  audio_info = getappdata(0, 'audio_info');
   conf = getappdata(0, 'conf');
+
+  % try
+  classNumber = str2num(get(hObject,'String'));
+  label = sprintf(conf.classLabelStr, classNumber);
+  if any(appClassList==classNumber)
+    filename = getClassFile(classNumber);
+    classData = load(filename);
+    classData.classNumberList = [classNumber];
+    fprintf('Loaded `Label`.\n', classNumber);
+  else
+    initializeData(handles);
+    set(handles.edit_label, 'String', classNumber);
+    classData = getappdata(0, 'classData');
+    classData.classNumberList = [classNumber];
+    classData.continuousClassSignals.(label) = {};
+    classData.classSampleCounts.(label) = 0;
+    classData.featuresByClass.(label) = [];
+    fprintf('New `Label` reset.\n', classNumber);
+  end
+  setappdata(0, 'classData', classData);
+  % modelData.label = eventdata.NewData;
+
+  % catch Exception
+  %   disp('Possible error with input given.');
+  % end
+
+  %modelStats_refresh(handles.modelStats);
+  displaySeconds = sprintf('%2.2f', (classData.classSampleCounts.(label) / audio_info.SampleRate));
+  set(handles.text_seconds_display, 'String', displaySeconds);
+
+  disp(eventdata);
+
+% --- Executes during object creation, after setting all properties.
+function edit_label_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to edit_label (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end

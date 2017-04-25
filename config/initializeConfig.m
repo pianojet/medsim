@@ -1,5 +1,5 @@
 function conf = initializeConfig(iniFile)
-  disp('Loading config...')
   appConfig = loadConfig(iniFile);
+  disp('Loaded `appConfig`:');
   disp(appConfig);
   conf = resetConfig(appConfig);

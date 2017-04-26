@@ -175,41 +175,13 @@ function pushbutton_new_Callback(hObject, eventdata, handles)
 
 
 function modelStats_refresh(modelStats)
-  % colNames = {'Time'};
-  % rowNames = {};
-  % tableData = [];
-  % for c = 1:length(classData.classLabels)
-  %   label = getClassLabel(c);
-  %   rowNames{c} = c;
-  %   theseTotalSamples = sum(classData.classSampleCounts.(label));
-  %   % secondsString = sprintf('%2.2f', theseTotalSamples/audio_info.SampleRate);
-  %   % tableData{c} = secondsString;
-  %   tableData = [tableData; theseTotalSamples/audio_info.SampleRate];
-  % end
-  % set(hObject, 'ColumnWidth', 'auto');
-  % set(hObject, 'ColumnName', colNames);
-  % set(hObject, 'RowName', rowNames);
-  % set(hObject, 'Data', tableData);
-  % conf = getappdata(0, 'conf');
-  % audio_info = getappdata(0, 'audio_info');
-  % classData = getappdata(0, 'classData');
-  % if ~isempty(classData.classNumberList)
-  %   classNumber = classData.classNumberList(1);
-  %   label = sprintf(conf.classLabelStr, classNumber);
-  %   displaySeconds = sprintf('%2.2f', (classData.classSampleCounts.(label) / audio_info.SampleRate));
-  %   data = {classNumber, displaySeconds};
-  % else
-  %   data = {'N/A'; 0};
-  % end
-  % set(modelStats, 'Data', data);
-
   conf = getappdata(0, 'conf');
   audio_info = getappdata(0, 'audio_info');
   tableData = [];
   appClassList = [];
 
   for classNumber = 1:100
-    filename = getClassFile(classNumber);
+    filename = getClassFileName(classNumber);
     if exist(filename) == 2
       classFileData = load(filename);
       label = sprintf(conf.classLabelStr, classNumber);
@@ -241,29 +213,6 @@ function modelStats_CreateFcn(hObject, eventdata, handles)
   % handles    empty - handles not created until after all CreateFcns called
   % rowNames = {'scan_wintime', 'scan_hoptime', 'topPosteriorThreshold', 'feature_maxfreq', 'mappingType', 'numClusters', 'Classified?', 'Success %'}
   modelStats_refresh(hObject);
-  % conf = getappdata(0, 'conf');
-  % audio_info = getappdata(0, 'audio_file');
-  % tableData = {};
-
-  % for classNumber = 1:100
-  %   filename = getClassFile(classNumber);
-  %   if exist(filename) == 2
-  %     classFileData = load(filename);
-  %     label = sprintf(conf.classLabelStr, classNumber);
-  %     displaySeconds = sprintf('%2.2f', (classFileData.classSampleCounts.(label) / audio_info.SampleRate));
-  %     tableData{size(tableData,1)+1, 1} = classNumber;
-  %     tableData{size(tableData,1)+1, 2} = displaySeconds;
-  %   end
-  % end
-  % columnNames = {'Label', 'Seconds'};
-  % rowNames = {};
-
-
-  % %set(hObject, 'ColumnEditable', {0, 0});
-  % set(hObject, 'ColumnWidth', {60});
-  % set(hObject, 'ColumnName', columnNames);
-  % set(hObject, 'RowName', rowNames);
-  % set(hObject, 'Data', tableData);
 
 
 % --- Executes on button press in pushbutton_add.
@@ -333,30 +282,13 @@ function pushbutton_add_Callback(hObject, eventdata, handles)
   % plotTrainSegments(modelData, playbackOptions);
 
 
-function classFile = getClassFile(label)
-  classData = getappdata(0, 'classData');
-  conf = getappdata(0, 'conf');
-  if (nargin < 1 && isempty(classData.classNumberList))
-    disp('no audio label set, cannot resolve path for classFile');
-    classFile = '';
-    return
-  end
-
-  if nargin < 1
-    label = classData.classNumberList(1);
-  end
-
-  classString = sprintf('%d', label);
-  classFile = sprintf('%sapp_%s.mat', conf.classPath, classString);
-
-
 % --- Executes on button press in pushbutton_save.
 function pushbutton_save_Callback(hObject, eventdata, handles)
   % hObject    handle to pushbutton_save (see GCBO)
   % eventdata  reserved - to be defined in a future version of MATLAB
   % handles    structure with handles and user data (see GUIDATA)
   classData = getappdata(0, 'classData');
-  classFile = getClassFile();
+  classFile = getClassFileName();
   save(classFile, '-struct', 'classData');
   modelStats_refresh(handles.modelStats);
   fprintf('%s saved.\n', classFile);
@@ -383,7 +315,7 @@ function edit_label_Callback(hObject, eventdata, handles)
   classNumber = str2num(get(hObject,'String'));
   label = sprintf(conf.classLabelStr, classNumber);
   if any(appClassList==classNumber)
-    filename = getClassFile(classNumber);
+    filename = getClassFileName(classNumber);
     classData = load(filename);
     classData.classNumberList = [classNumber];
     fprintf('Loaded `Label`.\n', classNumber);

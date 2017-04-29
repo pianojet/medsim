@@ -132,6 +132,10 @@ while conf.whichTrainingSegment <= maxPartitions
   for classIndex = 2:length(classNumberList)
     classString = [classString '|' sprintf('%d', classNumberList(classIndex))];
   end
+  returnData.selectedFeatures = conf.selectedFeatures;
+  returnData.numClusters = conf.numClusters;
+  returnData.mappingType = conf.mappingType;
+
   modelFile = sprintf('%s/qt_%s_%dBins_%s.%s.mat', conf.modelPath, classifierFeatures, length(returnData.mus), classString, thisAudioFileName);
   save(modelFile, '-struct', 'returnData');
 
@@ -199,6 +203,10 @@ while conf.whichTrainingSegment <= maxPartitions
       finalResults.modelTable = conf.override.modelTable;
       finalResults.modelLabel = conf.override.modelLabel;
       finalResults.mus = conf.override.mus;
+      finalResults.modelPath = modelFile;
+      classCount = length(unique(finalResults.modelLabel));
+      finalResults.filterBins = length(finalResults.mus) - (classCount*conf.numClusters);
+
     end
 
 
@@ -250,6 +258,9 @@ while conf.whichTrainingSegment <= maxPartitions
       finalResults.modelTable = conf.override.modelTable;
       finalResults.modelLabel = conf.override.modelLabel;
       finalResults.mus = conf.override.mus;
+      finalResults.modelPath = modelFile;
+      classCount = length(unique(finalResults.modelLabel));
+      finalResults.filterBins = length(finalResults.mus) - (classCount*conf.numClusters);
     end
 
 
@@ -324,7 +335,9 @@ while conf.whichTrainingSegment <= maxPartitions
   rmfield(finalResults, 'x_down');
   rmfield(finalResults, 'c_down');
   rmfield(finalResults, 'sample_down');
-
+  finalResults.selectedFeatures = conf.selectedFeatures;
+  finalResults.numClusters = conf.numClusters;
+  finalResults.mappingType = conf.mappingType;
   classifierFile = sprintf('%s/qt_err_%04d_%s_%s_%dBins_%s.%s.mat', conf.classifierPath, round(finalResults.err*100), conf.classifier, classifierFeatures, length(finalResults.mus), classString, thisAudioFileName);
   save(classifierFile, '-struct', 'finalResults');
 

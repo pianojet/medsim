@@ -295,7 +295,6 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
-
 function pushbutton_load_gnd_Callback(hObject, eventdata, handles)
   disp('`pushbutton_load_gnd_Callback`');
   playbackOptions = getappdata(0, 'playbackOptions');
@@ -309,7 +308,9 @@ function pushbutton_load_gnd_Callback(hObject, eventdata, handles)
     return
   end
   gnd = load(fullpath);
+  colors = defaultPalette();
   playbackOptions.signalClassified = gnd.g;
+  playbackOptions.colors = colors.speaker;
   setappdata(0, 'playbackOptions', playbackOptions);
   setappdata(0, 'signalClassified', gnd.g);
   refreshPlaybackAxes();

@@ -211,9 +211,6 @@ function pushbutton_emotion_classifier_Callback(hObject, eventdata, handles)
   end
 
   set(handles.text_emotion_classifier_file, 'String', fullpath);
-  % % conf = resetConfig();
-  % conf.audioFile = [pathname, filename];
-  % initializePlayback(handles); % getPlaybackHandles
   setappdata(0, 'emoSignalClassified', []);
   updateDisplay(handles);
 
@@ -232,9 +229,6 @@ function pushbutton_speaker_classifier_Callback(hObject, eventdata, handles)
   end
 
   set(handles.text_speaker_classifier_file, 'String', fullpath);
-  % % conf = resetConfig();
-  % conf.audioFile = [pathname, filename];
-  % initializePlayback(handles); % getPlaybackHandles
   setappdata(0, 'spkSignalClassified', []);
   updateDisplay(handles);
 

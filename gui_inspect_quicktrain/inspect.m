@@ -62,7 +62,7 @@ handles.output = hObject;
 guidata(hObject, handles);
 
 % conf = initializeConfig('/Users/justin/Documents/MATLAB/medsim/scratch/emotion.ini');
-conf = initializeConfig('/Users/justin/Documents/MATLAB/medsim/quicktrain/config/emo_app_config.ini');
+conf = initializeConfig('/Users/justin/Documents/MATLAB/medsim/config/emo_app_config.ini');
 % remove any existing audio file data from config (gui needs user to choose)
 if isfield(conf, 'audioFile')
   conf = rmfield(conf, 'audioFile');

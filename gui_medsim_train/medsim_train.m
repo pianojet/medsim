@@ -78,7 +78,7 @@ varargout{1} = handles.output;
 
 
 function initializeData(handles)
-  % conf = getappdata(0, 'conf');
+  conf = getappdata(0, 'conf');
 
   % track model data
   % classData.name = '';
@@ -104,16 +104,21 @@ function initializeData(handles)
   modelData.modelTable = [];
   modelData.modelLabel = [];
   modelData.selectedFeatures = {};
+  modelData.numClusters = 0;
+  modelData.mappingType = '';
   setappdata(0, 'modelData', modelData);
+
+  classifierData = modelData;
+  classifierData.modelPath = '';
+  classifierData.mdl = struct;
+  classifierData.filterBins = 0;
+  setappdata(0, 'classifierData', classifierData);
 
   modelStats_refresh(handles);
   listbox_features_refresh(handles);
-  edit_bins_refresh(handles);
-
-
-function edit_bins_refresh(handles)
-  conf = getappdata(0, 'conf');
   set(handles.edit_bins, 'String', conf.numClusters);
+  set(handles.edit_filter_bins, 'String', conf.filterBins);
+
 
 
 function listbox_features_refresh(handles)
@@ -176,7 +181,7 @@ function listbox_classlist_CreateFcn(hObject, eventdata, handles)
   disp('`listbox_classlist_CreateFcn`');
 
 
-function pushbutton_make_model_Callback(hObject, eventdata, handles)
+function pushbutton_build_model_Callback(hObject, eventdata, handles)
   conf = getappdata(0, 'conf');
   classData = getappdata(0, 'classData');
   appClassList = getappdata(0, 'appClassList');
@@ -208,15 +213,17 @@ function pushbutton_make_model_Callback(hObject, eventdata, handles)
   disp('classData:');
   disp(classData);
 
-  setappdata(0, 'conf', conf);
-
   modelData = getModel(conf, classData);
   modelData.selectedFeatures = conf.selectedFeatures;
-  modelFileName = getModelFileName(conf, modelData);
+  modelData.numClusters = conf.numClusters;
+  modelData.mappingType = conf.mappingType;
+  setappdata(0, 'conf', conf);
+  setappdata(0, 'modelData', modelData);
+
+  modelFileName = getModelFileName();
   set(handles.text_modelpath, 'String', modelFileName);
   fprintf('Saved model in %s\n', modelFileName);
   save(modelFileName, '-struct', 'modelData');
-  setappdata(0, 'modelData', modelData);
 
 
 function edit_bins_Callback(hObject, eventdata, handles)
@@ -226,16 +233,11 @@ function edit_bins_Callback(hObject, eventdata, handles)
   setappdata(0, 'conf', conf);
 
 
-function pushbutton_load_model_Callback(hObject, eventdata, handles)
-  conf = getappdata(0, 'conf');
-  [filename, pathname] = uigetfile('*.mat', 'select a MAT file');
-  %dataPath = '/Users/justin/Documents/MATLAB/medsim/data/med4_mashup';
-  fullpath = [pathname, filename];
-  disp('fullpath:');
-  disp(fullpath);
 
-  set(handles.text_modelpath, 'String', fullpath);
-  modelData = load(fullpath);
+function load_model(handles)
+  conf = getappdata(0, 'conf');
+  modelPath = get(handles.text_modelpath, 'String');
+  modelData = load(modelPath);
 
   appClassList = getappdata(0, 'appClassList');
   thisClassList = unique(modelData.modelLabel);
@@ -246,15 +248,148 @@ function pushbutton_load_model_Callback(hObject, eventdata, handles)
   end
   set(handles.listbox_classlist, 'Value', newClassIndexes);
 
-
-
-
   conf.selectedFeatures = modelData.selectedFeatures;
+  conf.numClusters = modelData.numClusters;
+  conf.mappingType = modelData.mappingType;
   setappdata(0, 'modelData', modelData);
   setappdata(0, 'conf', conf);
+  popupmenu_mapping_type_CreateFcn(handles.popupmenu_mapping_type);
+
+
+function pushbutton_load_model_Callback(hObject, eventdata, handles)
+  [filename, pathname] = uigetfile('*.mat', 'select a MAT file');
+  %dataPath = '/Users/justin/Documents/MATLAB/medsim/data/med4_mashup';
+  fullpath = [pathname, filename];
+  if ~isempty(find(fullpath==0))
+    return
+  end
+  disp('fullpath:');
+  disp(fullpath);
+
   initializeData(handles);
+  set(handles.text_modelpath, 'String', fullpath);
+  set(handles.text_classifierpath, 'String', []);
+  load_model(handles);
 
 
+% function update_classifier_from_conf(hObject, eventdata, handles)
+%   conf = getappdata(0, 'conf');
+%   classifierList = {'knn', 'naivebayes', 'myNB'};
+%   set(handles.popupmenu_classifier, 'String', classifierList);
+%   set(handles.popupmenu_classifier, 'Value', find(strcmp(classifierList, conf.classifier)));
+
+
+function popupmenu_classifier_CreateFcn(hObject, eventdata, handles)
+  conf = getappdata(0, 'conf');
+  classifierList = {'knn', 'naivebayes', 'myNB'};
+  set(hObject, 'String', classifierList);
+  set(hObject, 'Value', find(strcmp(classifierList, conf.classifier)));
+
+  % update_classifier_from_conf(hObject, eventdata, handles);
+
+
+% function update_mapping_type_from_conf(handles)
+%   conf = getappdata(0, 'conf');
+%   mappingList = {'crisp', 'fuzzy', 'probabilistic'};
+%   set(handles.popupmenu_mapping_type, 'String', mappingList);
+%   set(handles.popupmenu_mapping_type, 'Value', find(strcmp(mappingList, conf.mappingType)));
+
+
+function popupmenu_mapping_type_CreateFcn(hObject, eventdata, handles)
+  conf = getappdata(0, 'conf');
+  mappingList = {'crisp', 'fuzzy', 'probabilistic'};
+  set(hObject, 'String', mappingList);
+  set(hObject, 'Value', find(strcmp(mappingList, conf.mappingType)));
+
+  % update_mapping_type_from_conf(handles);
+
+
+function popupmenu_classifier_Callback(hObject, eventdata, handles)
+  conf = getappdata(0, 'conf');
+  classifierList = get(hObject, 'String');
+  classifierValue = get(hObject, 'Value');
+  conf.classifier = classifierList{classifierValue};
+  setappdata(0, 'conf', conf);
+
+
+function popupmenu_mapping_type_Callback(hObject, eventdata, handles)
+  conf = getappdata(0, 'conf');
+  mappingList = get(hObject, 'String');
+  mappingValue = get(hObject, 'Value');
+  conf.mappingType = mappingList{mappingValue};
+  setappdata(0, 'conf', conf);
+
+
+function edit_filter_bins_Callback(hObject, eventdata, handles)
+  conf = getappdata(0, 'conf');
+  conf.filterBins = str2num(get(hObject, 'String'));
+  setappdata(0, 'conf', conf);
+
+
+function load_classifier(handles)
+  conf = getappdata(0, 'conf');
+  classifierPath = get(handles.text_classifierpath, 'String');
+  classifierData = load(classifierPath);
+  set(handles.text_modelpath, 'String', classifierData.modelPath);
+  load_model(handles)
+
+  conf.filterBins = classifierData.filterBins;
+  if strcmp(class(classifierData.mdl), 'ClassificationKNN')
+    conf.classifier = 'knn';
+  elseif strcmp(class(classifierData.mdl), 'ClassificationNaiveBayes')
+    conf.classifier = 'naivebayes';
+  else
+    conf.classifier = 'myNB';
+  end
+
+  setappdata(0, 'classifierData', classifierData);
+  setappdata(0, 'conf', conf);
+  popupmenu_classifier_CreateFcn(handles.popupmenu_classifier);
+
+
+function pushbutton_load_classifier_Callback(hObject, eventdata, handles)
+  disp('`pushbutton_load_classifier_Callback`');
+  [filename, pathname] = uigetfile('*.mat', 'select a MAT file');
+  %dataPath = '/Users/justin/Documents/MATLAB/medsim/data/med4_mashup';
+  fullpath = [pathname, filename];
+  if ~isempty(find(fullpath==0))
+    return
+  end
+  disp('fullpath:');
+  disp(fullpath);
+
+  initializeData(handles);
+  set(handles.text_classifierpath, 'String', fullpath);
+  load_classifier(handles);
+
+
+function pushbutton_build_classifier_Callback(hObject, eventdata, handles)
+  disp('`pushbutton_build_classifier_Callback`');
+  modelPath = get(handles.text_modelpath, 'String');
+  if isempty(modelPath)
+    warning('Build or Load a model first');
+    return
+  end
+  conf = getappdata(0, 'conf');
+  modelData = getappdata(0, 'modelData');
+  appClassList = getappdata(0, 'appClassList');
+
+  if isempty(modelData.modelLabel) || isempty(modelData.modelTable)
+    error('model is empty!');
+    return
+  end
+
+
+  classifierData = modelData;
+  classifierData.modelPath = modelPath;
+  classifierData.mdl = doTrain(conf, modelData);
+  classifierData.filterBins = conf.filterBins;
+  setappdata(0, 'classifierData', classifierData);
+
+  classifierFileName = getClassifierFileName();
+  set(handles.text_classifierpath, 'String', classifierFileName);
+  fprintf('Saved classifier in %s\n', classifierFileName);
+  save(classifierFileName, '-struct', 'classifierData');
 
 
 

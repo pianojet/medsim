@@ -62,6 +62,7 @@ function medsim_gui_OpeningFcn(hObject, eventdata, handles, varargin)
   initializeData(handles);
   setappdata(0, 'usrInit', []);
   setappdata(0, 'audio_info', defaultAudioInfo());
+  modelStats_refresh(handles.modelStats);
 
 
   % UIWAIT makes medsim_gui wait for user response (see UIRESUME)
@@ -79,39 +80,10 @@ function varargout = medsim_gui_OutputFcn(hObject, eventdata, handles)
   varargout{1} = handles.output;
 
 
-% --- Executes on button press in btnLoadDataPath.
-% function btnLoadDataPath_Callback(hObject, eventdata, handles)
-%   % hObject    handle to btnLoadDataPath (see GCBO)
-%   % eventdata  reserved - to be defined in a future version of MATLAB
-%   % handles    structure with handles and user data (see GUIDATA)
-
-%   dataPath = uigetdir('.', 'select an `ini` file');
-%   %dataPath = '/Users/justin/Documents/MATLAB/medsim/data/med4_mashup';
-
-%   disp('dataPath:');
-%   disp(dataPath);
-
-%   set(handles.dataPath, 'String', ['DATA PATH:  ',dataPath]);
-%   confPath =
-%   conf = resetConfig(dataPath);
-
-%   initializePlayback(conf, handles);
-
-
 
 function initializeData(handles)
   conf = getappdata(0, 'conf');
 
-  % track model data
-  % classData.name = '';
-  % classData.bins = 30;
-  % classData.features = {'melfcc'};
-  % classData.audioClips = {};
-  % classData.audioFeatures = {}; % keeping association with clips in case we want to impl removal
-  % classData.centers = containers.Map;
-  % classData.centers('30') = [];
-  % classData.seconds = 0.0;
-  % classData.limits = {};
   classData.classNumberList = [];
   classData.continuousClassSignals = struct;
   classData.classSampleCounts = struct;
@@ -130,48 +102,15 @@ function pushbutton_new_Callback(hObject, eventdata, handles)
   % eventdata  reserved - to be defined in a future version of MATLAB
   % handles    structure with handles and user data (see GUIDATA)
   classData = getappdata(0, 'classData');
+  playbackOptions = getappdata(0, 'playbackOptions');
+  playbackOptions.signalClassified = [];
   if isempty(classData.classNumberList)
     initializeData(handles);
     classData = getappdata(0, 'classData');
   end
+  setappdata(0, 'playbackOptions', playbackOptions);
   loadAudio(handles);
 
-
-% --- Executes when entered data in editable cell(s) in modelStats.
-% function modelStats_CellEditCallback(hObject, eventdata, handles)
-%   % hObject    handle to modelStats (see GCBO)
-%   % eventdata  structure with the following fields (see MATLAB.UI.CONTROL.TABLE)
-%   %	Indices: row and column indices of the cell(s) edited
-%   %	PreviousData: previous data for the cell(s) edited
-%   %	EditData: string(s) entered by the user
-%   %	NewData: EditData or its converted form set on the Data property. Empty if Data was not changed
-%   %	Error: error string when failed to convert EditData to appropriate value for Data
-%   % handles    structure with handles and user data (see GUIDATA)
-
-%   classData = getappdata(0, 'classData');
-%   row = eventdata.Indices(1)
-
-%   try
-%     classNumber = str2num(eventdata.NewData);
-%     if isempty(classData.classNumberList(classData.classNumberList==classNumber))
-%       classData.classNumberList = sort([classData.classNumberList classNumber]);
-%       label = sprintf(conf.classLabelStr, classNumber);
-%       classData.continuousClassSignals.(label) = {};
-%       classData.classSampleCounts.(label) = 0;
-%       classData.featuresByClass.(label) = [];
-%     end
-%     setappdata(0, 'classData', classData);
-
-
-%     fprintf('`Label` changed to %s', eventdata.NewData);
-%     % modelData.label = eventdata.NewData;
-
-%   catch Exception
-%     disp('Possible error with input given.');
-%   end
-
-%   modelStats_refresh(handles.modelStats);
-%   disp(eventdata);
 
 
 function modelStats_refresh(modelStats)
@@ -206,13 +145,13 @@ function modelStats_refresh(modelStats)
 
 
 
-% --- Executes during object creation, after setting all properties.
+% % --- Executes during object creation, after setting all properties.
 function modelStats_CreateFcn(hObject, eventdata, handles)
-  % hObject    handle to modelStats (see GCBO)
-  % eventdata  reserved - to be defined in a future version of MATLAB
-  % handles    empty - handles not created until after all CreateFcns called
-  % rowNames = {'scan_wintime', 'scan_hoptime', 'topPosteriorThreshold', 'feature_maxfreq', 'mappingType', 'numClusters', 'Classified?', 'Success %'}
-  modelStats_refresh(hObject);
+%   % hObject    handle to modelStats (see GCBO)
+%   % eventdata  reserved - to be defined in a future version of MATLAB
+%   % handles    empty - handles not created until after all CreateFcns called
+%   % rowNames = {'scan_wintime', 'scan_hoptime', 'topPosteriorThreshold', 'feature_maxfreq', 'mappingType', 'numClusters', 'Classified?', 'Success %'}
+%   modelStats_refresh(hObject);
 
 
 % --- Executes on button press in pushbutton_add.
@@ -244,25 +183,6 @@ function pushbutton_add_Callback(hObject, eventdata, handles)
     disp('missing label for class!');
     return
   end
-
-  % label = getClassLabel(c);
-  % thisSetSize = length(classData.continuousClassSignals.(label));
-  % thisSegment = getSignalClipNoSilence();
-
-  % % push signal to cell array
-  % classData.continuousClassSignals.(label){thisSetSize+1} = thisSegment;
-  % classData.classSampleCounts.(label) = classData.classSampleCounts.(label) + length(thisSegment);
-  % classData.classesAssigned = unique([classData.classesAssigned c]);
-
-  % % check in bounds
-  % if clickpos1 < 1
-  %   clickpos1 = 1;
-  % end
-  % if clickpos2 * playbackOptions.downSampleFactor > length(audio_data)
-  %   clickpos2 = floor(length(audio_data) / playbackOptions.downSampleFactor);
-  % end
-  % clickpos1Up = clickpos1 * playbackOptions.downSampleFactor;
-  % clickpos2Up = clickpos2 * playbackOptions.downSampleFactor;
 
   clip = getSignalClip(audio_data);
   classNumber = classData.classNumberList(1);
@@ -373,3 +293,23 @@ function edit_label_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
+
+
+
+function pushbutton_load_gnd_Callback(hObject, eventdata, handles)
+  disp('`pushbutton_load_gnd_Callback`');
+  playbackOptions = getappdata(0, 'playbackOptions');
+  [filename, pathname] = uigetfile('*.mat', 'select a gnd truth file (.MAT file)');
+  %dataPath = '/Users/justin/Documents/MATLAB/medsim/data/med4_mashup';
+  fullpath = [pathname, filename];
+  disp('fullpath:');
+  disp(fullpath);
+
+  if ~isempty(find(fullpath==0))
+    return
+  end
+  gnd = load(fullpath);
+  playbackOptions.signalClassified = gnd.g;
+  setappdata(0, 'playbackOptions', playbackOptions);
+  setappdata(0, 'signalClassified', gnd.g);
+  refreshPlaybackAxes();

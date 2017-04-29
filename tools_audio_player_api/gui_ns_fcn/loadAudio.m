@@ -6,6 +6,10 @@ function loadAudio(handles)
   disp('fullpath:');
   disp(fullpath);
 
+  if ~isempty(find(fullpath==0))
+    return
+  end
+
   set(handles.dataPath, 'String', fullpath);
   conf.audioFile = fullpath;
   setappdata(0, 'conf', conf);

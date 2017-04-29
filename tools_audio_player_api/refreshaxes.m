@@ -5,7 +5,9 @@ function refreshaxes(audio_data, audio_info, options)
     options = struct;
   end
 
-  if ~isfield(options, 'colors') options.colors = [0.9 0.0 0.0; 0.0 0.9 0.0; 0.0 0.0 0.9; 0.0 0.9 0.9; 0.9 0.0 0.9; 0.0 0.0 0.0];
+  if ~isfield(options, 'colors')
+    palette = defaultPalette();
+    options.colors = palette.default;
   end
   colors = options.colors;
 
@@ -66,16 +68,6 @@ function refreshaxes(audio_data, audio_info, options)
       xlim_labels{i} = sprintf('%2.3f', xlim_seconds(i));
     end
 
-
-
-
-    % xtickends_seconds = lim_down/sample_down;
-    % if xtickends_seconds(1) < 1
-    %   xtickends_seconds(1) = 1;
-    % end
-    % xlim_step = floor((xtickends_seconds(2) - xtickends_seconds(1))/5);
-    % xlim_samples = lim_down
-    % xlim_seconds = xtickends_seconds(1):xlim_step:xtickends_seconds(2);
     ylim([-1.2 1.2]);
     xlim([xaxes(1) xaxes(end)]);
     % xlim(lim_down);
@@ -85,7 +77,6 @@ function refreshaxes(audio_data, audio_info, options)
     xtk = xlim_samples;
     xtklbl = xlim_labels;
     set(axesHandle, 'XTick', xtk, 'XTickLabel',xtklbl);
-
 
 
     class1 = c_down==1; class1 = class1.*x_down;
@@ -124,7 +115,7 @@ function refreshaxes(audio_data, audio_info, options)
 
   else
     plot(xaxes, x_down);
-    ylim([-1 1]);
+    ylim([-1.2 1.2]);
     xlim([xaxes(1) xaxes(end)]);
     xlabel('Sample');
   end

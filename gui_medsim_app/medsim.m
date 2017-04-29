@@ -81,29 +81,25 @@ function varargout = medsim_OutputFcn(hObject, eventdata, handles)
 
 function initMedsim(handles)
   disp('`initMedsim`');
-  conf = initializeConfig('/Users/justin/Documents/MATLAB/medsim/quicktrain/config/emo_app_config.ini');
-  set(handles.text_emotion_classifier_file, 'String', conf.modelClassifierFile);
-  set(handles.text_emotion_model_file, 'String', conf.modelDataFile);
-  conf = initializeConfig('/Users/justin/Documents/MATLAB/medsim/quicktrain/config/spk_app_config.ini');
-  set(handles.text_speaker_classifier_file, 'String', conf.modelClassifierFile);
-  set(handles.text_speaker_model_file, 'String', conf.modelDataFile);
+  conf = struct;
+  % conf = initializeConfig('/Users/justin/Documents/MATLAB/medsim/config/emo_app_config.ini');
+  set(handles.text_emotion_classifier_file, 'String', []);
+  % set(handles.text_emotion_model_file, 'String', []);
+  % conf = initializeConfig('/Users/justin/Documents/MATLAB/medsim/config/spk_app_config.ini');
+  set(handles.text_speaker_classifier_file, 'String', []);
+  % set(handles.text_speaker_model_file, 'String', []);
   if isfield(conf, 'audioFile') conf = rmfield(conf, 'audioFile'); end; % gui needs user to choose audiofile
-
-  spkSignalClassified = [];
-  emoSignalClassified = [];
-  palette = defaultPalette();
-  isSignalClassifiedCombined = 0;
 
   set(handles.radiobutton_speakerEmo, 'Enable', 'off');
   set(handles.radiobutton_speaker, 'Enable', 'off');
   set(handles.radiobutton_emo, 'Enable', 'off');
 
   setappdata(0, 'conf', conf);
-  setappdata(0, 'spkSignalClassified', spkSignalClassified);
-  setappdata(0, 'emoSignalClassified', emoSignalClassified);
+  setappdata(0, 'spkSignalClassified', []);
+  setappdata(0, 'emoSignalClassified', []);
   setappdata(0, 'signalClassified', []);
-  setappdata(0, 'palette', palette);
-  setappdata(0, 'isSignalClassifiedCombined', isSignalClassifiedCombined);
+  setappdata(0, 'palette', defaultPalette());
+  setappdata(0, 'isSignalClassifiedCombined', 0);
 
 
 function pushbutton_find_speakers_Callback(hObject, eventdata, handles)
@@ -115,11 +111,10 @@ function pushbutton_find_speakers_Callback(hObject, eventdata, handles)
     return
   end
   conf.modelClassifierFile = get(handles.text_speaker_classifier_file, 'String');
-  conf.modelDataFile = get(handles.text_speaker_model_file, 'String');
   setappdata(0, 'conf', conf);
 
-  modelData = load(conf.modelDataFile);
-  [spkSignalClassified, badIndices, modelSums] = test_20161013(conf, modelData);
+  classifierData = load(conf.modelClassifierFile);
+  [spkSignalClassified, badIndices, modelSums] = test_20161013(conf, classifierData);
   setappdata(0, 'spkSignalClassified', spkSignalClassified);
 
   updateDisplay(handles);
@@ -133,11 +128,10 @@ function pushbutton_find_anger_Callback(hObject, eventdata, handles)
     return
   end
   conf.modelClassifierFile = get(handles.text_emotion_classifier_file, 'String');
-  conf.modelDataFile = get(handles.text_emotion_model_file, 'String');
   setappdata(0, 'conf', conf);
 
-  modelData = load(conf.modelDataFile);
-  [emoSignalClassified, badIndices, modelSums] = test_20161013(conf, modelData);
+  classifierData = load(conf.modelClassifierFile);
+  [emoSignalClassified, badIndices, modelSums] = test_20161013(conf, classifierData);
   setappdata(0, 'emoSignalClassified', emoSignalClassified);
 
   updateDisplay(handles);
@@ -208,67 +202,41 @@ function pushbutton_emotion_classifier_Callback(hObject, eventdata, handles)
   disp('`pushbutton_emotion_classifier_Callback`');
   [filename, pathname] = uigetfile('*.mat', 'select a classifier (.MAT file)');
   %dataPath = '/Users/justin/Documents/MATLAB/medsim/data/med4_mashup';
+  fullpath = [pathname, filename];
+  disp('fullpath:');
+  disp(fullpath);
 
-  disp('[pathname, filename]:');
-  disp([pathname, filename]);
+  if ~isempty(find(fullpath==0))
+    return
+  end
 
-  set(handles.text_emotion_classifier_file, 'String', [pathname, filename]);
+  set(handles.text_emotion_classifier_file, 'String', fullpath);
   % % conf = resetConfig();
   % conf.audioFile = [pathname, filename];
   % initializePlayback(handles); % getPlaybackHandles
   setappdata(0, 'emoSignalClassified', []);
   updateDisplay(handles);
 
-
-function pushbutton_emotion_model_Callback(hObject, eventdata, handles)
-  disp('`pushbutton_emotion_model_Callback`');
-  [filename, pathname] = uigetfile('*.mat', 'select a model (.MAT file)');
-  %dataPath = '/Users/justin/Documents/MATLAB/medsim/data/med4_mashup';
-
-  disp('[pathname, filename]:');
-  disp([pathname, filename]);
-
-  set(handles.text_emotion_model_file, 'String', [pathname, filename]);
-  % % conf = resetConfig();
-  % conf.audioFile = [pathname, filename];
-  % initializePlayback(handles); % getPlaybackHandles
-  setappdata(0, 'emoSignalClassified', []);
-  updateDisplay(handles);
 
 
 function pushbutton_speaker_classifier_Callback(hObject, eventdata, handles)
   disp('`pushbutton_speaker_classifier_Callback`');
   [filename, pathname] = uigetfile('*.mat', 'select a classifier (.MAT file)');
   %dataPath = '/Users/justin/Documents/MATLAB/medsim/data/med4_mashup';
+  fullpath = [pathname, filename];
+  disp('fullpath:');
+  disp(fullpath);
 
-  disp('[pathname, filename]:');
-  disp([pathname, filename]);
+  if ~isempty(find(fullpath==0))
+    return
+  end
 
-  set(handles.text_speaker_classifier_file, 'String', [pathname, filename]);
+  set(handles.text_speaker_classifier_file, 'String', fullpath);
   % % conf = resetConfig();
   % conf.audioFile = [pathname, filename];
   % initializePlayback(handles); % getPlaybackHandles
   setappdata(0, 'spkSignalClassified', []);
   updateDisplay(handles);
-
-
-function pushbutton_speaker_model_Callback(hObject, eventdata, handles)
-  disp('`pushbutton_speaker_model_Callback`');
-  [filename, pathname] = uigetfile('*.mat', 'select a model (.MAT file)');
-  %dataPath = '/Users/justin/Documents/MATLAB/medsim/data/med4_mashup';
-
-  disp('[pathname, filename]:');
-  disp([pathname, filename]);
-
-  set(handles.text_speaker_model_file, 'String', [pathname, filename]);
-  % % conf = resetConfig();
-  % conf.audioFile = [pathname, filename];
-  % initializePlayback(handles); % getPlaybackHandles
-  setappdata(0, 'spkSignalClassified', []);
-  updateDisplay(handles);
-
-
-
 
 
 

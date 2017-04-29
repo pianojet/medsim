@@ -1,6 +1,7 @@
 function classFile = getClassFileName(label)
   classData = getappdata(0, 'classData');
   conf = getappdata(0, 'conf');
+
   if (nargin < 1 && isempty(classData.classNumberList))
     disp('no audio label set, cannot resolve path for classFile');
     classFile = '';

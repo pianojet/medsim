@@ -1,4 +1,5 @@
 rootConfPath = '/Users/justin/Documents/MATLAB/medsim/config/spk_app_config.ini';
+disp(sprintf('quicktrainassess.m, rootConfPath: %s', rootConfPath));
 conf = resetConfig(loadConfig(rootConfPath));
 
 [pathstr,thisAudioFileName,ext] = fileparts(conf.audioFile);

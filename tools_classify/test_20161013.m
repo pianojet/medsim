@@ -45,6 +45,22 @@ disp('tools_classify/test_20161013');
 
 if (nargin > 1)
   mdlData = classifierData;
+  if isfield(classifierData, 'selectedFeatures')
+    conf.selectedFeatures = classifierData.selectedFeatures;
+  end
+
+  if isfield(classifierData, 'numClusters')
+    conf.numClusters = classifierData.numClusters;
+  end
+
+  if isfield(classifierData, 'mappingType')
+    conf.mappingType = classifierData.mappingType;
+  end
+
+  if isfield(classifierData, 'filterBins')
+    conf.filterBins = classifierData.filterBins;
+  end
+
 
 elseif isfield(conf, 'modelClassifierFile') && ~isempty(conf.modelClassifierFile)
   mdlData = load(conf.modelClassifierFile, 'mdl');

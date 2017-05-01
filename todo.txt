@@ -93,6 +93,15 @@ sox normalized/*_verbal*.wav emo_verbal_norm_100pct.wav
 sox unnormalized/*_verbal*.wav emo_verbal_unnorm_100pct.wav
 
 
+#################   2017-05-01
+########################################################################################################################
+- silence class, noise class
+- review DVD's
+- respond to lab roster email
+- fadoua/medhi about latex thesis template
+
+
+
 
 
 
@@ -138,7 +147,7 @@ I have no problem stopping by your office to pick up the copies.  Thanks so much
 
 
 
-@(hObject,eventdata)medsim_train('popupmenu_classifier_CreateFcn',hObject,eventdata,guidata(hObject))
+@(hObject,eventdata)medsim_train('pushbutton_load_gnd_Callback',hObject,eventdata,guidata(hObject))
 
 @(hObject,eventdata)medsim_gui('pushbutton_load_gnd_Callback',hObject,eventdata,guidata(hObject))
 
@@ -204,11 +213,3 @@ The objective is to apply machine learning algorithms to improve software tools 
 
 We intend to use any existing simulation data to train and test our software.
 
-
-
-
-
-
-When you least expect...
-
-With you.

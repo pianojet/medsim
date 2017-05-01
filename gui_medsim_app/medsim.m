@@ -104,13 +104,19 @@ function initMedsim(handles)
 
 function pushbutton_find_speakers_Callback(hObject, eventdata, handles)
   disp('find speakers...');
-  conf = initializeConfig('/Users/justin/Documents/MATLAB/medsim/quicktrain/config/spk_app_config.ini');
+  conf = initializeConfig('/Users/justin/Documents/MATLAB/medsim/config/spk_app_config.ini');
   conf.audioFile = get(handles.dataPath, 'String');
   if (~isfield(conf, 'audioFile') || isempty(conf.audioFile))
     disp('Cannot continue without selecting an audio file!');
     return
   end
   conf.modelClassifierFile = get(handles.text_speaker_classifier_file, 'String');
+
+  if isempty(conf.modelClassifierFile) || isempty(conf.audioFile)
+    warning('no classifier or audio available');
+    return
+  end
+
   setappdata(0, 'conf', conf);
 
   classifierData = load(conf.modelClassifierFile);
@@ -121,13 +127,19 @@ function pushbutton_find_speakers_Callback(hObject, eventdata, handles)
 
 
 function pushbutton_find_anger_Callback(hObject, eventdata, handles)
-  conf = initializeConfig('/Users/justin/Documents/MATLAB/medsim/quicktrain/config/emo_app_config.ini');
+  conf = initializeConfig('/Users/justin/Documents/MATLAB/medsim/config/emo_app_config.ini');
   conf.audioFile = get(handles.dataPath, 'String');
   if (~isfield(conf, 'audioFile') || isempty(conf.audioFile))
     disp('Cannot continue without selecting an audio file!');
     return
   end
   conf.modelClassifierFile = get(handles.text_emotion_classifier_file, 'String');
+
+  if isempty(conf.modelClassifierFile) || isempty(conf.audioFile)
+    warning('no classifier or audio available');
+    return
+  end
+
   setappdata(0, 'conf', conf);
 
   classifierData = load(conf.modelClassifierFile);

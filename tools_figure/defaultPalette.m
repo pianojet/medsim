@@ -14,3 +14,7 @@ function palette = defaultPalette()
   % default unclassified color "bland blue"
   palette.default = [0.5 0.5 0.7; 0.5 0.5 0.7; 0.5 0.5 0.7; 0.5 0.5 0.7; ...
     0.5 0.5 0.7; 0.5 0.5 0.7; 0.5 0.5 0.7; 0.5 0.5 0.7];
+
+  % default classified colors
+  palette.classifiedDefault = [0.9 0.0 0.0; 0.0 0.9 0.0; 0.0 0.0 0.9; 0.9 0.0 0.9; ...
+    0.9 0.9 0.0; 0.0 0.9 0.9; 0.5 0.9 0.5; 0.9 0.5 0.5];

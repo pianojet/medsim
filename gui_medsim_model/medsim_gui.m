@@ -310,7 +310,7 @@ function pushbutton_load_gnd_Callback(hObject, eventdata, handles)
   gnd = load(fullpath);
   colors = defaultPalette();
   playbackOptions.signalClassified = gnd.g;
-  playbackOptions.colors = colors.speaker;
+  playbackOptions.colors = colors.classifiedDefault;
   setappdata(0, 'playbackOptions', playbackOptions);
   setappdata(0, 'signalClassified', gnd.g);
   refreshPlaybackAxes();

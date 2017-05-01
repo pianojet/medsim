@@ -114,6 +114,8 @@ function initializeData(handles)
   classifierData.filterBins = 0;
   setappdata(0, 'classifierData', classifierData);
 
+  setappdata(0, 'palette', defaultPalette());
+
   modelStats_refresh(handles);
   listbox_features_refresh(handles);
   set(handles.edit_bins, 'String', conf.numClusters);
@@ -283,7 +285,9 @@ function popupmenu_classifier_CreateFcn(hObject, eventdata, handles)
   conf = getappdata(0, 'conf');
   classifierList = {'knn', 'naivebayes', 'myNB'};
   set(hObject, 'String', classifierList);
-  set(hObject, 'Value', find(strcmp(classifierList, conf.classifier)));
+  if isfield(conf, 'classifier')
+    set(hObject, 'Value', find(strcmp(classifierList, conf.classifier)));
+  end
 
   % update_classifier_from_conf(hObject, eventdata, handles);
 
@@ -299,7 +303,9 @@ function popupmenu_mapping_type_CreateFcn(hObject, eventdata, handles)
   conf = getappdata(0, 'conf');
   mappingList = {'crisp', 'fuzzy', 'probabilistic'};
   set(hObject, 'String', mappingList);
-  set(hObject, 'Value', find(strcmp(mappingList, conf.mappingType)));
+  if isfield(conf, 'mappingType')
+    set(hObject, 'Value', find(strcmp(mappingList, conf.mappingType)));
+  end
 
   % update_mapping_type_from_conf(handles);
 
@@ -393,7 +399,51 @@ function pushbutton_build_classifier_Callback(hObject, eventdata, handles)
 
 
 
+function pushbutton_test_audio_Callback(hObject, eventdata, handles)
+  palette = getappdata(0, 'palette');
+  playbackOptions = getappdata(0, 'playbackOptions');
+  conf = initializeConfig('/Users/justin/Documents/MATLAB/medsim/config/spk_app_config.ini');
+  conf.audioFile = get(handles.dataPath, 'String');
+  conf.truthFile = get(handles.text_gndpath, 'String');
+  if (isempty(conf.audioFile) || isempty(conf.truthFile))
+    disp('Cannot continue without selecting an audio file and truth file!');
+    return
+  end
+  conf.modelClassifierFile = get(handles.text_classifierpath, 'String');
+
+  if isempty(conf.modelClassifierFile)
+    warning('no classifier chosen or available');
+    return
+  end
 
 
+  classifierData = load(conf.modelClassifierFile);
+  conf.override = classifierData;
+  setappdata(0, 'conf', conf);
 
 
+  [signalClassified, percentError,   truth, x_down, c_down, sample_down,  badIndices, modelSums] = test_with_stats(conf);
+  % [signalClassified, badIndices, modelSums] = test_with_stats(conf);
+  playbackOptions.colors = palette.classifiedDefault;
+  playbackOptions.signalClassified = signalClassified;
+
+  set(handles.text_result_err, 'String', percentError);
+  setappdata(0, 'signalClassified', signalClassified);
+  setappdata(0, 'playbackOptions', playbackOptions);
+  refreshPlaybackAxes();
+
+
+function pushbutton_load_gnd_Callback(hObject, eventdata, handles)
+  disp('`pushbutton_load_gnd_Callback`');
+  playbackOptions = getappdata(0, 'playbackOptions');
+  [filename, pathname] = uigetfile('*.mat', 'select a gnd truth file (.MAT file)');
+  %dataPath = '/Users/justin/Documents/MATLAB/medsim/data/med4_mashup';
+  fullpath = [pathname, filename];
+  disp('fullpath:');
+  disp(fullpath);
+
+  if ~isempty(find(fullpath==0))
+    return
+  end
+  gnd = load(fullpath);
+  set(handles.text_gndpath, 'String', fullpath);

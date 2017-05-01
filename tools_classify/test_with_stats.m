@@ -110,6 +110,23 @@ badIndices = [];
 if isfield(conf, 'override') && isfield(conf.override, 'mus') && isfield(conf.override, 'mdl')
   mdlData = conf.override;
 
+  if isfield(conf.override, 'selectedFeatures')
+    conf.selectedFeatures = conf.override.selectedFeatures;
+  end
+
+  if isfield(conf.override, 'numClusters')
+    conf.numClusters = conf.override.numClusters;
+  end
+
+  if isfield(conf.override, 'mappingType')
+    conf.mappingType = conf.override.mappingType;
+  end
+
+  if isfield(conf.override, 'filterBins')
+    conf.filterBins = conf.override.filterBins;
+  end
+
+
 elseif isfield(conf, 'modelClassifierFile') && ~isempty(conf.modelClassifierFile)
   mdlData = load(conf.modelClassifierFile, 'mdl');
   if strcmp(class(mdlData.mdl), 'ClassificationKNN')

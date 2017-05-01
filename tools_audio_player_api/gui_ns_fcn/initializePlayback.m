@@ -4,6 +4,10 @@ function initializePlayback(handles)
     conf.audioFile = get(handles.dataPath, 'String');
   end
 
+  if ~isfield(conf, 'playbackDSFactor')
+    conf.playbackDSFactor = 20;
+  end
+
   if isempty(conf.audioFile)
     maybeAudioData = getappdata(0, 'audioData');
     if isempty(maybeAudioData)

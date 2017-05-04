@@ -975,3 +975,36 @@ emo = [emo; 4*ones(275625,1)];
 
 
 
+
+
+
+
+
+
+
+
+mem1.err = 20.0;
+mem2.err = 10.0;
+mem3.err = 50.0;
+mem4.err = 7.5;
+mem5.err = 20.0;
+mem6.err = 20.0;
+
+population = [mem1 mem2 mem3 mem4 mem5 mem6];
+
+errz = [population.err];
+
+
+
+f1 = {'one', 'two', 'three'};
+f2 = {'two', 'four'};
+
+
+
+
+
+
+
+pp = '/Users/justin/Documents/MATLAB/medsim/data/error/ga_err_xYbFV6D3.mat';
+member = load(pp);
+

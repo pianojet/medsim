@@ -256,6 +256,10 @@ for s = 1:scanHopSam:total_working_samples
   signal_window = signal(limit_start:limit_end);
   features = getFeatures(signal_window, sample_rate, conf.selectedFeatures, featExtOptions);
   % mus = getMus(features, classCount, conf.numClusters);
+  if isempty(features) || (size(features,2) ~= size(mus,2))
+    warning('Bad features size, continuing...');
+    continue;
+  end
   norm_hist = getHist(features, mus, conf.mappingType, histOptions);
 
   [label, score] = customClassify(mdl, norm_hist);

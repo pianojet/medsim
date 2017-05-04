@@ -230,13 +230,18 @@ for s = 1:scanHopSam:total_working_samples
 
   signal_window = signal(limit_start:limit_end);
   features = getFeatures(signal_window, sample_rate, conf.selectedFeatures, featExtOptions);
-  % mus = getMus(features, classCount, conf.numClusters);
-  if size(features,1) > 0
-    norm_hist = getHist(features, mus, conf.mappingType, histOptions);
-  else
-    noFeaturesFound = [noFeaturesFound; [limit_start limit_end]];
-    norm_hist = zeros(1,totalClusters);
+
+  if isempty(features) || (size(features,2) ~= size(mus,2))
+    warning('Bad features size, continuing...');
+    continue;
   end
+
+  % if size(features,1) > 0
+  %   norm_hist = getHist(features, mus, conf.mappingType, histOptions);
+  % else
+  %   noFeaturesFound = [noFeaturesFound; [limit_start limit_end]];
+  %   norm_hist = zeros(1,totalClusters);
+  % end
 
   [label, score] = customClassify(mdl, norm_hist);
   allscores = [allscores; score];

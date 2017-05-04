@@ -128,7 +128,15 @@ classData.classNumberList = classNumberList;
 classData.continuousClassSignals = continuousClassSignals;
 classData.classSampleCounts = classSampleCounts;
 classData.featuresByClass = featuresByClass;
-save(classFile, '-struct', 'classData');
+
+
+[thisfilepath,thisfilename]=fileparts(classFile);
+if ~exist(thisfilepath)
+  mkdir(thisfilepath);
+end
+if isfield(conf, 'saveFiles') && conf.saveFiles
+  save(classFile, '-struct', 'classData');
+end
 
 
 
@@ -186,6 +194,19 @@ for classIndex = 1:length(classNumberList)
       thisSegmentClip = thisSignal(win_start:win_end);
 
       segmentFeatures = ExtractMultipleFeatures(thisSegmentClip, sample_rate, conf.selectedFeatures, featExtOptions);
+
+      emptyCheck = false;
+      fields = fieldnames(segmentFeatures);
+      for i = 1:numel(fields)
+        if isempty(segmentFeatures.(fields{i}))
+          emptyCheck = true;
+          break;
+        end
+      end
+      if emptyCheck
+        continue;
+      end
+
       seg = [];
       for f = 1:length(conf.selectedFeatures)
         seg = [seg segmentFeatures.(conf.selectedFeatures{f})];
@@ -220,13 +241,33 @@ for classIndex = 1:length(classNumberList)
     thisSegmentClip = thisSignal(win_start:win_end);
 
     segmentFeatures = ExtractMultipleFeatures(thisSegmentClip, sample_rate, conf.selectedFeatures, featExtOptions);
+
+    emptyCheck = false;
+    fields = fieldnames(segmentFeatures);
+    for i = 1:numel(fields)
+      if isempty(segmentFeatures.(fields{i}))
+        emptyCheck = true;
+        break;
+      end
+    end
+    if emptyCheck
+      continue;
+    end
+
     seg = [];
     for f = 1:length(conf.selectedFeatures)
       seg = [seg segmentFeatures.(conf.selectedFeatures{f})];
     end
 
     % featuresByClass{c}{featuresByClassCount} = seg;
-    totalFeaturesForThisClass = [totalFeaturesForThisClass; seg];
+    try
+      totalFeaturesForThisClass = [totalFeaturesForThisClass; seg];
+    catch ME
+      warning('Issue with processing features:');
+      disp(conf.selectedFeatures);
+      disp('thisSignalClip length: %d', length(thisSignalClip));
+      rethrow(ME)
+    end
     % featuresByClassCount = featuresByClassCount + 1;
   end
 

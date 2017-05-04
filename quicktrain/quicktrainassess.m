@@ -1,6 +1,28 @@
-rootConfPath = '/Users/justin/Documents/MATLAB/medsim/config/spk_app_config.ini';
-disp(sprintf('quicktrainassess.m, rootConfPath: %s', rootConfPath));
-conf = resetConfig(loadConfig(rootConfPath));
+function returnData = quicktrainassess(maybeRootConfPath, options)
+t1 = clock;
+if (nargin == 0)
+  maybeRootConfPath = '/Users/justin/Documents/MATLAB/medsim/quicktrain/config/spk_app_config.ini';
+end
+
+if (nargin < 2)
+  options = struct;
+end
+
+if ~isfield(options, 'disablePlotting') options.disablePlotting = false; end;
+
+returnData = struct;
+
+if ischar(maybeRootConfPath)
+  disp(sprintf('quicktrainassess.m, maybeRootConfPath: %s', maybeRootConfPath));
+  conf = resetConfig(loadConfig(maybeRootConfPath));
+elseif isstruct(maybeRootConfPath)
+  conf = maybeRootConfPath;
+else
+  error('Bad conf input');
+  return
+end
+
+if ~isfield(conf, 'saveFiles') conf.saveFiles = true; end;
 
 [pathstr,thisAudioFileName,ext] = fileparts(conf.audioFile);
 % conf.audioFile = 'data/emotion/raw/angry_neutral_trainer_train80pct.wav';
@@ -138,7 +160,13 @@ while conf.whichTrainingSegment <= maxPartitions
   returnData.mappingType = conf.mappingType;
 
   modelFile = sprintf('%s/qt_%s_%dBins_%s.%s.mat', conf.modelPath, classifierFeatures, length(returnData.mus), classString, thisAudioFileName);
-  save(modelFile, '-struct', 'returnData');
+  [thisfilepath,thisfilename]=fileparts(modelFile);
+  if ~exist(thisfilepath)
+    mkdir(thisfilepath);
+  end
+  if isfield(conf, 'saveFiles') && conf.saveFiles
+    save(modelFile, '-struct', 'returnData');
+  end
 
 
   badIndices = [];
@@ -273,7 +301,7 @@ while conf.whichTrainingSegment <= maxPartitions
 
 
 
-  makePlotWithDown(finalResults.truth, finalResults.x_down, finalResults.c_down, finalResults.sample_down);
+
 % truth = rawGndTest(1:n:length(rawGndTest));
 % x_down = rawSigTest(1:n:length(rawSigTest));
 % c_down = signalClassified(1:n:length(signalClassified));
@@ -302,8 +330,9 @@ while conf.whichTrainingSegment <= maxPartitions
 
 
 
-
-  f = mkdir(batchDir);
+  if ~options.disablePlotting
+    f = mkdir(batchDir);
+  end
   graphFile = sprintf('%s/graph.png', batchDir);
   filterBinFile = sprintf('%s/filtered.jpg', batchDir);
   allFilterBinFile = sprintf('%s/allFiltered.jpg', conf.trialPath);
@@ -331,19 +360,42 @@ while conf.whichTrainingSegment <= maxPartitions
   else
     conf.classifier = 'myNB';
   end
-  rmfield(finalResults, 'err');
   rmfield(finalResults, 'truth');
   rmfield(finalResults, 'x_down');
   rmfield(finalResults, 'c_down');
   rmfield(finalResults, 'sample_down');
+
   finalResults.selectedFeatures = conf.selectedFeatures;
   finalResults.numClusters = conf.numClusters;
   finalResults.mappingType = conf.mappingType;
   classifierFile = sprintf('%s/qt_err_%04d_%s_%s_%dBins_%s.%s.mat', conf.classifierPath, round(finalResults.err*100), conf.classifier, classifierFeatures, length(finalResults.mus), classString, thisAudioFileName);
-  save(classifierFile, '-struct', 'finalResults');
+
+  returnData.results = finalResults;
+  returnData.conf = conf;
+  t2 = clock;
+  returnData.time = etime(t2,t1);
+
+  if options.disablePlotting
+    return
+  end
+
+  [thisfilepath,thisfilename]=fileparts(classifierFile);
+  if ~exist(thisfilepath)
+    mkdir(thisfilepath);
+  end
+  if isfield(conf, 'saveFiles') && conf.saveFiles
+    save(classifierFile, '-struct', 'finalResults');
+  end
+  [thisfilepath,thisfilename]=fileparts(newConfFile);
+  if ~exist(thisfilepath)
+    mkdir(thisfilepath);
+  end
+  if isfield(conf, 'saveFiles') && conf.saveFiles
+    save(newConfFile, 'conf');
+  end
 
 
-
+  makePlotWithDown(finalResults.truth, finalResults.x_down, finalResults.c_down, finalResults.sample_down);
 
 
   % save the best classifier
@@ -357,9 +409,6 @@ while conf.whichTrainingSegment <= maxPartitions
   % tempconf.modelmyNBFile = finalClassifierDataFile;
   %mdl = doTrain(tempconf, finalResults);
 
-
-
-  save(newConfFile, 'conf');
 
   % comes from the test
   %saveas(gcf, graphFile);

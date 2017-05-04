@@ -302,8 +302,9 @@ modelData.sigmas = sigmas;
 modelData.modelTable = modelTable;
 modelData.modelLabel = modelLabel;
 % save the models
-
-save(conf.modelDataFile, '-struct', 'modelData');
+if isfield(conf, 'saveFiles') && conf.saveFiles
+  save(conf.modelDataFile, '-struct', 'modelData');
+end
 
 
 disp('Models processed.');

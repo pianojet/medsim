@@ -975,3 +975,9 @@ emo = [emo; 4*ones(275625,1)];
 
 
 
+
+
+
+
+member = '/Users/justin/Documents/MATLAB/medsim/data/ga/meta/10_best_member_err_27.4187.mat';
+

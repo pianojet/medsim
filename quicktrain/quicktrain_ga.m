@@ -13,8 +13,8 @@ function population = quicktrain_ga()
   globalBestMember.err = 100;
   globalBestMean = 100;
   population = [];
-  popsize = 12;
-  reproducers = 8;
+  popsize = 7;
+  reproducers = 6;
 
 
   featureErrors = struct;
@@ -55,13 +55,13 @@ function population = quicktrain_ga()
       globalBestMean = thisMean;
       bestMeanFile = sprintf('%sbest_means.txt', conf.metaPath);
       fileID = fopen(bestMeanFile, 'a');
-      fprintf(fileID, '%d %05.2f\n', thisGeneration, globalBestMean);
+      fprintf(fileID, '%04d %05.2f\n', thisGeneration, globalBestMean);
       fclose(fileID);
     end
 
 
     % log stats of this generation
-    logline = sprintf('Gen: %d', thisGeneration);
+    logline = sprintf('Gen: %04d', thisGeneration);
     logline = [logline sprintf(' | MIN: %05.2f  MEAN: %05.2f  MAX: %05.2f', min(B), thisMean, max(B))];
     logline = [logline sprintf(' | Top Values: ')];
     logline = [logline sprintf(' %05.2f', B(1:reproducers))];
@@ -71,7 +71,7 @@ function population = quicktrain_ga()
     fclose(fileID);
 
     % log running average error & time performance per feature
-    logline = sprintf('Gen: %d\n', thisGeneration);
+    logline = sprintf('Gen: %04d\n', thisGeneration);
 
     for p = 1:length(population)
       member = population(p);
@@ -116,8 +116,8 @@ function population = quicktrain_ga()
 
     newPop = [newPop thisBestMember];
 
-    for p = 1:2:reproducers
-      member1 = betterPop(p);
+    for p = 1:(reproducers/2)
+      member1 = betterPop(1);
       member2 = betterPop(p+1);
       newMemberConf = merge_member_confs(member1, member2);
       newMember = generate_member(newMemberConf, qtOptions);
@@ -126,11 +126,11 @@ function population = quicktrain_ga()
       end
     end
 
-    revBetterPop = fliplr(betterPop);
+    % revBetterPop = fliplr(betterPop);
 
     for p = 1:2:reproducers
       member1 = betterPop(p);
-      member2 = revBetterPop(p);
+      member2 = betterPop(p+1);
       newMemberConf = merge_member_confs(member1, member2);
       newMember = generate_member(newMemberConf, qtOptions);
       if isstruct(newMember) && isfield(newMember, 'errRpt') && isempty(newMember.errRpt)
@@ -160,6 +160,17 @@ function population = quicktrain_ga()
       end
     end
 
+    % occasionally remove a feature set if there are many
+    % (we want fewer feature sets b/c it takes time to proc them)
+    for i = 2:length(newPop)
+      member = newPop(i);
+      numFeatures = length(member.conf.selectedFeatures);
+      numAvailFeatures = length(member.conf.availableFeatures);
+      if numFeatures >= (numAvailFeatures-2) && randr(1,2) == 1
+        member.conf.selectedFeatures = randr(member.conf.selectedFeatures, 3);
+      end
+    end
+
     population = newPop;
     thisGeneration = thisGeneration + 1;
   end
@@ -179,7 +190,7 @@ function member = generate_member(conf, qtOptions)
   member = struct;
 
   % set new params for member
-  scanwintime = randr({0.50, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0, 2.25});
+  scanwintime = randr({0.50, 0.75, 1.0, 1.25, 1.5});
   conf.scan_wintime = scanwintime{1};
   conf.scan_hoptime = conf.scan_wintime / 2;
 

@@ -122,10 +122,11 @@ while conf.whichTrainingSegment <= maxPartitions
     wrapperCountMax = 0;
   end
 
-
+  returnData = getModelWithGnd(conf);
 
   finalResults = struct;
   finalResults.err = 100;
+  finalResults.featuresByClass = returnData.featuresByClass;
 
   filterErrStats = struct;
   filterErrStats.filterX = [];
@@ -145,7 +146,7 @@ while conf.whichTrainingSegment <= maxPartitions
   end
 
 
-  returnData = getModelWithGnd(conf);
+
   classifierFeatures = conf.selectedFeatures{1};
   for f = 2:length(conf.selectedFeatures)
     classifierFeatures = [classifierFeatures '|' conf.selectedFeatures{f}];
@@ -159,7 +160,7 @@ while conf.whichTrainingSegment <= maxPartitions
   returnData.numClusters = conf.numClusters;
   returnData.mappingType = conf.mappingType;
 
-  modelFile = sprintf('%s/qt_%s_%dBins_%s.%s.mat', conf.modelPath, classifierFeatures, length(returnData.mus), classString, thisAudioFileName);
+  modelFile = sprintf('%s/qt_%dBins_%s_%s.%s.mat', conf.modelPath, length(returnData.mus), classifierFeatures, classString, thisAudioFileName);
   [thisfilepath,thisfilename]=fileparts(modelFile);
   if ~exist(thisfilepath)
     mkdir(thisfilepath);
@@ -176,7 +177,6 @@ while conf.whichTrainingSegment <= maxPartitions
   conf.override.modelLabel = returnData.modelLabel;
   conf.override.modelTable = returnData.modelTable;
   conf.override.mus = returnData.mus;
-
 
   [badIndices, modelSums] = filterBins3(conf.override.modelTable, conf.override.modelLabel, 0); % running this just to get modelSums
   initialPrototypeData.modelSums = modelSums;
@@ -333,9 +333,11 @@ while conf.whichTrainingSegment <= maxPartitions
   if ~options.disablePlotting
     f = mkdir(batchDir);
   end
+  allFilterBinFile = sprintf('%s/allFiltered.jpg', conf.trialPath);
+
+  pcaFile = sprintf('%s/pca.png', batchDir);
   graphFile = sprintf('%s/graph.png', batchDir);
   filterBinFile = sprintf('%s/filtered.jpg', batchDir);
-  allFilterBinFile = sprintf('%s/allFiltered.jpg', conf.trialPath);
   wrapperBinFile = sprintf('%s/wrappered.jpg', batchDir);
   allWrapperBinFile = sprintf('%s/allWrappered.jpg', conf.trialPath);
   newConfFile = sprintf('%s/conf.mat', batchDir);
@@ -417,17 +419,48 @@ while conf.whichTrainingSegment <= maxPartitions
   close(gcf);
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% )  pca plot
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  clf;
+  colors = {'rx' 'bx' 'gx' 'cx' 'ro' 'bo' 'go' 'co'};
+  allFeatures = [];
+  fields = fieldnames(finalResults.featuresByClass);
+  for i = 1:numel(fields)
+    allFeatures = [allFeatures; finalResults.featuresByClass.(fields{i})];
+  end
+  [Y Z]=pca(allFeatures);
+  figure; title('PCA');
+  hold on
+  b = 1;
+  for i = 1:numel(fields)
+    e = size(finalResults.featuresByClass.(fields{i})) + b - 1;
+    plot( Z(b:e,1) , Z(b:e,2) , colors{i} );
+    b = e + 1;
+  end
+
+  % b = 1;
+  % e = size(cls1Features);
+  % plot(Z(b:e,1), Z(b:e,2), 'rx')
+  % b = size(cls1Features,1)+1;
+  % e = size(cls1Features,1)+size(cls2Features,1);
+  % plot(Z(b:e,1), Z(b:e,2), 'bx')
+  % b = size(cls1Features,1)+size(cls2Features,1)+1;
+  % e = size(cls1Features,1)+size(cls2Features,1)+size(cls3Features);
+  % plot(Z(b:e,1), Z(b:e,2), 'gx')
+  % b = size(cls1Features,1)+size(cls2Features,1)+size(cls3Features)+1;
+  % plot(Z(b:end,1), Z(b:end,2), 'cx')
+
+
+  saveas(gcf, pcaFile);
+  close(gcf);
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % )  prototype plot
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-  % r1 = initialPrototypeData.modelSums;
-  % b1 = initialPrototypeData.badIndices;
-  % xx = zeros(4,120);
-  % xx(:,b1) = 1;
-  % b2 = r1 .* xx;
 
 
   clf;

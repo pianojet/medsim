@@ -20,4 +20,4 @@ function classifierFile = getClassifierFileName()
   end
 
   % classifierFile = sprintf('%s/qt_err_%04d_%s_%s_%dBins_%s.mat', conf.classifierPath, round(classifierData.err*100), conf.classifier, classifierFeatures, length(classifierData.mus), classString);
-  classifierFile = sprintf('%sapp_%s_%s_%dBins_%s.mat', conf.classifierPath, conf.classifier, classifierFeatures, length(classifierData.mus), classString);
+  classifierFile = sprintf('%sapp_%s_%dBins_%s_%s.mat', conf.classifierPath, conf.classifier, length(classifierData.mus), classifierFeatures, classString);

@@ -103,6 +103,14 @@ sox unnormalized/*_verbal*.wav emo_verbal_unnorm_100pct.wav
 
 
 
+#################   2017-05-10
+########################################################################################################################
+- trials for comparing features & configs
+- finish organizing DVD
+- run DVD audio through application flow
+- Gabor feature dimension / breakdown (weird prototypes)
+
+
 
 
 
@@ -219,4 +227,22 @@ We intend to use any existing simulation data to train and test our software.
 
 
 
+
+/Applications/VLC.app/Contents/MacOS/VLC -I dummy --no-sout-video --sout-audio --no-sout-rtp-sap --no-sout-standard-sap --ttl=1 --sout-keep --sout "#transcode{acodec=s16l,channels=1,samplerate=44100}:std{access=file,mux=wav,dst=/Users/justin/thesis/medsimaudio/set01/04.wav}" /Users/justin/thesis/medsimvideo/set01/VTS_01_5.VOB vlc://quit
+
+
+/Users/justin/thesis/medsimvideo
+
+
+
+
+
+
+
+
+
+Just so that everyone knows - it's possible to successfully fulfill a platform of pro-gun, pro-life, immigration reform, privatization, and job growth without demonizing transparency, chastising free press, inconsistent messaging among staff, personal threats, and insulting the other side of the aisle.
+http://www.msn.com/en-us/news/politics/trumps-comey-firing-sets-off-new-round-of-leaks/ar-BBB2RHX?li=BBnb7Kz
+Still, the unusually detailed accounts of inner turmoil frustrated Trump's allies in the media, like Matt Drudge, who runs the enormously influential conservative aggregation website Drudge Report.
+"We never got 1 damaging leak out of Obama White House staff in 8 yrs. Under Trump, they appear hourly. BIG DANGER: Small leaks sink ships!!," Drudge said in a flurry of tweets.
 

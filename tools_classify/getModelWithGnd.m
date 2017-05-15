@@ -1,5 +1,5 @@
 function modelData = getModelWithGnd(conf, gnd)
-disp('scratch getModel');
+disp('tools_classify getModelWithGnd');
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %  Data Loading & Configuration
@@ -118,25 +118,11 @@ classSampleCounts.(thisLabel) = classSampleCounts.(thisLabel) + length(thisSegme
 
 
 
-classString = sprintf('%d', classNumberList(1));
-for classIndex = 2:length(classNumberList)
-  classString = [classString '|' sprintf('%d', classNumberList(classIndex))];
-end
-classFile = sprintf('%s/qt_%s.%s.mat', conf.classPath, classString, thisAudioFileName);
 classData = struct;
 classData.classNumberList = classNumberList;
 classData.continuousClassSignals = continuousClassSignals;
 classData.classSampleCounts = classSampleCounts;
 classData.featuresByClass = featuresByClass;
-
-
-[thisfilepath,thisfilename]=fileparts(classFile);
-if ~exist(thisfilepath)
-  mkdir(thisfilepath);
-end
-if isfield(conf, 'saveFiles') && conf.saveFiles
-  save(classFile, '-struct', 'classData');
-end
 
 
 
@@ -277,6 +263,28 @@ for classIndex = 1:length(classNumberList)
   featuresByClass.(label) = totalFeaturesForThisClass;
 end
 
+classData.featuresByClass = featuresByClass;
+
+
+classString = sprintf('%d', classNumberList(1));
+for classIndex = 2:length(classNumberList)
+  classString = [classString '|' sprintf('%d', classNumberList(classIndex))];
+end
+classifierFeatures = conf.selectedFeatures{1};
+for f = 2:length(conf.selectedFeatures)
+  classifierFeatures = [classifierFeatures '|' conf.selectedFeatures{f}];
+end
+
+classFile = sprintf('%s/qt_%s_%s.%s.mat', conf.classPath, classifierFeatures, classString, thisAudioFileName);
+
+[thisfilepath,thisfilename]=fileparts(classFile);
+if ~exist(thisfilepath)
+  mkdir(thisfilepath);
+end
+if isfield(conf, 'saveFiles') && conf.saveFiles
+  save(classFile, '-struct', 'classData');
+end
+
 
 % featuresByClass{c} = {};
 % featuresPerSecond = floor(1 / (conf.feature_hoptime));
@@ -352,6 +360,7 @@ modelData.mus = mus;
 modelData.sigmas = sigmas;
 modelData.modelTable = modelTable;
 modelData.modelLabel = modelLabel;
+modelData.featuresByClass = classData.featuresByClass;
 % save the models
 
 %save(conf.modelDataFile, '-struct', 'modelData');

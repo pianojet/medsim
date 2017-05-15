@@ -11,5 +11,5 @@ function modelFile = getModelFileName()
   for classIndex = 2:length(classNumberList)
     classString = [classString '|' sprintf('%d', classNumberList(classIndex))];
   end
-  modelFile = sprintf('%sapp_%s_%dBins_%s.mat', conf.modelPath, classifierFeatures, length(modelData.mus), classString);
+  modelFile = sprintf('%sapp_%dBins_%s_%s.mat', conf.modelPath, length(modelData.mus), classifierFeatures, classString);
 

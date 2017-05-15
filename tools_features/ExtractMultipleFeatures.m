@@ -247,7 +247,9 @@ end
 
 if ~isempty(findcell(featureList, {'Gabor'}))
     [GaborF, GaborS] = GaborAudioFeatures(d, sr, 'wintime', wintime, 'hoptime', hoptime, 'numcep', numcep);
-    features.Gabor = GaborF;
+    postGabor = GaborFeaturePostProcess(GaborF);
+    features.Gabor = postGabor;
+%     features.Gabor = GaborF;
 %     features.Gabor = GaborS.GaborMelAvg';
 end
 

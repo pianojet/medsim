@@ -982,3 +982,44 @@ emo = [emo; 4*ones(275625,1)];
 memberPath = '/Users/justin/Documents/MATLAB/medsim/data/ga/meta/20170504/43_best_member_err_32.0812.mat';
 member = load(memberPath);
 
+
+
+
+classPath = '/Users/justin/Documents/MATLAB/medsim/data/ga/speaker/class/qt_Gabor_1|2|3|4.Med9.mat';
+classData = load(classPath);
+cls1Features = classData.featuresByClass.class1;
+cls2Features = classData.featuresByClass.class2;
+cls3Features = classData.featuresByClass.class3;
+cls4Features = classData.featuresByClass.class4;
+allFeatures = [cls1Features; cls2Features; cls3Features; cls4Features];
+[Y Z]=pca(allFeatures);
+figure; title('PCA');
+hold on
+b = 1;
+e = size(cls1Features);
+plot(Z(b:e,1), Z(b:e,2), 'rx')
+b = size(cls1Features,1)+1;
+e = size(cls1Features,1)+size(cls2Features,1);
+plot(Z(b:e,1), Z(b:e,2), 'bx')
+b = size(cls1Features,1)+size(cls2Features,1)+1;
+e = size(cls1Features,1)+size(cls2Features,1)+size(cls3Features);
+plot(Z(b:e,1), Z(b:e,2), 'gx')
+b = size(cls1Features,1)+size(cls2Features,1)+size(cls3Features)+1;
+plot(Z(b:end,1), Z(b:end,2), 'cx')
+
+
+
+
+modelPath = '/Users/justin/Documents/MATLAB/medsim/data/ga/speaker/model/qt_Gabor_68Bins_1|2|3|4.Med9.mat';
+modelData = load(modelPath);
+
+
+
+
+
+
+
+
+
+tempconf.audioFile = '/Users/justin/Documents/MATLAB/medsim/data/speaker/audio/Med4.wav'
+tempconf.truthFile = '/Users/justin/Documents/MATLAB/medsim/data/speaker/audio/Med4_gndbysam.mat'

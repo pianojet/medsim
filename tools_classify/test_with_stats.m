@@ -67,7 +67,7 @@ end
 % end
 
 
-classCount = length(unique(signalGnd));
+classCount = length(unique(signalGnd(signalGnd<100)));
 % try to test with untrained portion...
 if conf.trainPartition > 0.50 && conf.trainPartition < 1.0
   allsnipped = [];
@@ -215,6 +215,9 @@ if strcmp(conf.classifier, 'naivebayes') && strcmp(conf.naivebayes_DistributionN
   histOptions.normalize = false;
 else
   histOptions.normalize = true;
+end
+if isfield(conf, 'histDist')
+  histOptions.distance = conf.histDist;
 end
 
 
@@ -392,8 +395,9 @@ sample_down = sample_rate/n;
 
 
 
-
-comparison = truth==c_down; %comparison = comparison.*x_down;
+truth_NoSpecialClasses = truth(truth<100);
+c_down_NoSpecialClasses = c_down(truth<100);
+comparison = truth_NoSpecialClasses==c_down_NoSpecialClasses; %comparison = comparison.*x_down;
 
 errorCount = sum(comparison==0);
 percentError = (errorCount/length(comparison))*100;

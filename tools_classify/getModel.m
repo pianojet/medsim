@@ -274,6 +274,9 @@ if strcmp(conf.classifier, 'naivebayes') && strcmp(conf.naivebayes_DistributionN
 else
   histOptions.normalize = true;
 end
+if isfield(conf, 'histDist')
+  histOptions.distance = conf.histDist;
+end
 
 
 

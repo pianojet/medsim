@@ -198,9 +198,9 @@ function member = generate_member(conf, qtOptions)
   conf.feature_wintime = featwintime{1};
   conf.feature_hoptime = 0.01;
 
-  numOfSelFeatures = randr(1,3);
+  numOfSelFeatures = randr(1,2);
   if randr(1,4) == 1
-    numOfSelFeatures = numOfSelFeatures + randr(2,length(conf.availableFeatures));
+    numOfSelFeatures = numOfSelFeatures + 1;
   end
   conf.selectedFeatures = randr(conf.availableFeatures, numOfSelFeatures);
 
@@ -224,6 +224,9 @@ function member = generate_member(conf, qtOptions)
   conf.classifier = selclassifiertype{1};
   conf.numClusters = randr(10,40);
   conf.filterBins = randr(0,5);
+
+  histDist = randr({'euclidean', 'seuclidean', 'cosine', 'mahalanobis', 'squaredeuclidean'});
+  conf.histDist = histDist{1};
 
   try
     member.conf = conf;
@@ -259,7 +262,7 @@ function mutateMember = mutate_member(member, qtOptions)
       conf.feature_wintime = featwintime{1};
       conf.feature_hoptime = 0.01;
     case 3
-      numOfSelFeatures = randr(1,length(conf.availableFeatures));
+      numOfSelFeatures = randr(1,floor(length(conf.availableFeatures)/2));
       conf.selectedFeatures = randr(conf.availableFeatures, numOfSelFeatures);
     case 4
       conf.feature_numcep = randr(1,13);
@@ -327,7 +330,7 @@ function new_conf = merge_member_confs(member1, member2)
   conf.feature_hoptime = scanhopmem{1}.conf.feature_hoptime;
 
 
-  numFeatures = round((length(member1.conf.selectedFeatures)+length(member2.conf.selectedFeatures))/2);
+  numFeatures = floor((length(member1.conf.selectedFeatures)+length(member2.conf.selectedFeatures))/2);
   % featureUnion = union(member1.conf.selectedFeatures, member2.conf.selectedFeatures);
   fList = [member1.conf.selectedFeatures member2.conf.selectedFeatures];
   conf.selectedFeatures = randr(fList, numFeatures);
@@ -353,6 +356,9 @@ function new_conf = merge_member_confs(member1, member2)
 
   classifiermem = randr({member1, member2});
   conf.classifier = classifiermem{1}.conf.classifier;
+
+  histDistmem = randr({member1, member2});
+  conf.histDist = histDistmem{1}.conf.histDist;
 
   conf.numClusters = round(mean([member1.conf.numClusters member2.conf.numClusters]));
   conf.filterBins = round(mean([member1.conf.filterBins member2.conf.filterBins]));

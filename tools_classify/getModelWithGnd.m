@@ -60,6 +60,9 @@ else
 end
 % g = signalGnd(:,2);
 
+% remove special classes
+signalGndClasses = signalGnd(signalGnd<100);
+
 trainPartition = conf.trainPartition;
 whichTrainingSegment = conf.whichTrainingSegment;
 
@@ -81,8 +84,8 @@ scanHopSam = floor(conf.scan_hoptime*sample_rate);
 
 classNumberList = sort(unique(signalGnd));
 %classCount = length(classNumberList);
-for classIndex = 1:length(classNumberList)
-  c = classNumberList(classIndex);
+for idx = 1:length(classNumberList)
+  c = classNumberList(idx);
   fprintf('init class number %d\n', c);
   label = sprintf(conf.classLabelStr, c);
   fprintf('init class label %s\n', label);
@@ -136,8 +139,8 @@ all_C = [];
 all_Idx = [];
 featuresByClass = {};
 
-for classIndex = 1:length(classNumberList)
-  c = classNumberList(classIndex);
+for c = 1:length(classNumberList(classNumberList<100))
+  % c = classNumberList(classIndex);
 
   label = sprintf(conf.classLabelStr, c);
   featuresByClass.(label) = [];
@@ -313,8 +316,7 @@ end
 
 fprintf('\n\nGetting observation segments:\n')
 % for c = 1:classCount
-for classIndex = 1:length(classNumberList)
-  c = classNumberList(classIndex);
+for c = 1:length(classNumberList(classNumberList<100))
 
   label = sprintf(conf.classLabelStr, c);
   % featuresByClass.(label) = [];

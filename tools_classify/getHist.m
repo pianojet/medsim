@@ -3,18 +3,21 @@ function norm_hist = getHist(features, mus, mappingType, options)
 
   if ~isfield(options, 'normalize') options.normalize = true;
   end
-  
+
+  if ~isfield(options, 'distance') options.distance = 'euclidean';
+  end
+
   totalClusters = size(mus,1);
 
   %%% distance, euclidean
   %???? pdist / pdist2 ????
   allDists = [];
   for k = 1:totalClusters
-    d = sum((features-repmat(mus(k,:), size(features,1),1)).^2,2);
+    % d = sum((features-repmat(mus(k,:), size(features,1),1)).^2,2);
     % dist = sqrt(sum(  ((features - repmat(mus(k,:), size(features,1),1)).^2)  , 2));
     % dist = sum(  ((features - repmat(mus(k,:), size(features,1),1)).^2)*inv(sigmas(:,:,k))  , 2);
     % d = pdist2(features, repmat(mus(k,:), size(features,1),1), 'euclidean');
-
+    d = pdist2(features, mus(k,:), options.distance);
     allDists = [allDists, d];
   end
 

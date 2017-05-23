@@ -56,7 +56,11 @@ end
 
 for i = 1:length(classes)
   c = classes(i);
-  sumFeat = sum(classRanges{c});
+  if size(classRanges{c},1) > 1
+    sumFeat = sum(classRanges{c});
+  else
+    sumFeat = classRanges{c};
+  end
   normSumFeat = sumFeat ./ sum(sumFeat);
   % normSumFeat = sumFeat;
   sums = [sums; normSumFeat];

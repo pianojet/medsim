@@ -392,10 +392,8 @@ while conf.whichTrainingSegment <= maxPartitions
   if ~exist(thisfilepath)
     mkdir(thisfilepath);
   end
-  if isfield(conf, 'saveFiles') && conf.saveFiles
-    save(newConfFile, 'conf');
-  end
 
+  save(newConfFile, 'conf');
 
   makePlotWithDown(finalResults.truth, finalResults.x_down, finalResults.c_down, finalResults.sample_down);
 

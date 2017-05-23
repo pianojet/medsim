@@ -110,7 +110,9 @@ all_C = [];
 all_Idx = [];
 classData.featuresByClass = {};
 
-for c = classData.classesAssigned
+for idx = 1:length(classData.classesAssigned)
+  c = classData.classesAssigned(idx);
+
   classData.featuresByClass{c} = [];
   totalFeaturesForThisClass = [];
   label = sprintf(conf.classLabelStr, c);
@@ -262,7 +264,8 @@ end
 
 
 fprintf('\n\nGetting observation segments:\n')
-for c = classData.classesAssigned
+for idx = 1:length(classData.classesAssigned)
+  c = classData.classesAssigned(idx);
 
   % segCount = 1;
   fprintf('\n####  Class %d:\n', c);

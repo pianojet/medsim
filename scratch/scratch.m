@@ -1023,3 +1023,8 @@ modelData = load(modelPath);
 
 tempconf.audioFile = '/Users/justin/Documents/MATLAB/medsim/data/speaker/audio/Med4.wav'
 tempconf.truthFile = '/Users/justin/Documents/MATLAB/medsim/data/speaker/audio/Med4_gndbysam.mat'
+
+
+truthPath = '/Users/justin/Documents/MATLAB/medsim/data/speaker/audio/Med4_5m_gndbysam.mat';
+truthPath = '/Users/justin/Documents/MATLAB/medsim/data/speaker/audio/SONATA_VOLUME_01_gnd.mat';
+save(truthPath, 'g');

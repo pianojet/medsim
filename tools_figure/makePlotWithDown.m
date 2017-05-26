@@ -1,18 +1,26 @@
-function makePlot(truth, x_down, c_down, sample_down)
-comparison = truth==c_down; comparison = comparison.*x_down;
+function makePlotWithDown(truth, x_down, c_down, sample_down)
 
-errorCount = sum(comparison==0);
-percentError = (errorCount/length(comparison))*100;
+truthNoSpecialClasses = truth(truth<100);
+cNoSpecialClasses = c_down(truth<100);
+xNoSpecialClasses = x_down(truth<100);
+comparisonNoSpecialClasses = truthNoSpecialClasses==cNoSpecialClasses; comparisonNoSpecialClasses = comparisonNoSpecialClasses.*xNoSpecialClasses;
+
+errorCount = sum(comparisonNoSpecialClasses==0);
+percentError = (errorCount/length(comparisonNoSpecialClasses))*100;
 percentCorrect = 100-percentError;
 
+
+comparison = truth==c_down;
+comparison = comparison.*x_down;
+comparison(truth>=100) = 0;
 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 8)  PLOT/OUTPUT:  graph
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-colors = [0.9 0.0 0.0; 0.0 0.9 0.0; 0.0 0.0 0.9; 0.0 0.9 0.9; 0.9 0.0 0.9; 0.0 0.0 0.0];
+palette = defaultPalette();
+colors = palette.classifiedDefault;
 xaxes = 1:length(x_down);
 
 class1 = truth==1; class1 = class1.*x_down;

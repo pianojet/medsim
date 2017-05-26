@@ -327,15 +327,15 @@ for c = 1:length(classNumberList(classNumberList<100))
   txt = ' ';
   featuresPerSecond = floor(1 / (conf.feature_hoptime));
   limit_start = 1;
-  numSegs = ceil(length(featuresByClass.(label))/featuresPerSecond);
+  numSegs = ceil(size(featuresByClass.(label), 1)/featuresPerSecond);
   for i = 1:numSegs
     for txt_i=1:size(txt,2) fprintf('\b'); end;
     txt = sprintf('%15d / %d', [i numSegs]);
     fprintf(txt);
 
     limit_end = featuresPerSecond*i;
-    if limit_end > length(featuresByClass.(label))
-      limit_end = length(featuresByClass.(label));
+    if limit_end > size(featuresByClass.(label), 1)
+      limit_end = size(featuresByClass.(label), 1);
     end
 
     % segsByClass{c}{i} = featuresByClass{c}(limit_start:limit_end,:);
@@ -343,9 +343,10 @@ for c = 1:length(classNumberList(classNumberList<100))
     % histsByClass{c}{i} = getHist(segsByClass{c}{i}, mus, conf.mappingType);
     % segCount = segCount + 1;
     voteHist = getHist(seg, mus, conf.mappingType, histOptions);
-    modelTable = [modelTable; voteHist];
-    modelLabel = [modelLabel; c];
-
+    if ~all(isnan(voteHist))
+      modelTable = [modelTable; voteHist];
+      modelLabel = [modelLabel; c];
+    end
     limit_start = limit_end + 1;
   end
 end

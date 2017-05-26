@@ -1,4 +1,5 @@
 function initializePlayback(handles)
+  disp('initializePlayback()');
   conf = getappdata(0, 'conf');
   if ~isfield(conf, 'audioFile')
     conf.audioFile = get(handles.dataPath, 'String');

@@ -80,11 +80,11 @@ function varargout = medsim_gui_OutputFcn(hObject, eventdata, handles)
   varargout{1} = handles.output;
 
 
-
 function initializeData(handles)
   conf = getappdata(0, 'conf');
 
-  classData.classNumberList = [];
+  classData.classFocus = 0;
+  classData.unsavedClasses = [];
   classData.continuousClassSignals = struct;
   classData.classSampleCounts = struct;
   classData.featuresByClass = struct;
@@ -92,6 +92,7 @@ function initializeData(handles)
   % = containers.Map;
   % classData.centers('30') = [];
   setappdata(0, 'classData', classData);
+  set(handles.text_unsaved_classes, 'String', '');
   set(handles.text_seconds_display, 'String', '0.0');
   set(handles.edit_label, 'String', 'N/A');
 
@@ -104,7 +105,7 @@ function pushbutton_new_Callback(hObject, eventdata, handles)
   classData = getappdata(0, 'classData');
   playbackOptions = getappdata(0, 'playbackOptions');
   playbackOptions.signalClassified = [];
-  if isempty(classData.classNumberList)
+  if classData.classFocus == 0
     initializeData(handles);
     classData = getappdata(0, 'classData');
   end
@@ -179,19 +180,23 @@ function pushbutton_add_Callback(hObject, eventdata, handles)
     return
   end
 
-  if isempty(classData.classNumberList)
+  if classData.classFocus == 0
     disp('missing label for class!');
     return
   end
 
   clip = getSignalClip(audio_data);
-  classNumber = classData.classNumberList(1);
+  classNumber = classData.classFocus;
   label = sprintf(conf.classLabelStr, classNumber);
   sigCount = length(classData.continuousClassSignals.(label));
   classData.continuousClassSignals.(label){sigCount+1} = clip;
   classData.classSampleCounts.(label) = classData.classSampleCounts.(label) + length(clip);
 
-  disp('saving classData:');
+  classData.unsavedClasses = sort(unique([classData.unsavedClasses classNumber]));
+  unsavedStr = sprintf('%d,', classData.unsavedClasses);
+  set(handles.text_unsaved_classes, 'String', unsavedStr(1:end-1));
+
+  disp('setting classData:');
   disp(classData);
 
   setappdata(0, 'classData', classData);
@@ -208,10 +213,24 @@ function pushbutton_save_Callback(hObject, eventdata, handles)
   % eventdata  reserved - to be defined in a future version of MATLAB
   % handles    structure with handles and user data (see GUIDATA)
   classData = getappdata(0, 'classData');
+  conf = getappdata(0, 'conf');
+
   classFile = getClassFileName();
-  save(classFile, '-struct', 'classData');
+  label = sprintf(conf.classLabelStr, classData.classFocus);
+
+  thisClassData = struct;
+  thisClassData.continuousClassSignals.(label) = classData.continuousClassSignals.(label);
+  thisClassData.classSampleCounts.(label) = classData.classSampleCounts.(label);
+  thisClassData.featuresByClass.(label) = classData.featuresByClass.(label);
+
+
+  save(classFile, '-struct', 'thisClassData');
   modelStats_refresh(handles.modelStats);
   fprintf('%s saved.\n', classFile);
+  classData.unsavedClasses(classData.unsavedClasses==classData.classFocus) = [];
+  unsavedStr = sprintf('%d,', classData.unsavedClasses);
+  set(handles.text_unsaved_classes, 'String', unsavedStr(1:end-1));
+  setappdata(0, 'classData', classData);
   disp('classData:');
   disp(classData);
 
@@ -228,28 +247,38 @@ function edit_label_Callback(hObject, eventdata, handles)
   appClassList = getappdata(0, 'appClassList'); % should be populated with valid class numbers by now
   audio_info = getappdata(0, 'audio_info');
   conf = getappdata(0, 'conf');
-  set(handles.dataPath, 'String', '');
+  %set(handles.dataPath, 'String', '');
 
 
   % try
   classNumber = str2num(get(hObject,'String'));
+  classData.classFocus = classNumber;
   label = sprintf(conf.classLabelStr, classNumber);
-  if any(appClassList==classNumber)
-    filename = getClassFileName(classNumber);
-    classData = load(filename);
-    classData.classNumberList = [classNumber];
-    fprintf('Loaded `Label`.\n', classNumber);
-  else
-    initializeData(handles);
-    set(handles.edit_label, 'String', classNumber);
-    classData = getappdata(0, 'classData');
-    classData.classNumberList = [classNumber];
-    classData.continuousClassSignals.(label) = {};
-    classData.classSampleCounts.(label) = 0;
-    classData.featuresByClass.(label) = [];
-    fprintf('New `Label` reset.\n', classNumber);
+
+  if ~any(classData.unsavedClasses==classNumber)
+
+    if any(appClassList==classNumber)
+      filename = getClassFileName(classNumber);
+      loadedClassData = load(filename);
+      classData.continuousClassSignals.(label) = loadedClassData.continuousClassSignals.(label);
+      classData.classSampleCounts.(label) = loadedClassData.classSampleCounts.(label);
+      classData.featuresByClass.(label) = loadedClassData.featuresByClass.(label);
+
+      fprintf('Loaded `Label`.\n', classNumber);
+    else
+      % initializeData(handles);
+      % set(handles.edit_label, 'String', classNumber);
+      % set(handles.text_seconds_display, 'String', '0.0');
+      classData.continuousClassSignals.(label) = {};
+      classData.classSampleCounts.(label) = 0;
+      classData.featuresByClass.(label) = [];
+      fprintf('New `Label` reset.\n', classNumber);
+    end
+
   end
   setappdata(0, 'classData', classData);
+  disp('classData initialized:');
+  disp(classData);
   % modelData.label = eventdata.NewData;
 
   % catch Exception
@@ -260,27 +289,24 @@ function edit_label_Callback(hObject, eventdata, handles)
   displaySeconds = sprintf('%2.2f', (classData.classSampleCounts.(label) / audio_info.SampleRate));
   set(handles.text_seconds_display, 'String', displaySeconds);
 
-  disp('`edit_label_Callback`');
-  disp('classData.classSampleCounts.(label)');
-  disp(classData.classSampleCounts.(label));
 
-  if classData.classSampleCounts.(label) > 0
-    audioData = [];
-    for i = 1:length(classData.continuousClassSignals.(label))
-      audioData = [audioData; classData.continuousClassSignals.(label){i}];
-    end
-    conf.audioFile = '';
-    setappdata(0, 'conf', conf);
-    setappdata(0, 'audioData', audioData);
-  else
-    conf.audioFile = '';
-    setappdata(0, 'conf', conf);
-    setappdata(0, 'audioData', [0;0]);
+  % if classData.classSampleCounts.(label) > 0
+  %   audioData = [];
+  %   for i = 1:length(classData.continuousClassSignals.(label))
+  %     audioData = [audioData; classData.continuousClassSignals.(label){i}];
+  %   end
+  %   conf.audioFile = '';
+  %   setappdata(0, 'conf', conf);
+  %   setappdata(0, 'audioData', audioData);
+  % else
+  %   conf.audioFile = '';
+  %   setappdata(0, 'conf', conf);
+  %   setappdata(0, 'audioData', [0;0]);
 
-  end
+  % end
 
-  initializePlayback(handles);
-  disp(eventdata);
+  % initializePlayback(handles);
+  % disp(eventdata);
 
 % --- Executes during object creation, after setting all properties.
 function edit_label_CreateFcn(hObject, eventdata, handles)

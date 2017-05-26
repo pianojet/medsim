@@ -83,10 +83,10 @@ function initMedsim(handles)
   disp('`initMedsim`');
   conf = struct;
   % conf = initializeConfig('/Users/justin/Documents/MATLAB/medsim/config/emo_app_config.ini');
-  set(handles.text_emotion_classifier_file, 'String', []);
+  %set(handles.text_emotion_classifier_file, 'String', []);
   % set(handles.text_emotion_model_file, 'String', []);
   % conf = initializeConfig('/Users/justin/Documents/MATLAB/medsim/config/spk_app_config.ini');
-  set(handles.text_speaker_classifier_file, 'String', []);
+  %set(handles.text_speaker_classifier_file, 'String', []);
   % set(handles.text_speaker_model_file, 'String', []);
   if isfield(conf, 'audioFile') conf = rmfield(conf, 'audioFile'); end; % gui needs user to choose audiofile
 
@@ -191,10 +191,12 @@ function updateDisplay(handles)
   elseif showEmo
     setappdata(0, 'signalClassified', emoSignalClassified);
     playbackOptions.colors = palette.emo;
-  else
+  elseif showAll
     spkSignalClassified(emoSignalClassified==3) = spkSignalClassified(emoSignalClassified==3)+4;
     setappdata(0, 'signalClassified', spkSignalClassified);
     playbackOptions.colors = palette.speakerEmo;
+  else
+    playbackOptions.colors = palette.default;
   end
 
 

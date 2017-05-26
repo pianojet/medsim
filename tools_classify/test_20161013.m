@@ -190,6 +190,9 @@ if strcmp(conf.classifier, 'naivebayes') && strcmp(conf.naivebayes_DistributionN
 else
   histOptions.normalize = true;
 end
+if isfield(conf, 'histDist')
+  histOptions.distance = conf.histDist;
+end
 
 
 fprintf('\n\n\n######################################\nClassifying %d total windows (sub-segments)... \n', subSegmentCount);
@@ -242,7 +245,7 @@ for s = 1:scanHopSam:total_working_samples
   %   noFeaturesFound = [noFeaturesFound; [limit_start limit_end]];
   %   norm_hist = zeros(1,totalClusters);
   % end
-
+  norm_hist = getHist(features, mus, conf.mappingType, histOptions);
   [label, score] = customClassify(mdl, norm_hist);
   allscores = [allscores; score];
   for scoreSeg = seg_start:seg_end

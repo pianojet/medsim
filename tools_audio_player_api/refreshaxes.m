@@ -101,8 +101,8 @@ function refreshaxes(audio_data, audio_info, options)
     plot(xaxes, class7, 'Color', colors(7, :));
     plot(xaxes, class8, 'Color', colors(8, :));
 
-    plot(xaxes, class100, 'Color', 'black'); % silence
-    plot(xaxes, class101, 'Color', 'grey'); % unknown / unintelligble
+    plot(xaxes, class100, 'Color', [0.7 0.7 0.7]); % silence
+    plot(xaxes, class101, 'Color', 'black'); % unknown / unintelligble
 
     %legend('Class #1','Class #2', 'Class #3', 'Class #4', 'Silence', 'Unknown');
 

@@ -151,7 +151,11 @@ while conf.whichTrainingSegment <= maxPartitions
   for f = 2:length(conf.selectedFeatures)
     classifierFeatures = [classifierFeatures '|' conf.selectedFeatures{f}];
   end
-  classNumberList = sort(unique(returnData.modelLabel));
+  if size(returnData.modelLabel, 1) > 0
+    classNumberList = sort(unique(returnData.modelLabel));
+  else
+    classNumberList = [0];
+  end
   classString = sprintf('%d', classNumberList(1));
   for classIndex = 2:length(classNumberList)
     classString = [classString '|' sprintf('%d', classNumberList(classIndex))];
@@ -169,6 +173,9 @@ while conf.whichTrainingSegment <= maxPartitions
     save(modelFile, '-struct', 'returnData');
   end
 
+  if isempty(returnData.modelTable)
+    continue
+  end
 
   badIndices = [];
   badIndexHistory = [];

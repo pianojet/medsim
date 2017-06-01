@@ -138,6 +138,10 @@ function modelStats_refresh(handles)
   modelStats = handles.modelStats;
   conf = getappdata(0, 'conf');
   audio_info = getappdata(0, 'audio_info');
+  if isempty(audio_info)
+    audio_info = defaultAudioInfo();
+    setappdata(0, 'audio_info', audio_info);
+  end
   tableData = [];
   appClassList = [];
   listboxList = {};
@@ -426,6 +430,42 @@ function pushbutton_test_audio_Callback(hObject, eventdata, handles)
   % [signalClassified, badIndices, modelSums] = test_with_stats(conf);
   playbackOptions.colors = palette.classifiedDefault;
   playbackOptions.signalClassified = signalClassified;
+
+
+
+
+  [pathstr,thisAudioFileName,ext] = fileparts(conf.audioFile);
+  finalResults = struct;
+  finalResults.err = percentError;
+  finalResults.truth = truth;
+  finalResults.x_down = x_down;
+  finalResults.c_down = c_down;
+  finalResults.sample_down = sample_down;
+
+
+  n = -1;
+  ex = 10000;
+  while ex > 0
+    n = n + 1;
+    batchDir = sprintf('%s/err_%04d_%s_%d', conf.trialPath, round(finalResults.err*100), thisAudioFileName, n);
+    % if finalResults.err < 10
+    %   batchDir = sprintf('%s/err_0%d_%s_%d', conf.trialPath, round(finalResults.err*100), thisAudioFileName, n);
+    % else
+    %   batchDir = sprintf('%s/err_%d_%s_%d', conf.trialPath, round(finalResults.err*1000), thisAudioFileName, n);
+    % end
+    ex = exist(batchDir);
+  end
+  f = mkdir(batchDir);
+  graphFile = sprintf('%s/graph.png', batchDir);
+  makePlotWithDown(finalResults.truth, finalResults.x_down, finalResults.c_down, finalResults.sample_down);
+  set(gcf,'PaperPositionMode','auto')
+  print(graphFile, '-djpeg', '-r0')
+  close(gcf);
+
+
+
+
+
 
   set(handles.text_result_err, 'String', percentError);
   setappdata(0, 'signalClassified', signalClassified);

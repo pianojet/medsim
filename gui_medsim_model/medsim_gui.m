@@ -22,7 +22,7 @@ function varargout = medsim_gui(varargin)
 
 % Edit the above text to modify the response to help medsim_gui
 
-% Last Modified by GUIDE v2.5 25-Apr-2017 15:19:24
+% Last Modified by GUIDE v2.5 29-May-2017 18:26:34
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -62,8 +62,8 @@ function medsim_gui_OpeningFcn(hObject, eventdata, handles, varargin)
   initializeData(handles);
   setappdata(0, 'usrInit', []);
   setappdata(0, 'audio_info', defaultAudioInfo());
+  setappdata(0, 'audio_aux', []);
   modelStats_refresh(handles.modelStats);
-
 
   % UIWAIT makes medsim_gui wait for user response (see UIRESUME)
   % uiwait(handles.figure1);
@@ -91,10 +91,13 @@ function initializeData(handles)
   classData.centers = struct;
   % = containers.Map;
   % classData.centers('30') = [];
+  conf.audioFile = '';
+  setappdata(0, 'conf', conf);
   setappdata(0, 'classData', classData);
   set(handles.text_unsaved_classes, 'String', '');
   set(handles.text_seconds_display, 'String', '0.0');
   set(handles.edit_label, 'String', 'N/A');
+  initializePlayback(handles);
 
 
 % --- Executes on button press in pushbutton_new.
@@ -160,7 +163,7 @@ function pushbutton_add_Callback(hObject, eventdata, handles)
   % hObject    handle to pushbutton_add (see GCBO)
   % eventdata  reserved - to be defined in a future version of MATLAB
   % handles    structure with handles and user data (see GUIDATA)
-  disp('pushbutton_add_Callback');
+  disp(sprintf('\npushbutton_add_Callback'));
 
   conf = getappdata(0, 'conf');
   playbackOptions = getappdata(0, 'playbackOptions');
@@ -171,8 +174,10 @@ function pushbutton_add_Callback(hObject, eventdata, handles)
   audio_info = getappdata(0, 'audio_info')
   sampleRate = audio_info.SampleRate;
 
-  disp('initial classData:');
-  disp(classData);
+  disp(sprintf('clickpos1: %d, clickpos2: %d', clickpos1, clickpos2));
+
+  % disp('initial classData:');
+  % disp(classData);
 
 
   if ~((clickpos1 > 1) && (clickpos2 < (length(audio_data) / playbackOptions.downSampleFactor)))
@@ -196,8 +201,8 @@ function pushbutton_add_Callback(hObject, eventdata, handles)
   unsavedStr = sprintf('%d,', classData.unsavedClasses);
   set(handles.text_unsaved_classes, 'String', unsavedStr(1:end-1));
 
-  disp('setting classData:');
-  disp(classData);
+  % disp('setting classData:');
+  % disp(classData);
 
   setappdata(0, 'classData', classData);
   displaySeconds = sprintf('%2.2f', (classData.classSampleCounts.(label) / audio_info.SampleRate));
@@ -250,13 +255,14 @@ function edit_label_Callback(hObject, eventdata, handles)
   %set(handles.dataPath, 'String', '');
 
 
-  % try
   classNumber = str2num(get(hObject,'String'));
   classData.classFocus = classNumber;
   label = sprintf(conf.classLabelStr, classNumber);
 
+  % skip loading classData if selected class is changed and unsaved locally (dirty)
   if ~any(classData.unsavedClasses==classNumber)
 
+    %
     if any(appClassList==classNumber)
       filename = getClassFileName(classNumber);
       loadedClassData = load(filename);
@@ -322,7 +328,7 @@ end
 
 
 function pushbutton_load_gnd_Callback(hObject, eventdata, handles)
-  disp('`pushbutton_load_gnd_Callback`');
+  disp(sprintf('\npushbutton_load_gnd_Callback()'));
   playbackOptions = getappdata(0, 'playbackOptions');
   [filename, pathname] = uigetfile('*.mat', 'select a gnd truth file (.MAT file)');
   %dataPath = '/Users/justin/Documents/MATLAB/medsim/data/med4_mashup';
@@ -340,3 +346,45 @@ function pushbutton_load_gnd_Callback(hObject, eventdata, handles)
   setappdata(0, 'playbackOptions', playbackOptions);
   setappdata(0, 'signalClassified', gnd.g);
   refreshPlaybackAxes();
+
+
+% --- Executes on button press in pushbutton_inspect_class.
+function pushbutton_inspect_class_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton_inspect_class (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+  disp(sprintf('\npushbutton_inspect_class_Callback()'));
+  playbackOptions = getappdata(0, 'playbackOptions');
+  classData = getappdata(0, 'classData');
+  audio_info = getappdata(0, 'audio_info');
+  audio_data = getappdata(0, 'audio_data');
+  conf = getappdata(0, 'conf');
+
+  classNumber = classData.classFocus;
+  label = sprintf(conf.classLabelStr, classNumber);
+
+  % set audio as class audio
+  class_audio = [];
+  segments = classData.continuousClassSignals.(label);
+  for l = 1:length(segments)
+    thisSegment = segments{l};
+    class_audio = [class_audio; thisSegment];
+  end
+
+  % if isempty(playbackOptions)
+  %   initializePlayback(handles);
+  % end
+
+  % nullify ground truth
+  playbackOptions.signalClassified = [];
+  conf.audioFile = '';
+  setappdata(0, 'conf', conf);
+  setappdata(0, 'signalClassified', []);
+  setappdata(0, 'audio_info', defaultAudioInfo());
+  setappdata(0, 'audio_data', []);
+  setappdata(0, 'audio_aux', class_audio);
+  initializePlayback(handles);
+
+
+
+

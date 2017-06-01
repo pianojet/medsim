@@ -12,6 +12,7 @@ function refreshAxes_Callback(hObject, eventdata, handles)
   setappdata(0, 'playbackOptions', playbackOptions);
   setappdata(0, 'clickpos1', 1);
   setappdata(0, 'clickpos2', floor(audio_info.TotalSamples/playbackOptions.downSampleFactor));
+  setappdata(0, 'zoomClickposDelta', 0);
 
 
   % % view changes, deprecates this signalClassified

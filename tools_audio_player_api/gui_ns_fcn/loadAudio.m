@@ -13,6 +13,7 @@ function loadAudio(handles)
   set(handles.dataPath, 'String', fullpath);
   conf.audioFile = fullpath;
   setappdata(0, 'conf', conf);
+  setappdata(0, 'zoomClickposDelta', 0);
   % % conf = resetConfig();
   % conf.audioFile = [pathname, filename];
   initializePlayback(handles); % getPlaybackHandles

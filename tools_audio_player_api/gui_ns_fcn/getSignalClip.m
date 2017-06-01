@@ -1,4 +1,5 @@
 function [signal_clip limits] = getSignalClip(signal)
+  disp(sprintf('\ngetSignalClip()'));
   % selected area
   [clickpos1Up clickpos2Up] = upScaledClickpos(signal);
   fprintf('getSignalClip up scaled sample range: %d - %d\n', clickpos1Up, clickpos2Up);

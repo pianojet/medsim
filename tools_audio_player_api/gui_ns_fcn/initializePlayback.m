@@ -1,5 +1,5 @@
 function initializePlayback(handles)
-  disp('initializePlayback()');
+  disp(sprintf('\ninitializePlayback()'));
   conf = getappdata(0, 'conf');
   if ~isfield(conf, 'audioFile')
     conf.audioFile = get(handles.dataPath, 'String');
@@ -10,7 +10,7 @@ function initializePlayback(handles)
   end
 
   if isempty(conf.audioFile)
-    maybeAudioData = getappdata(0, 'audioData');
+    maybeAudioData = getappdata(0, 'audio_aux');
     if isempty(maybeAudioData)
       warning('No audio data to load.');
       audio_data = [0;0];
@@ -21,7 +21,7 @@ function initializePlayback(handles)
     else
       audio_data = maybeAudioData;
       audio_info = defaultAudioInfo();
-      audio_info.TotalSamples = length(audio_data);
+      audio_info.TotalSamples = size(audio_data, 1);
       audio_info.Duration = audio_info.TotalSamples / audio_info.SampleRate;
 
     end
@@ -30,11 +30,12 @@ function initializePlayback(handles)
     audio_data = audioread(conf.audioFile);
   end
 
+  setappdata(0, 'zoomClickposDelta', 0);
   setappdata(0, 'audio_data', audio_data);
   setappdata(0, 'audio_info', audio_info);
 
-  disp('Audio Info:');
-  disp(audio_info);
+  % disp('Audio Info:');
+  % disp(audio_info);
 
 
   usrInitHandle = getappdata(0, 'usrInit');
@@ -58,14 +59,16 @@ function initializePlayback(handles)
   setappdata(0, 'playbackOptions', playbackOptions);
   setappdata(0, 'signalClassified', []);
 
+  setappdata(0, 'clickpos1', 1);
+  setappdata(0, 'clickpos2', floor(audio_info.TotalSamples/playbackOptions.downSampleFactor));
+  setappdata(0, 'zoomClickposDelta', 0);
+
   % gndOptions = playbackOptions;
   % gndOptions.figure = handles.gndFigure;
   % gndOptions.title = 'Classified';
   % setappdata(0, 'gndOptions', gndOptions);
 
   set(handles.signalFigure, 'buttondownfcn', @signalFigure_buttondownfcn);
-  setappdata(0, 'clickpos1', 1);
-  setappdata(0, 'clickpos2', ceil(audio_info.TotalSamples/conf.playbackDSFactor));
 
   % init playback gui
   refreshPlaybackAxes();

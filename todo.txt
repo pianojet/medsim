@@ -115,3 +115,24 @@ sox unnormalized/*_verbal*.wav emo_verbal_unnorm_100pct.wav
 ########################################################################################################################
 - DATA DATA DATA DATA DATA DATA DATA DATA DATA DATA DATA DATA DATA DATA DATA 
 - moar DATA DATA DATA DATA DATA DATA DATA DATA DATA DATA DATA DATA 
+
+
+#################   2017-05-13
+########################################################################################################################
+- error per speaker
+- more testing on speakers (see notes)
+- emotion detection only on doctor?
+
+
+#################   2017-05-30
+########################################################################################################################
+... per speaker (use a table in GUI)
+... complete `trial` graph output analysis for the `Test Classifier` in `medsim_train`
+... more more labeling & correct legends
+... increment from low err setup to high err gui
+
+
+
+
+
+

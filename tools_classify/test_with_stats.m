@@ -168,7 +168,7 @@ total_segments = total_working_samples/sample_rate;
 segmentAudio = {};
 segmentFeatures = {};
 %classCount = length(mdl.ClassNames);
-classCount = conf.numClasses;
+classCount = size(mdl.ClassNames, 1);
 totalClusters = conf.numClusters*classCount;
 
 scanWinSam = floor(conf.scan_wintime*sample_rate);

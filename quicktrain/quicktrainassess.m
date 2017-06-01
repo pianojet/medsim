@@ -369,10 +369,10 @@ while conf.whichTrainingSegment <= maxPartitions
   else
     conf.classifier = 'myNB';
   end
-  rmfield(finalResults, 'truth');
-  rmfield(finalResults, 'x_down');
-  rmfield(finalResults, 'c_down');
-  rmfield(finalResults, 'sample_down');
+  % rmfield(finalResults, 'truth');
+  % rmfield(finalResults, 'x_down');
+  % rmfield(finalResults, 'c_down');
+  % rmfield(finalResults, 'sample_down');
 
   finalResults.selectedFeatures = conf.selectedFeatures;
   finalResults.numClusters = conf.numClusters;

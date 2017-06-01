@@ -6,6 +6,9 @@ function zoombutton_Callback(hObject, eventdata, handles)
   % playbackOptions = getappdata(0, 'playbackOptions');
   % playbackOptions.
   % gndOptions = getappdata(0, 'gndOptions');
-  disp('`zoombutton_Callback`');
+  disp(sprintf('\nzoombutton_Callback()'));
   refreshPlaybackAxes();
-  disp('`zoombutton_Callback` done.');
+
+  clickpos1 = getappdata(0, 'clickpos1');
+  setappdata(0, 'zoomClickposDelta', clickpos1);
+  disp(sprintf(' (zoombutton_Callback) zoomClickposDelta set to %d', clickpos1));

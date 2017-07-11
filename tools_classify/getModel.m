@@ -142,12 +142,18 @@ for classIndex = 1:length(classData.classNumberList)
 
       segmentFeatures = ExtractMultipleFeatures(thisSegmentClip, sample_rate, conf.selectedFeatures, featExtOptions);
       seg = [];
+      illegalFeatures = false;
       for f = 1:length(conf.selectedFeatures)
+        if (size(segmentFeatures.(conf.selectedFeatures{f}), 1) == 0)
+          illegalFeatures = true;
+        end
         seg = [seg segmentFeatures.(conf.selectedFeatures{f})];
       end
 
+      if ~illegalFeatures
       % featuresByClass{c}{featuresByClassCount} = seg;
-      totalFeaturesForThisClass = [totalFeaturesForThisClass; seg];
+        totalFeaturesForThisClass = [totalFeaturesForThisClass; seg];
+      end
       % featuresByClassCount = featuresByClassCount + 1;
     end
   end
@@ -321,6 +327,7 @@ modelData.mus = mus;
 modelData.sigmas = sigmas;
 modelData.modelTable = modelTable;
 modelData.modelLabel = modelLabel;
+modelData.featuresByClass = classData.featuresByClass;
 % save the models
 
 %save(conf.modelDataFile, '-struct', 'modelData');

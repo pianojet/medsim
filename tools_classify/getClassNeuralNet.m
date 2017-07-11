@@ -1,5 +1,6 @@
-function [c confidence] = getClassKnn(scores, options)
-  % expect the predicted label to be last element in scores
+function [c confidence] = getClassNeuralNet(scores, options)
+  % expect the predicted label to be last element
+
 
   if ~isfield(options, 'topThreshold') options.topThreshold = 0;
   end
@@ -40,8 +41,3 @@ function [c confidence] = getClassKnn(scores, options)
     c = unconfident;
     confidence = 3;
   end
-
-
-
-
-  % c = scores(1,end);

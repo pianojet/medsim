@@ -52,16 +52,16 @@ else
 end
 
 if size(gnd,2) > 1
-  signal = x(gnd(:,2) ~= 5);
-  signalGnd = gnd(gnd(:,2) ~= 5, 2);
+  signal = x(gnd(:,2) < 100);
+  signalGnd = gnd(gnd(:,2) < 100, 2);
 else
-  signal = x(gnd(:) ~= 5);
-  signalGnd = gnd(gnd(:) ~= 5);
+  signal = x(gnd(:) < 100);
+  signalGnd = gnd(gnd(:) < 100);
 end
 % g = signalGnd(:,2);
 
 % remove special classes
-signalGndClasses = signalGnd(signalGnd<100);
+%signalGndClasses = signalGnd(signalGnd<100);
 
 trainPartition = conf.trainPartition;
 whichTrainingSegment = conf.whichTrainingSegment;

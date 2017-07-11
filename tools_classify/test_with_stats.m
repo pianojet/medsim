@@ -1,4 +1,4 @@
-function [signalClassified, percentError,   truth, x_down, c_down, sample_down,  badIndices, modelSums] = test_with_stats(conf)
+function [signalClassified, percentError,   truth, x_down, c_down, sample_down,  badIndices, modelSums, signalConfidence] = test_with_stats(conf)
 
 % % config
 % pathconf = loadConfig('/Users/justin/Documents/MATLAB/scratch/path_config.ini');
@@ -59,6 +59,13 @@ else
   %signalGnd = gnd;
 end
 
+
+% truth labels may differ from labels assigned in GUI, so make a map
+if ~isfield(conf, 'labelMap') || ~isa(conf.labelMap, 'containers.Map')
+  keySet = 1:100;
+  valueSet = 1:100;
+  conf.labelMap = containers.Map(keySet, valueSet);
+end
 
 
 % if isfield(conf, 'testWithNonTraining') && ~isempty(conf.testWithNonTraining) && conf.testWithNonTraining ~= 0 && ~strcmp(conf.testWithNonTraining, 'off')
@@ -138,6 +145,10 @@ elseif isfield(conf, 'modelClassifierFile') && ~isempty(conf.modelClassifierFile
     conf.classifier = 'naivebayes';
     % getClass = @getClassNaiveBayes;
     % customClassify = @predict;
+
+  elseif strcmp(class(mdlData.mdl), 'network')
+    conf.classifier = 'nn';
+
   else
     conf.classifier = 'myNB';
 
@@ -154,6 +165,9 @@ elseif strcmp(conf.classifier, 'naivebayes')
 elseif strcmp(conf.classifier, 'myNB')
   getClass = @getClassNaiveBayes;
   customClassify = @myNB_getPosterior;
+elseif strcmp(conf.classifier, 'nn')
+  getClass = @getClassNeuralNet;
+  customClassify = @predictMyNN;
 end
 mdl = mdlData.mdl;
 mus = mdlData.mus;
@@ -168,7 +182,12 @@ total_segments = total_working_samples/sample_rate;
 segmentAudio = {};
 segmentFeatures = {};
 %classCount = length(mdl.ClassNames);
-classCount = size(mdl.ClassNames, 1);
+if isprop(mdl, 'ClassNames') || isfield(mdl, 'ClassNames')
+  classCount = size(mdl.ClassNames, 1);
+else
+  classCount = size(mdl.userdata.sortedlabels, 1);
+end
+
 totalClusters = conf.numClusters*classCount;
 
 scanWinSam = floor(conf.scan_wintime*sample_rate);
@@ -230,6 +249,7 @@ limits = [];
 subSegmentIndex = 0;
 txt = ' ';
 allscores = [];
+
 % for s = 1:scanHopSam:(total_working_samples+mod(total_working_samples,scanHopSam))
 for s = 1:scanHopSam:total_working_samples
   for txt_i=1:size(txt,2) fprintf('\b'); end;
@@ -263,9 +283,15 @@ for s = 1:scanHopSam:total_working_samples
     warning('Bad features size, continuing...');
     continue;
   end
-  norm_hist = getHist(features, mus, conf.mappingType, histOptions);
 
-  [label, score] = customClassify(mdl, norm_hist);
+  if strcmp(conf.classifier, 'nn')
+    norm_hist = [];
+    [label, score] = customClassify(mdl, features);
+  else
+    norm_hist = getHist(features, mus, conf.mappingType, histOptions);
+    [label, score] = customClassify(mdl, norm_hist);
+  end
+  label = conf.labelMap(label);
   allscores = [allscores; score];
   for scoreSeg = seg_start:seg_end
     subSegmentLimits{scoreSeg} = [subSegmentLimits{scoreSeg}; limit_start limit_end];
@@ -286,25 +312,29 @@ fprintf('\n\n######################################\nReferencing back to audio..
 fprintf('TIME:')
 disp(clock);
 signalClassified = [];
+signalConfidence = [];
 
 getClassOptions = struct;
-% if isfield(conf, 'topThreshold') getClassOptions.topThreshold = conf.topThreshold; else getClassOptions.topThreshold = 0; end;
-% if isfield(conf, 'midThreshold') getClassOptions.midThreshold = conf.midThreshold; else getClassOptions.midThreshold = 0; end;
+getClassOptions.labelMap = conf.labelMap;
+if isfield(conf, 'topThreshold') getClassOptions.topThreshold = conf.topThreshold; else getClassOptions.topThreshold = 0; end;
+if isfield(conf, 'midThreshold') getClassOptions.midThreshold = conf.midThreshold; else getClassOptions.midThreshold = 0; end;
 
 for i = 1:subSegmentCount
   %c = subSegmentLabels(i);
   s = subSegmentScores{i};
-  c = getClass(s, getClassOptions);
+  [c confidence] = getClass(s, getClassOptions);
 
   sizeSoFar = size(signalClassified,1);
   augToSize = limits(i,2);
   augThisMuch = augToSize - sizeSoFar;
 
   dataToAug = c * ones(augThisMuch,1);
+  confToAug = confidence * ones(augThisMuch,1);
   % else
   %   dataToAug = zeros(augThisMuch,1);
   % end
   signalClassified = [signalClassified; dataToAug];
+  signalConfidence = [signalConfidence; confToAug];
 end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -393,10 +423,13 @@ x_down = rawSigTest(1:n:length(rawSigTest));
 c_down = signalClassified(1:n:length(signalClassified));
 sample_down = sample_rate/n;
 
+% assuming our classifier is classifing on valid classes, if we
+%   include 100 or 101, it will have been classified, so figure out
+%   whether ot include it in error correction:
+specialClassLimit = max(unique(c_down));
 
-
-truth_NoSpecialClasses = truth(truth<100);
-c_down_NoSpecialClasses = c_down(truth<100);
+truth_NoSpecialClasses = truth(truth<=specialClassLimit);
+c_down_NoSpecialClasses = c_down(truth<=specialClassLimit);
 comparison = truth_NoSpecialClasses==c_down_NoSpecialClasses; %comparison = comparison.*x_down;
 
 errorCount = sum(comparison==0);
@@ -406,7 +439,9 @@ percentCorrect = 100-percentError;
 % percentCorrectNotUnknown = 100-errCalcNotUnknown;
 disp(sprintf('Error Percent: %%%3.2f', percentError));
 
-
+% if isfield(conf, 'dbstopErrPct') && percentError > conf.dbstopErrPct
+%   error('Error is too high');
+% end
 
 %%%%%%%%% GET SEGTRUTH %%%%%%%%%%
 %   (subSegmentCount, rawGndTest, subSegmentLimits)

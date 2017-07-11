@@ -15,6 +15,8 @@ function classifierFile = getClassifierFileName()
     conf.classifier = 'knn';
   elseif strcmp(class(classifierData.mdl), 'ClassificationNaiveBayes')
     conf.classifier = 'naivebayes';
+  elseif strcmp(class(classifierData.mdl), 'network')
+    conf.classifier = 'nn';
   else
     conf.classifier = 'myNB';
   end

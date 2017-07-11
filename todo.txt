@@ -133,6 +133,44 @@ sox unnormalized/*_verbal*.wav emo_verbal_unnorm_100pct.wav
 
 
 
+#################   2017-06-28
+########################################################################################################################
+? MFCC tests
+? silence
+? paper latex issue
+? paper content
 
 
+
+
+
+
+
+
+
+I'm forgetting the nuances of the diagram to the right - am I extracting all silence and continuing as normal for this test?  What am I comparing again
+
+Regarding the 5-class problem with silence (diagram on the left), one technicality I'm anticipating is that my classifier "window" (distinct from the ~2ms feature frame window from which a set of MFCC coefficients are pulled) tends to be roughly 0.5s - 1.0s.  Since durations of silence rarely exceeds this amount, the window will most often contain more speaker signal anyways, but reducing the size of this classifier window can hurt results.  With this realization, not sure if there's anything we can think of to adjust the experiment - I'll otherwise just continue as planned to get measurable results.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+fadoua khmaissia
 

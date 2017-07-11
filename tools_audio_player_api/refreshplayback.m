@@ -23,8 +23,8 @@ function player = refreshplayback(audio_data, audio_info, options)
   end
 
 
-  disp('playback options:');
-  disp(options);
+  % disp('playback options:');
+  % disp(options);
   % vars for playhead plot
   frame_rate = 5;
   frameT = 1/frame_rate;

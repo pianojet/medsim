@@ -1,6 +1,11 @@
 function percentError = calculateErr(data, truth)
-  truthNoSpecialClasses = truth(truth<100);
-  dataNoSpecialClasses = data(truth<100);
+  specialClassLimit = max(unique(data));
+
+  truthNoSpecialClasses = truth(truth<=specialClassLimit);
+  dataNoSpecialClasses = data(truth<=specialClassLimit);
+
+  % truthNoSpecialClasses = truth(truth<=100);
+  % dataNoSpecialClasses = data(truth<=100);
   comparison = dataNoSpecialClasses==truthNoSpecialClasses; %comparison = comparison.*x_down;
 
   errorCount = sum(comparison==0);

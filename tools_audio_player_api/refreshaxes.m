@@ -15,6 +15,11 @@ function refreshaxes(audio_data, audio_info, options)
   end
   signalClassified = options.signalClassified;
 
+  if ~isfield(options, 'signalConfidence') options.signalConfidence = [];
+  end
+  signalConfidence = options.signalConfidence;
+
+
   if ~isfield(options, 'downSampleFactor') || (isfield(options, 'downSampleFactor') && options.downSampleFactor >= length(audio_data))
     options.downSampleFactor = 1;
   end
@@ -25,6 +30,9 @@ function refreshaxes(audio_data, audio_info, options)
   axesHandle = options.figure;
 
   if ~isfield(options, 'title') options.title = 'Classified';
+  end
+
+  if ~isfield(options, 'silenceStems') options.silenceStems = false;
   end
 
   % if ~isfield(options, 'samplelimits') options.samplelimits = [1 audio_info.TotalSamples];
@@ -55,6 +63,7 @@ function refreshaxes(audio_data, audio_info, options)
     if downSampleFactor > 1
       c_down = signalClassified(1:downSampleFactor:length(signalClassified));
       sample_down = round(audio_info.SampleRate/downSampleFactor);
+      confidence_down = signalConfidence(1:downSampleFactor:length(signalConfidence));
     else
       c_down = signalClassified;
       sample_down = audio_info.SampleRate;
@@ -78,7 +87,6 @@ function refreshaxes(audio_data, audio_info, options)
     xtklbl = xlim_labels;
     set(axesHandle, 'XTick', xtk, 'XTickLabel',xtklbl);
 
-
     class1 = c_down==1; class1 = class1.*x_down;
     class2 = c_down==2; class2 = class2.*x_down;
     class3 = c_down==3; class3 = class3.*x_down;
@@ -88,9 +96,27 @@ function refreshaxes(audio_data, audio_info, options)
     class7 = c_down==7; class7 = class7.*x_down;
     class8 = c_down==8; class8 = class8.*x_down;
 
-    class100 = c_down==100; class100 = class100.*x_down;
     class101 = c_down==101; class101 = class101.*x_down;
 
+    classDrawSig = [];
+    if options.silenceStems
+      class100a = c_down==100; class100a = class100a.*1.2;
+      class100b = c_down==100; class100b = class100b.*-1.2;
+      stem(xaxes, class100a, 'Color', [0.7 0.7 0.7]); % silence
+      stem(xaxes, class100b, 'Color', [0.7 0.7 0.7]); % silence
+
+      % if we're drawing silence stems,
+      %   we want to show signal painted in black (might get overdrawn later for
+      %   parts of signal that has been classified)
+      classDrawSig = x_down;
+      plot(xaxes, classDrawSig, 'Color', 'black');
+
+    else
+      class100 = c_down==100; class100 = class100.*x_down;
+      plot(xaxes, class100, 'Color', [0.7 0.7 0.7]); % silence
+    end
+
+    plot(xaxes, class101, 'Color', 'black'); % unknown / unintelligble
 
     plot(xaxes, class1, 'Color', colors(1, :));
     plot(xaxes, class2, 'Color', colors(2, :));
@@ -101,17 +127,31 @@ function refreshaxes(audio_data, audio_info, options)
     plot(xaxes, class7, 'Color', colors(7, :));
     plot(xaxes, class8, 'Color', colors(8, :));
 
-    plot(xaxes, class100, 'Color', [0.7 0.7 0.7]); % silence
-    plot(xaxes, class101, 'Color', 'black'); % unknown / unintelligble
-
-    %legend('Class #1','Class #2', 'Class #3', 'Class #4', 'Silence', 'Unknown');
+    if ~isempty(classDrawSig)
+      plot(xaxes, classDrawSig, 'Color', 'black');
+    end
+    legend('Class #1','Class #2', 'Class #3', 'Class #4');
 
 
     xlabel('Seconds', 'Color', 'black');
     ylabel('Signal Amplitude', 'Color', 'black');
     title(options.title, 'Color', 'black');
 
+    if ~isempty(signalConfidence)
+      if downSampleFactor > 1
+        confidence_down = signalConfidence(1:downSampleFactor:length(signalConfidence));
+      else
+        confidence_down = signalConfidence;
+      end
+      conf_x_down = x_down;
+      conf_x_down(conf_x_down>=0) = 0;
 
+      conf1 = confidence_down==1; conf1 = conf1.*conf_x_down;
+      conf2 = confidence_down==2; conf2 = conf2.*conf_x_down;
+      plot(xaxes, conf1, 'Color', [0 0 0]);
+      plot(xaxes, conf2, 'Color', [0.5 0.5 0.5]);
+
+    end
 
   else
     plot(xaxes, x_down);

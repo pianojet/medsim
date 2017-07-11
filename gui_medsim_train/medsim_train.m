@@ -113,14 +113,49 @@ function initializeData(handles)
   classifierData.mdl = struct;
   classifierData.filterBins = 0;
   setappdata(0, 'classifierData', classifierData);
-
   setappdata(0, 'palette', defaultPalette());
+
+  silenceOptions = struct;
+  silenceOptions.method = 1;
+  silenceOptions.silenceSVMfile = conf.silenceSVMfile;
+  silenceOptions.window = conf.silenceWinHop;
+  silenceOptions.weightSTE = conf.weightSTE;
+  silenceOptions.weightSC = conf.weightSC;
+  silenceOptions.filtorder = conf.filtorder;
+  setappdata(0, 'silenceOptions', silenceOptions);
 
   modelStats_refresh(handles);
   listbox_features_refresh(handles);
   set(handles.edit_bins, 'String', conf.numClusters);
-  set(handles.edit_filter_bins, 'String', conf.filterBins);
 
+  ff = conf.filterBins;
+  if ff > 0
+    conf.filterBins = 1;
+    conf.removeCount = ff;
+  else
+    conf.filterBins = 0;
+    conf.removeCount = 0;
+  end
+  set(handles.edit_filter_bins, 'String', conf.removeCount);
+  set(handles.edit_wintime, 'String', conf.scan_wintime);
+  set(handles.edit_hoptime, 'String', conf.scan_hoptime);
+
+  set(handles.topThreshold, 'String', conf.topThreshold);
+  set(handles.midThreshold, 'String', conf.midThreshold);
+
+  set(handles.edit_weightSTE, 'String', conf.weightSTE);
+  set(handles.edit_weightSC, 'String', conf.weightSC);
+  set(handles.edit_filtorder, 'String', conf.filtorder);
+
+  set(handles.pca_checkbox1, 'Value', 1);
+  set(handles.pca_checkbox2, 'Value', 1);
+  set(handles.pca_checkbox3, 'Value', 1);
+  set(handles.pca_checkbox4, 'Value', 1);
+
+  confusionData = struct;
+  confusionData.truth = [];
+  confusionData.clsfy = [];
+  setappdata(0, 'confusionData', confusionData);
 
 
 function listbox_features_refresh(handles)
@@ -191,7 +226,13 @@ function pushbutton_build_model_Callback(hObject, eventdata, handles)
   conf = getappdata(0, 'conf');
   classData = getappdata(0, 'classData');
   appClassList = getappdata(0, 'appClassList');
-  disp('`pushbutton_make_model_Callback`');
+
+  % in effect, if this callback is invoked by silence widget, include silence
+  includeSilence = false;
+  if strcmp(hObject.Tag, 'pushbutton_silence_audio')
+    includeSilence = true;
+  end
+  disp(sprintf('`pushbutton_build_model_Callback`, includeSilence: %d', includeSilence));
 
   availableFeatures = get(handles.listbox_features, 'String');
   selectedFeaturesIdx = get(handles.listbox_features, 'Value');
@@ -199,7 +240,10 @@ function pushbutton_build_model_Callback(hObject, eventdata, handles)
   for i = selectedFeaturesIdx
     selectedFeatures{length(selectedFeatures)+1} = availableFeatures{i};
   end
+
   conf.selectedFeatures = selectedFeatures;
+  conf.truthFile = get(handles.text_gndpath, 'String');
+  setappdata(0, 'conf', conf);
 
   selectedClasses = get(handles.listbox_classlist, 'Value');
   for classIdx = selectedClasses
@@ -214,6 +258,37 @@ function pushbutton_build_model_Callback(hObject, eventdata, handles)
     classData.featuresByClass.(label) = [];
   end
 
+  % add silence if necessary
+  if includeSilence
+    % ... from
+    silenceSrc = get(get(handles.uibuttongroup4,'SelectedObject'), 'Tag');
+
+    audio_data = getappdata(0, 'audio_data');
+    classNumber = conf.silenceClass;
+    label = sprintf(conf.classLabelStr, classNumber);
+
+    if strcmp(silenceSrc, 'radiobutton_audio')
+      limits = getSilenceLimits();
+    else
+      limits = getSilenceLimitsClass();
+    end
+    continuousSilenceSignal = {};
+
+    % for now, just dump signal into one segment
+    continuousSilenceSignal{1} = [];
+    while (size(limits,1))
+      this_seg = limits(1,:);
+      continuousSilenceSignal{1} = [continuousSilenceSignal{1}; audio_data(this_seg(1):this_seg(2))];
+      limits(1,:) = [];
+    end
+    silenceSampleCounts = size(continuousSilenceSignal{1},1);
+
+    classData.classNumberList = [classData.classNumberList classNumber];
+    classData.continuousClassSignals.(label) = continuousSilenceSignal;
+    classData.classSampleCounts.(label) = silenceSampleCounts;
+    classData.featuresByClass.(label) = [];
+  end
+
   disp('selectedFeatures:');
   disp(conf.selectedFeatures);
   disp('classData:');
@@ -223,7 +298,6 @@ function pushbutton_build_model_Callback(hObject, eventdata, handles)
   modelData.selectedFeatures = conf.selectedFeatures;
   modelData.numClusters = conf.numClusters;
   modelData.mappingType = conf.mappingType;
-  setappdata(0, 'conf', conf);
   setappdata(0, 'modelData', modelData);
 
   modelFileName = getModelFileName();
@@ -287,7 +361,7 @@ function pushbutton_load_model_Callback(hObject, eventdata, handles)
 
 function popupmenu_classifier_CreateFcn(hObject, eventdata, handles)
   conf = getappdata(0, 'conf');
-  classifierList = {'knn', 'naivebayes', 'myNB'};
+  classifierList = {'knn', 'naivebayes', 'myNB', 'nn'};
   set(hObject, 'String', classifierList);
   if isfield(conf, 'classifier')
     set(hObject, 'Value', find(strcmp(classifierList, conf.classifier)));
@@ -319,6 +393,7 @@ function popupmenu_classifier_Callback(hObject, eventdata, handles)
   classifierList = get(hObject, 'String');
   classifierValue = get(hObject, 'Value');
   conf.classifier = classifierList{classifierValue};
+  disp(sprintf('conf.classifier set to %s', conf.classifier));
   setappdata(0, 'conf', conf);
 
 
@@ -332,8 +407,47 @@ function popupmenu_mapping_type_Callback(hObject, eventdata, handles)
 
 function edit_filter_bins_Callback(hObject, eventdata, handles)
   conf = getappdata(0, 'conf');
-  conf.filterBins = str2num(get(hObject, 'String'));
+  ff = str2num(get(hObject, 'String'));
+  if ff > 0
+    conf.filterBins = 1;
+    conf.removeCount = ff;
+  else
+    conf.filterBins = 0;
+    conf.removeCount = 0;
+  end
+  disp(sprintf('conf.filterBins: %d', conf.filterBins));
+  disp(sprintf('conf.removeCount: %d', conf.removeCount));
   setappdata(0, 'conf', conf);
+
+
+
+function edit_wintime_Callback(hObject, eventdata, handles)
+  conf = getappdata(0, 'conf');
+  wintimeValue = str2num(get(hObject, 'String'));
+  conf.scan_wintime = wintimeValue;
+  setappdata(0, 'conf', conf);
+
+
+function edit_hoptime_Callback(hObject, eventdata, handles)
+  conf = getappdata(0, 'conf');
+  hoptimeValue = str2num(get(hObject, 'String'));
+  conf.scan_hoptime = hoptimeValue;
+  setappdata(0, 'conf', conf);
+
+
+function topThreshold_Callback(hObject, eventdata, handles)
+  conf = getappdata(0, 'conf');
+  topThreshold = str2num(get(hObject, 'String'));
+  conf.topThreshold = topThreshold;
+  setappdata(0, 'conf', conf);
+
+
+function midThreshold_Callback(hObject, eventdata, handles)
+  conf = getappdata(0, 'conf');
+  midThreshold = str2num(get(hObject, 'String'));
+  conf.midThreshold = midThreshold;
+  setappdata(0, 'conf', conf);
+
 
 
 function load_classifier(handles)
@@ -348,12 +462,27 @@ function load_classifier(handles)
     conf.classifier = 'knn';
   elseif strcmp(class(classifierData.mdl), 'ClassificationNaiveBayes')
     conf.classifier = 'naivebayes';
+  elseif strcmp(class(classifierData.mdl), 'network')
+    conf.classifier = 'nn';
   else
     conf.classifier = 'myNB';
   end
 
   setappdata(0, 'classifierData', classifierData);
   setappdata(0, 'conf', conf);
+
+  tableData = [];
+  if isprop(classifierData.mdl, 'ClassNames')
+    cn = classifierData.mdl.ClassNames;
+  else
+    cn = classifierData.mdl.userdata.sortedlabels;
+  end
+  for i = 1:size(cn, 1)
+    tableRow = [cn(i) {'?'} {'N/A'}];
+    tableData = [tableData; tableRow];
+  end
+  set(handles.class_test_table, 'Data', tableData);
+
   popupmenu_classifier_CreateFcn(handles.popupmenu_classifier);
 
 
@@ -401,12 +530,31 @@ function pushbutton_build_classifier_Callback(hObject, eventdata, handles)
   fprintf('Saved classifier in %s\n', classifierFileName);
   save(classifierFileName, '-struct', 'classifierData');
 
+  tableData = [];
+  if isprop(classifierData.mdl, 'ClassNames') || isfield(classifierData.mdl, 'ClassNames')
+    cn = classifierData.mdl.ClassNames;
+  else
+    cn = classifierData.mdl.userdata.sortedlabels;
+  end
+  for i = 1:size(cn, 1)
+    tableRow = [cn(i) {'?'} {'N/A'}];
+    tableData = [tableData; tableRow];
+  end
+  set(handles.class_test_table, 'Data', tableData);
+
+function labelMap = getLabelMap(handles)
+  mapTableData = get(handles.class_test_table, 'Data');
+  keySet = cell2mat(mapTableData(:,1))';
+  valueSet = cellfun(@str2num,mapTableData(:,2))';
+  labelMap = containers.Map(keySet, valueSet);
 
 
 function pushbutton_test_audio_Callback(hObject, eventdata, handles)
+  disp('pushbutton_test_audio_Callback()');
   palette = getappdata(0, 'palette');
   playbackOptions = getappdata(0, 'playbackOptions');
-  conf = initializeConfig('/Users/justin/Documents/MATLAB/medsim/config/spk_app_config.ini');
+  % conf = initializeConfig('/Users/justin/Documents/MATLAB/medsim/config/spk_app_config.ini');
+  conf = getappdata(0, 'conf');
   conf.audioFile = get(handles.dataPath, 'String');
   conf.truthFile = get(handles.text_gndpath, 'String');
   if (isempty(conf.audioFile) || isempty(conf.truthFile))
@@ -425,13 +573,21 @@ function pushbutton_test_audio_Callback(hObject, eventdata, handles)
   conf.override = classifierData;
   setappdata(0, 'conf', conf);
 
+  conf.labelMap = getLabelMap(handles);
 
-  [signalClassified, percentError,   truth, x_down, c_down, sample_down,  badIndices, modelSums] = test_with_stats(conf);
+  conf.dbstopErrPct = 60;
+  [signalClassified, percentError,   truth, x_down, c_down, sample_down,  badIndices, modelSums, signalConfidence] = test_with_stats(conf);
   % [signalClassified, badIndices, modelSums] = test_with_stats(conf);
   playbackOptions.colors = palette.classifiedDefault;
   playbackOptions.signalClassified = signalClassified;
+  playbackOptions.signalConfidence = signalConfidence;
+  playbackOptions.silenceStems = false;  % we want to show silence as regular class, not stems
 
 
+  confusionData = getappdata(0, 'confusionData');
+  confusionData.truth = truth;
+  confusionData.clsfy = c_down;
+  setappdata(0, 'confusionData', confusionData);
 
 
   [pathstr,thisAudioFileName,ext] = fileparts(conf.audioFile);
@@ -457,20 +613,40 @@ function pushbutton_test_audio_Callback(hObject, eventdata, handles)
   end
   f = mkdir(batchDir);
   graphFile = sprintf('%s/graph.png', batchDir);
-  makePlotWithDown(finalResults.truth, finalResults.x_down, finalResults.c_down, finalResults.sample_down);
-  set(gcf,'PaperPositionMode','auto')
-  print(graphFile, '-djpeg', '-r0')
-  close(gcf);
 
 
 
 
+%   makePlotWithDown(finalResults.truth, finalResults.x_down, finalResults.c_down, finalResults.sample_down);
+%   set(gcf,'PaperPositionMode','auto')
+%   %print(graphFile, '-djpeg', '-r0')
+%   saveas(gcf, graphFile);
+%   close(gcf);
 
-
+  errs = [];
+  tableData = get(handles.class_test_table, 'Data');
+  for i = 1:size(tableData, 1)
+    try
+      thisClass = str2num(tableData{i,2});
+    catch E
+      thisClass = str2num(tableData{i,1});
+    end
+    classSeg = finalResults.c_down(finalResults.truth==thisClass);
+    truthSeg = finalResults.truth(finalResults.truth==thisClass);
+    err = calculateErr(classSeg, truthSeg);
+    tableData{i,3} = sprintf('%3.2f%%', err);
+  end
+  set(handles.class_test_table, 'Data', tableData);
   set(handles.text_result_err, 'String', percentError);
   setappdata(0, 'signalClassified', signalClassified);
   setappdata(0, 'playbackOptions', playbackOptions);
+
+  confusionMatrix(finalResults.c_down, finalResults.truth);
+  fprintf('Error: %5.2f\n', percentError);
+  fprintf('Succe: %5.2f\n', (100-percentError));
+
   refreshPlaybackAxes();
+  ding();
 
 
 function pushbutton_load_gnd_Callback(hObject, eventdata, handles)
@@ -487,3 +663,231 @@ function pushbutton_load_gnd_Callback(hObject, eventdata, handles)
   end
   gnd = load(fullpath);
   set(handles.text_gndpath, 'String', fullpath);
+
+
+function class_test_table_CreateFcn(hObject, eventdata, handles)
+  disp('`class_test_table_CreateFcn()`');
+
+  set(hObject, 'ColumnWidth', {40 65 50});
+  set(hObject, 'ColumnEditable', logical([0 1 0]));
+  set(hObject, 'ColumnName', {'Class', 'Gnd Label', 'Error'});
+  set(hObject, 'RowName', {});
+  tableData = [{'N/A'} {'?'} {'N/A'}; {'N/A'} {'?'} {'N/A'}; {'N/A'} {'?'} {'N/A'}; {'N/A'} {'?'} {'N/A'};];
+  set(hObject, 'Data', tableData);
+
+
+function pushbutton_pca_Callback(hObject, eventdata, handles)
+  disp('`pushbutton_pca_Callback`');
+
+  modelFileName = get(handles.text_modelpath, 'String');
+  if isempty(modelFileName) || strcmp(modelFileName, 'Model Path...')
+    disp('Require model creation');
+    return
+  end
+
+
+  modelData = getappdata(0, 'modelData');
+  conf = getappdata(0, 'conf');
+
+  ff = modelData.featuresByClass;
+  labelcells = fieldnames(ff);
+  sortedlabels = sort(cellfun(@(s)sscanf(s,conf.classLabelStr), labelcells));
+
+
+  cls1 = get(handles.pca_checkbox1, 'Value');
+  cls2 = get(handles.pca_checkbox2, 'Value');
+  cls3 = get(handles.pca_checkbox3, 'Value');
+  cls4 = get(handles.pca_checkbox4, 'Value');
+
+  featureCollection = {};
+  allFeatures = [];
+
+  % could DRY this up, but time time time
+  if (cls1) && length(sortedlabels) > 0
+    featureCollection{end+1} = modelData.featuresByClass.(sprintf(conf.classLabelStr,sortedlabels(1)));
+    allFeatures = [allFeatures; featureCollection{end}];
+  end
+  if (cls2) && length(sortedlabels) > 1
+    featureCollection{end+1} = modelData.featuresByClass.(sprintf(conf.classLabelStr,sortedlabels(2)));
+    allFeatures = [allFeatures; featureCollection{end}];
+  end
+  if (cls3) && length(sortedlabels) > 2
+    featureCollection{end+1} = modelData.featuresByClass.(sprintf(conf.classLabelStr,sortedlabels(3)));
+    allFeatures = [allFeatures; featureCollection{end}];
+  end
+  if (cls4) && length(sortedlabels) > 3
+    featureCollection{end+1} = modelData.featuresByClass.(sprintf(conf.classLabelStr,sortedlabels(4)));
+    allFeatures = [allFeatures; featureCollection{end}];
+  end
+
+  if isempty(allFeatures)
+    disp('No features to analyze, exiting...');
+    return
+  end
+
+  colors = {'rx' 'bx' 'gx' 'cx'};
+  [Y Z] = pca(allFeatures);
+  figure; title('PCA');
+  hold on
+  b = 1;
+  e = 0;
+  while (length(featureCollection))
+    e = e + size(featureCollection{1}, 1);
+    plot(Z(b:e,1), Z(b:e,2), colors{length(featureCollection)});
+    featureCollection(1) = [];
+    b = e+1;
+  end
+  legend('show');
+
+
+function pushbutton_stem_Callback(hObject, eventdata, handles)
+  disp('`pushbutton_stem_Callback`');
+
+
+  modelFileName = get(handles.text_modelpath, 'String');
+  if isempty(modelFileName) || strcmp(modelFileName, 'Model Path...')
+    disp('Require model creation');
+    return
+  end
+
+
+  modelData = getappdata(0, 'modelData');
+
+
+  modelTable = modelData.modelTable;
+  modelLabel = modelData.modelLabel;
+  classes = unique(modelLabel);
+  numFeat = size(modelTable, 2);
+  sums = [];
+
+  modelTable = [modelTable modelLabel];
+  classRanges = {};
+
+  for i = 1:length(classes)
+    c = classes(i);
+    classRanges{c} = modelTable(modelTable(:, (numFeat+1)) == c, 1:numFeat);
+  end
+
+  for i = 1:length(classes)
+    c = classes(i);
+    if size(classRanges{c},1) > 1
+      sumFeat = sum(classRanges{c});
+    else
+      sumFeat = classRanges{c};
+    end
+    normSumFeat = sumFeat ./ sum(sumFeat);
+    % normSumFeat = sumFeat;
+    sums = [sums; normSumFeat];
+  end
+
+  figure;
+  mystem(sums);
+
+  disp('finished');
+
+
+function pushbutton_confusion_matrix_Callback(hObject, eventdata, handles)
+  disp('`pushbutton_confusion_matrix_Callback`');
+  confusionData = getappdata(0, 'confusionData');
+
+  if isempty(confusionData.truth) || isempty(confusionData.clsfy)
+    disp('Empty confusion data... exiting');
+    return
+  end
+
+  c = confusionData.clsfy(confusionData.truth<100);
+  t = confusionData.truth(confusionData.truth<100);
+
+  confusionMatrix(c, t);
+
+
+function limits = getSilenceLimits()
+  audio_info = getappdata(0, 'audio_info');
+  audio_data = getappdata(0, 'audio_data');
+  silenceOptions = getappdata(0, 'silenceOptions');
+
+  if isempty(audio_data)
+    disp('Must load audio!');
+    return
+  end
+
+  [segments, fs, spklimits] = jGetSpeechInOneSegment(audio_data, audio_info.SampleRate, silenceOptions);
+  limits = inverseLimits(spklimits, audio_info.TotalSamples);
+
+function limits = getSilenceLimitsClass()
+  conf = getappdata(0, 'conf');
+  audio_info = getappdata(0, 'audio_info');
+  audio_data = getappdata(0, 'audio_data');
+  silenceOptions = getappdata(0, 'silenceOptions');
+
+  if isempty(audio_data)
+    disp('Must load audio and truth!');
+    return
+  end
+
+  truth = load(conf.truthFile);
+  truth = load(conf.truthFile);
+  truth = truth.g;
+  if size(truth,2) > 1
+    truth = truth(:,2);
+  else
+    truth = truth;
+  end
+
+  truth_NoSpecialClasses = truth(truth<conf.silenceClass);
+
+
+  [segments, fs, spklimits] = jGetSpeechInOneSegment(audio_data, audio_info.SampleRate, silenceOptions);
+  limits = inverseLimits(spklimits, audio_info.TotalSamples);
+
+function pushbutton_silence_svm_Callback(hObject, eventdata, handles)
+  disp('`pushbutton_silence_svm_Callback`');
+  pushbutton_silence_medfilt_Callback(hObject, eventdata, handles);
+
+
+function pushbutton_silence_medfilt_Callback(hObject, eventdata, handles)
+  disp('`pushbutton_silence_medfilt_Callback`');
+  audio_info = getappdata(0, 'audio_info');
+  audio_data = getappdata(0, 'audio_data');
+  playbackOptions = getappdata(0, 'playbackOptions');
+  conf = getappdata(0, 'conf');
+
+  silenceOptions = getappdata(0, 'silenceOptions');
+  if strcmp(hObject.Tag, 'pushbutton_silence_svm')
+    silenceOptions.method = 2;
+  else
+    silenceOptions.method = 1;
+  end
+  silenceOptions.weightSTE = str2num(get(handles.edit_weightSTE, 'String'));
+  silenceOptions.weightSC = str2num(get(handles.edit_weightSC, 'String'));
+  silenceOptions.filtorder = str2num(get(handles.edit_filtorder, 'String'));
+  setappdata(0, 'silenceOptions', silenceOptions);
+
+  silenceSrc = get(get(handles.uibuttongroup4,'SelectedObject'), 'Tag');
+  if strcmp(silenceSrc, 'radiobutton_audio')
+    limits = getSilenceLimits();
+  else
+    limits = getSilenceLimitsClass();
+  end
+  flagged = limitToSignalFlag(limits, audio_info.TotalSamples);
+
+  signalClassified = flagged.*conf.silenceClass;
+  signalClassified(signalClassified==0) = -1; % triggers regular signal drawing
+  setappdata(0, 'signalClassified', signalClassified);
+
+  playbackOptions.signalClassified = signalClassified;
+  playbackOptions.signalConfidence = [];
+  playbackOptions.silenceStems = true;  % we want special silence indicator for this, so flag to show
+  setappdata(0, 'playbackOptions', playbackOptions);
+
+  refreshPlaybackAxes();
+
+
+function pushbutton_silence_audio_Callback(hObject, eventdata, handles)
+  pushbutton_build_model_Callback(hObject, eventdata, handles);
+
+
+
+
+
+

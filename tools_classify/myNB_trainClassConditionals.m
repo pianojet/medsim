@@ -5,7 +5,8 @@ function mdl = myNB_trainClassConditionals(modelTables, modelLabels)
     warning 'OBSERVATIONS DONT MATCH LABELS'
   end
 
-  numClasses = length(unique(modelLabels));
+  classnames = sort(unique(modelLabels));
+  numClasses = length(classnames);
   classRanges = {};
 
   % scan for labeled indices
@@ -30,7 +31,8 @@ function mdl = myNB_trainClassConditionals(modelTables, modelLabels)
   dd = ones(numClasses, 1);
 
   for feat = 1:numFeat
-    for c = 1:numClasses
+    for classIdx = 1:numClasses
+      c = classnames(classIdx);
       thisFeat = 0;
       for obs = classRanges{c}(1):classRanges{c}(2)
         thisFeat = thisFeat + modelTables(obs,feat);
@@ -46,3 +48,4 @@ function mdl = myNB_trainClassConditionals(modelTables, modelLabels)
   mdl.cc = cc;
   mdl.numClasses = numClasses;
   mdl.numFeat = numFeat;
+  mdl.ClassNames = sort(unique(modelLabels));

@@ -2,6 +2,8 @@ function [label, scores] = myNB_getPosterior(mdl, observation)
   cc = mdl.cc;
   numClasses = mdl.numClasses;
   numFeat = mdl.numFeat;
+  classnames = mdl.ClassNames;
+
 
   pp = ones(numClasses, 1); %%%%%%% could init with priors
 
@@ -13,5 +15,6 @@ function [label, scores] = myNB_getPosterior(mdl, observation)
     pp(c) = thisPosterior;
   end
   [a, label] = max(pp);
+  label = classnames(label);
   scores = pp';
 

@@ -10,6 +10,7 @@ percentError = (errorCount/length(comparisonNoSpecialClasses))*100;
 percentCorrect = 100-percentError;
 
 
+
 comparison = truth==c_down;
 comparison = comparison.*x_down;
 comparison(truth>=100) = 0;

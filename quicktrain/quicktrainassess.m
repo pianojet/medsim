@@ -1,7 +1,8 @@
 function returnData = quicktrainassess(maybeRootConfPath, options)
 t1 = clock;
 if (nargin == 0)
-  maybeRootConfPath = '/Users/justin/Documents/MATLAB/medsim/quicktrain/config/spk_app_config.ini';
+  maybeRootConfPath = '/Users/justin/Documents/MATLAB/medsim/quicktrain/config/emo_app_config.ini';
+  %maybeRootConfPath = '/Users/justin/Documents/MATLAB/medsim/quicktrain/config/spk_app_config.ini';
 end
 
 if (nargin < 2)

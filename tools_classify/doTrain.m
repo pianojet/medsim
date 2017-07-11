@@ -1,5 +1,12 @@
 function mdl = doTrain(conf, modelData)
 
+if ~isfield(conf, 'nn_patternnet')
+  conf.nn_patternnet = 5;
+end
+
+if ~isfield(conf, 'nn_showWindow')
+  conf.nn_showWindow = 0;
+end
 
 if isfield(modelData, 'modelTable')
   modelTable = modelData.modelTable;
@@ -44,6 +51,36 @@ elseif strcmp(conf.classifier, 'naivebayes')
 elseif strcmp(conf.classifier, 'myNB')
   mdl = myNB_trainClassConditionals(modelTable, modelLabel);
   % save(conf.modelmyNBFile,'mdl');
+elseif strcmp(conf.classifier, 'nn')
+  if ~isfield(modelData, 'featuresByClass')
+    error 'Can not train neural network without features';
+  end
+
+  ff = modelData.featuresByClass;
+  labelcells = fieldnames(ff);
+  numClasses = length(labelcells);
+
+  nn_x = [];
+  nn_t = [];
+  tagClass = zeros(numClasses,1);
+  tagClass(1,1) = 1;
+
+  % ensure sorted by number... not string, can't do sort(labelcells)
+  sortedlabels = sort(cellfun(@(s)sscanf(s,conf.classLabelStr), labelcells));
+  for label = sortedlabels'
+    labelfield = sprintf(conf.classLabelStr,label);
+    features = ff.(labelfield);
+    numFeatures = size(features,1);
+    nn_x = [nn_x features'];
+    nn_t = [nn_t ones(numClasses,numFeatures).*tagClass];
+    tagClass = circshift(tagClass,1); % rotate to be able to tag next class
+  end
+  mdl = patternnet(conf.nn_patternnet);
+  mdl.trainParam.showWindow = conf.nn_showWindow;
+  [mdl,tr] = train(mdl,nn_x,nn_t);
+  mdl.userdata.sortedlabels = sortedlabels;
+
+
 end
 
 disp('Training completed.');

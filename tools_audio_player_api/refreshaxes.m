@@ -15,9 +15,9 @@ function refreshaxes(audio_data, audio_info, options)
   end
   signalClassified = options.signalClassified;
 
-  if ~isfield(options, 'signalConfidence') options.signalConfidence = [];
-  end
-  signalConfidence = options.signalConfidence;
+  % if ~isfield(options, 'signalConfidence') options.signalConfidence = [];
+  % end
+  % signalConfidence = options.signalConfidence;
 
 
   if ~isfield(options, 'downSampleFactor') || (isfield(options, 'downSampleFactor') && options.downSampleFactor >= length(audio_data))

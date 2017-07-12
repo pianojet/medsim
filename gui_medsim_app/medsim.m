@@ -94,6 +94,17 @@ function initMedsim(handles)
   set(handles.radiobutton_speaker, 'Enable', 'off');
   set(handles.radiobutton_emo, 'Enable', 'off');
 
+
+  classifiedTypes = {};
+  classifiedTypes{1} = 'None';
+  classifiedTypes{2} = 'Anger';
+  classifiedTypes{3} = 'Speakers';
+  classifiedTypes{4} = 'Confidence';
+  classifiedTypes{5} = 'Silence';
+  set(handles.popupmenu_apply_top, 'String', classifiedTypes);
+  set(handles.popupmenu_apply_bot, 'String', classifiedTypes);
+
+
   setappdata(0, 'conf', conf);
   setappdata(0, 'spkSignalClassified', []);
   setappdata(0, 'emoSignalClassified', []);
@@ -264,6 +275,41 @@ function radiobutton_emo_Callback(hObject, eventdata, handles)
 function radiobutton_speakerEmo_Callback(hObject, eventdata, handles)
   disp('`radiobutton_speakerEmo_Callback`');
   updateDisplay(handles);
+
+
+function pushbutton_apply_top_Callback(hObject, eventdata, handles)
+  str = get(hObject, 'String');
+  val = get(hObject,'Value');
+  % Set current data to the selected data set.
+  switch str{val};
+  case 'Anger'
+     disp('showing anger in top...');
+  case 'Speakers'
+     disp('showing speakers in top...');
+  case 'Confidence'
+     disp('showing confidence in top...');
+  case 'Silence'
+     disp('showing silence in top...');
+  end
+
+
+
+function pushbutton_apply_bot_Callback(hObject, eventdata, handles)
+  str = get(hObject, 'String');
+  val = get(hObject,'Value');
+  % Set current data to the selected data set.
+  switch str{val};
+  case 'Anger'
+     disp('showing anger in bot...');
+  case 'Speakers'
+     disp('showing speakers in bot...');
+  case 'Confidence'
+     disp('showing confidence in bot...');
+  case 'Silence'
+     disp('showing silence in bot...');
+  end
+
+
 
 
 
